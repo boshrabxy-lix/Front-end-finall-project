@@ -1,9 +1,9 @@
 import * as yup from "yup";
 
  export const registerSchema = yup.object({
-    userName:yup.string().required("userName is required").min(3,"userName must be at least 3 characters")
+    userName:yup.string().required("userName is required").min(3,"userName must be at least 3 characters").max(20)
     .matches(/^[a-zA-Z0-9_-]+$/, "userName must contain only letters, numbers, underscores, and hyphens"),
-    fullName:yup.string().required("fullName is required"),
+    fullName:yup.string().required("fullName is required").max(20),
     email:yup.string().email("email must be a valid email").required("email is required"),
     phoneNumber:yup.string().required("phoneNumber is required"),
     password:yup.string().required("password is required")

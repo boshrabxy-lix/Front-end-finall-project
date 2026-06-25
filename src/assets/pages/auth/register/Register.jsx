@@ -1,28 +1,30 @@
 import Box from "@mui/material/Box";
-import React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useForm } from "react-hook-form";
+import { useForm , isSubmitting } from "react-hook-form";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { registerSchema } from "../../../validation/RegisterSchema";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Register() {
-
+const [ServerErrors,setServerErrors ]=useState([]);
   const { register, handleSubmit,formState:{errors} } = useForm({
     resolver: yupResolver(registerSchema)
   });
 
-  const registerForm = async (values) => {
+  const registerForm = async (data) => {
     try {
       const response = await axios.post(
-        `https://knowledgeshop.runasp.net/api/auth/Account/Register`,
-        values,
+        `${import.meta.env.VITE_BURL}/auth/Account/Register`,
+        data,
       );
       console.log("responce", response);
-    } catch (error) {
-      console.log("catch error", error);
+    } catch (err) {
+      console.log(err.response.data.errors);
+      setServerErrors(err.response.data.errors);
     }
   };
 
@@ -31,6 +33,9 @@ export default function Register() {
       <Typography component={"h1"} variant="h3">
         Register
       </Typography>
+{ServerErrors?.length> 0 ? ServerErrors.map((error)=>
+  <Typography color="error" alignItems={'center'}>{error}</Typography>
+):''}
 
       <Box
         component={"form"}
@@ -85,8 +90,9 @@ export default function Register() {
                error={errors.phoneNumber}
                 helperText={errors.phoneNumber?.message}
         />
-        <Button variant="contained " type="submit">
-          Register
+        <Button variant="contained " type="submit" disabled={isSubmitting}>
+
+          {isSubmitting? <CircularProgress/> :'Register'}
         </Button>
       </Box>
     </Box>
