@@ -3,15 +3,15 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useForm , isSubmitting } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { registerSchema } from "../../../validation/RegisterSchema";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Register() {
-const [ServerErrors,setServerErrors ]=useState([]);
-  const { register, handleSubmit,formState:{errors} } = useForm({
+  const [ServerErrors, setServerErrors] = useState([]);
+  const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(registerSchema)
   });
 
@@ -33,9 +33,9 @@ const [ServerErrors,setServerErrors ]=useState([]);
       <Typography component={"h1"} variant="h3">
         Register
       </Typography>
-{ServerErrors?.length> 0 ? ServerErrors.map((error)=>
-  <Typography color="error" alignItems={'center'}>{error}</Typography>
-):''}
+      {ServerErrors?.length > 0 ? ServerErrors.map((error) =>
+        <Typography color="error" alignItems={'center'}>{error}</Typography>
+      ) : ''}
 
       <Box
         component={"form"}
@@ -55,8 +55,8 @@ const [ServerErrors,setServerErrors ]=useState([]);
           fullWidth
           label="User Name"
           variant="outlined"
-             error={errors.userName}
-             helperText={errors.userName?.message}
+          error={errors.userName}
+          helperText={errors.userName?.message}
         />
         <TextField
           {...register("fullName")}
@@ -64,35 +64,35 @@ const [ServerErrors,setServerErrors ]=useState([]);
           label="Full Name"
           variant="outlined"
           error={errors.fullName}
-           helperText={errors.fullName?.message}
+          helperText={errors.fullName?.message}
         />
         <TextField
           {...register("email")}
           fullWidth
           label="User Email"
           variant="outlined"
-               error={errors.email}
-                helperText={errors.email?.message}
+          error={errors.email}
+          helperText={errors.email?.message}
         />
         <TextField
           {...register("password")}
           fullWidth
           label="Password"
           variant="outlined"
-               error={errors.password}
-                helperText={errors.password?.message}
+          error={errors.password}
+          helperText={errors.password?.message}
         />
         <TextField
           {...register("phoneNumber")}
           fullWidth
           label="Phone Number"
           variant="outlined"
-               error={errors.phoneNumber}
-                helperText={errors.phoneNumber?.message}
+          error={errors.phoneNumber}
+          helperText={errors.phoneNumber?.message}
         />
-        <Button variant="contained " type="submit" disabled={isSubmitting}>
+        <Button variant="contained " type="submit" >
 
-          {isSubmitting? <CircularProgress/> :'Register'}
+
         </Button>
       </Box>
     </Box>
