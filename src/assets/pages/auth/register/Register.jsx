@@ -11,7 +11,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Register() {
   const [ServerErrors, setServerErrors] = useState([]);
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(registerSchema)
   });
 
@@ -90,8 +90,8 @@ export default function Register() {
           error={errors.phoneNumber}
           helperText={errors.phoneNumber?.message}
         />
-        <Button variant="contained " type="submit" >
-
+        <Button variant="contained " type="submit" disabled={isSubmitting} >
+          {isSubmitting ? <CircularProgress /> : 'Register'}
 
         </Button>
       </Box>

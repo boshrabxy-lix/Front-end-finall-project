@@ -9,7 +9,6 @@ export default function Categories() {
     if (isLoading) return <CircularProgress />
     if (isError) return <Typography color='error'>{error}</Typography>
 
-
     return (
         <Box>
             {data.response.data.map((category) =>

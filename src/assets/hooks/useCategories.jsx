@@ -7,7 +7,7 @@ export default function useCategories() {
         });
         return response.data;
     }
-
+    
     const query = useQuery({
         queryKey: ['categories'],
         queryFn: getCategories,
