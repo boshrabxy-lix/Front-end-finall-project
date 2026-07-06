@@ -5,6 +5,7 @@ import Home from "./assets/pages/home/Home";
 import Login from "./assets/pages/auth/login/Login";
 import Cart from "./assets/pages/cart/Cart";
 import Register from "./assets/pages/auth/register/Register";
+import ProductDetails from "./assets/pages/productDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -13,11 +14,11 @@ const router = createBrowserRouter([
     children:[
       {
         index: true,
-        element: <Home />,
+        element: <Home />
       },
       {
         path: "cart",
-        element: <Cart />,
+        element: <Cart />
       },
       {
         path: "login",
@@ -25,8 +26,12 @@ const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: <Register/>,
+        element: <Register/>
       },
+       {
+        path: "Products/:id",
+        element: <ProductDetails />
+      }
     ]
   },
 ]);
