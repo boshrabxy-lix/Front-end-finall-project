@@ -7,28 +7,29 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { LoginSchema } from "../../../validation/LoginSchema";
 import CircularProgress from "@mui/material/CircularProgress";
+import useAuthStore from "../../../store/useAuthStore";
 
 
 export default function Login() {
   const [ServerErrors, setServerErrors] = useState([]);
+  const setToken =useAuthStore((state)=>state.setToken);
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(LoginSchema)
   });
 
   const loginForm = async (data) => {
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BURL}/auth/Account/Register`, data);
-     if (response.status ===200){
-      locslStorage.setItem("accessToken",response.data.accessToken)
-     }
+      const response = await axios.post(`${import.meta.env.VITE_BURL}/auth/Account/Register`, data);
+      if (response.status === 200) {
+        setToken(response.data.accessToken);
+      }
       console.log("responce", response);
-    }catch (err) {
+    } catch (err) {
       console.log(err.response.data.errors);
       setServerErrors(err.response.data.errors);
     }
   };
-
+  
   return (
     <Box component={"section"} className="register-form" py={5}>
       <Typography component={"h1"} variant="h3">
@@ -51,7 +52,7 @@ export default function Login() {
         py={2}
         display={'flex'}
       >
-    
+
         <TextField
           {...register("email")}
           fullWidth
@@ -68,7 +69,7 @@ export default function Login() {
           error={errors.password}
           helperText={errors.password?.message}
         />
-      
+
         <Button variant="contained " type="submit" disabled={isSubmitting} >
           {isSubmitting ? <CircularProgress /> : 'Login'}
 
