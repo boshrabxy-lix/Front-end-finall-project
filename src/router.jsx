@@ -6,19 +6,26 @@ import Login from "./assets/pages/auth/login/Login";
 import Cart from "./assets/pages/cart/Cart";
 import Register from "./assets/pages/auth/register/Register";
 import ProductDetails from "./assets/pages/productDetails/ProductDetails";
+import ProtectedRouter from "../src/ProtectedRouter";
+import CategoriesPage from "./assets/pages/categories/CategoriesPage";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    children:[
+    children: [
       {
         index: true,
         element: <Home />
       },
       {
         path: "cart",
-        element: <Cart />
+
+        element:
+          <ProtectedRouter>
+            <Cart />
+          </ProtectedRouter>
       },
       {
         path: "login",
@@ -26,9 +33,13 @@ const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: <Register/>
+        element: <Register />
       },
-       {
+      {
+        path:"categories",
+        element: <CategoriesPage />
+      },
+      {
         path: "Products/:id",
         element: <ProductDetails />
       }
