@@ -1,7 +1,6 @@
 import {  Typography } from '@mui/material';
 import { Card, CardMedia, CardContent } from '@mui/material';
 
-
 export default function CategoryUi({category}) {
     return (
         <>

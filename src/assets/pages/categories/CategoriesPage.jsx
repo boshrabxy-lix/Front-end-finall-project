@@ -1,5 +1,5 @@
 import Category from '../../ui/categoryUi/CategoryUi';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import Loader from '../../components/loader/Loader';
 import useCategories from '../../hooks/useCategories';

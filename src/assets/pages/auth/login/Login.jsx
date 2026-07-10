@@ -6,9 +6,9 @@ import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { LoginSchema } from "../../../validation/LoginSchema";
-import CircularProgress from "@mui/material/CircularProgress";
 import useAuthStore from "../../../store/useAuthStore";
 import { useNavigate } from 'react-router-dom';
+import Loader from "../../../components/loader/Loader";
 
 export default function Login() {
   const [ServerErrors, setServerErrors] = useState([]);
@@ -73,7 +73,7 @@ export default function Login() {
         />
 
         <Button variant="contained " type="submit" disabled={isSubmitting} >
-          {isSubmitting ? <CircularProgress /> : 'Login'}
+          {isSubmitting ? <Loader /> : 'Login'}
 
         </Button>
       </Box>
