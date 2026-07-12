@@ -1,11 +1,12 @@
 import React from 'react'
 import useCart from '../../hooks/useCart'
 import { Box } from '@mui/material';
+import useRemoveFromCart from '../../hooks/useRemoveFromCart';
 
 export default function Cart() {
   const { data, isError, error, isLoading } = useCart();
 
-
+const {mutate,isPending}=useRemoveFromCart
 
   if (isLoading) return <Loader />
   if (isError) return <Typography color='error'>{error}</Typography>
@@ -39,7 +40,7 @@ export default function Cart() {
                   {item.count * item.price}$
                 </TableCell>
                 <TableCell>
-                  <Button color='error' variant='contained'>Remove</Button>
+                  <Button color='error' variant='contained' onClick={()=>MutationRecord(item.productId)}>Remove</Button>
                 </TableCell>
               </TableRow>
             ))}
