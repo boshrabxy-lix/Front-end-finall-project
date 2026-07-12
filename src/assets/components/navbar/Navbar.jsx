@@ -17,7 +17,6 @@ export default function Navbar() {
     navigate('/login');
   }
   return (
-
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -29,10 +28,11 @@ export default function Navbar() {
             <Link to={'/'} component={RouterLink} color="inherit" underline='none'>Home</Link>
             <Link to={'/categories'} component={RouterLink} color="inherit" underline='none'>Categorier</Link>
             <Link to={'/register'} component={RouterLink} color="inherit" underline='none'>Products</Link>
+            <Link to={'/cart'} component={RouterLink} color="inherit" underline='none'>Cart</Link>
             {token ?
               (
                 <>
-                  <Link to={'/cart'} component={RouterLink} color="inherit" underline='none'>Cart</Link>
+                  
                   <Link component={'button'} component={RouterLink} onClick={handleLogout} color="inherit" underline='none'>logout</Link>
                 </>
               ) :
