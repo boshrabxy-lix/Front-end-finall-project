@@ -25,14 +25,13 @@ export default function Navbar() {
           </Typography>
 
           <Box sx={{ display:{ xs:'none',sm:'flex'} , gap: 2, alignItems: 'center' }}>
-            <Link to={'/'} component={RouterLink} color="inherit" underline='none'>Home</Link>
+            <Link to={'/'} component={RouterLink} color="white" underline='none'>Home</Link>
             <Link to={'/categories'} component={RouterLink} color="inherit" underline='none'>Categorier</Link>
             <Link to={'/register'} component={RouterLink} color="inherit" underline='none'>Products</Link>
-            <Link to={'/cart'} component={RouterLink} color="inherit" underline='none'>Cart</Link>
             {token ?
               (
                 <>
-                  
+                   <Link to={'/cart'} component={RouterLink} color="inherit" underline='none'>Cart</Link>
                   <Link component={'button'} component={RouterLink} onClick={handleLogout} color="inherit" underline='none'>logout</Link>
                 </>
               ) :
@@ -43,7 +42,7 @@ export default function Navbar() {
                 </>
               )}
           </Box>
-
+          
           <IconButton color="inherit" sx={{ display: { xs: 'flex', sm: 'none' } }}>
             <MenuIcon />
           </IconButton>
