@@ -1,4 +1,3 @@
-import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "./assets/components/layouts/MainLayout";
 import Home from "./assets/pages/home/Home";
@@ -8,6 +7,7 @@ import Register from "./assets/pages/auth/register/Register";
 import ProductDetails from "./assets/pages/productDetails/ProductDetails";
 import ProtectedRouter from "../src/ProtectedRouter";
 import CategoriesPage from "./assets/pages/categories/CategoriesPage";
+import Checkout from "./assets/pages/checkout/Checkout";
 
 
 const router = createBrowserRouter([
@@ -21,10 +21,16 @@ const router = createBrowserRouter([
       },
       {
         path: "cart",
-
         element:
           <ProtectedRouter>
             <Cart />
+          </ProtectedRouter>
+      },
+      {
+        path: "checkout",
+        element:
+          <ProtectedRouter>
+            <Checkout />
           </ProtectedRouter>
       },
       {
@@ -40,7 +46,7 @@ const router = createBrowserRouter([
         element: <Register />
       },
       {
-        path:"categories",
+        path: "categories",
         element: <CategoriesPage />
       },
       {

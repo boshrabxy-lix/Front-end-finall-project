@@ -1,12 +1,31 @@
-import React from 'react'
 import useCart from '../../hooks/useCart'
-import { Box } from '@mui/material';
+import { Box, TableHead, TableContainer, TableCell, Table, TableBody, TableRow, TableFooter, IconButton } from '@mui/material';
 import useRemoveFromCart from '../../hooks/useRemoveFromCart';
+import Loader from '../../components/loader/Loader';
+import { Button } from '@mui/material';
+import Typography from "@mui/material/Typography";
+import useUpdateCartItem from '../../hooks/useUpdateCartItem';
+import RemoveIcon from '@mui/icon-material/Remove';
+import AddIcon from '@mui/icon-material/AddIcon';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
   const { data, isError, error, isLoading } = useCart();
+  const { mutate: removeItem, isPending: removeItemPending } = useRemoveFromCart();
+  const { mutate: UpdateItem, isPending: updateItemPending } = useUpdateCartItem();
+  const navigate=useNavigate();
+  console.log(data);
 
-const {mutate,isPending}=useRemoveFromCart
+  const handleUpdateQty = (productId, action) => {
+    const Item = data.items.find((i) =>
+      i.productId == productId,
+    );
+    if (action == '-') {
+      UpdateItem({ productId, count: Item.count - 1 });
+    } else {
+      UpdateItem({ productId, count: Item.count + 1 });
+    }
+  }
 
   if (isLoading) return <Loader />
   if (isError) return <Typography color='error'>{error}</Typography>
@@ -33,14 +52,28 @@ const {mutate,isPending}=useRemoveFromCart
                 <TableCell>
                   {item.price}$
                 </TableCell>
-                <TableCell>
-                  {item.count}
+
+
+                    <TableCell>
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <IconButton size='small' disabled={updateItemPending} onClick={()=>handleUpdateQty(item.productId, '-')}>
+                          <RemoveIcon />
+                        </IconButton>
+
+                        <Typography>{item.count}</Typography>
+
+                        <IconButton size='small' disabled={updateItemPending} onClick={()=>handleUpdateQty(item.productId, '+')}>
+                          <AddIcon />
+                        </IconButton>
+                      </Box>
                 </TableCell>
+
+
                 <TableCell>
                   {item.count * item.price}$
                 </TableCell>
                 <TableCell>
-                  <Button color='error' variant='contained' onClick={()=>MutationRecord(item.productId)}>Remove</Button>
+                  <Button color='error' variant='contained' disabled={removeItemPending} onClick={() => removeItem(item.productId)}>Remove</Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -53,6 +86,28 @@ const {mutate,isPending}=useRemoveFromCart
           </TableFooter>
         </Table>
       </TableContainer>
-    </Box>
+
+
+      <Box sx={{ display: 'flex', gap: 3 }}>
+        <Button
+          variant='contained'
+          color='success'
+          sx={{ flex: 1 }}
+          disabled={updateItemPending}
+          onClick={() => navigate('/checkout')}
+        >
+          Procces To Checkout
+        </Button>
+        <Button
+          variant='contained'
+          color='primary'
+          sx={{ flex: 1 }}
+          disabled={updateItemPending}
+          onClick={() => navigate('/')}
+        >
+          Countinue Shopping
+        </Button>
+      </Box>
+    </Box >
   )
 }
