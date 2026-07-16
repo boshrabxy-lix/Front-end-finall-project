@@ -1,13 +1,14 @@
 import React from 'react'
 import useProducts from '../../hooks/useProducts';
-import { Card, CardMedia, Grid, Box, CircularProgress, CardContent } from '@mui/material';
+import { Card, CardMedia, Grid, Box, CardContent } from '@mui/material';
 import Typography from "@mui/material/Typography";
 import { Link } from 'react-router-dom';
+import Loader from '../loader/Loader';
 
 
 export default function Products() {
     const { data, isError, isLoading, error } = useProducts();
-    if (isLoading) return <CircularProgress />
+    if (isLoading) return <Loader />
     if (isError) return <Typography color='error'>{error}</Typography>
 
 

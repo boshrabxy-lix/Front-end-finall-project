@@ -21,10 +21,7 @@ export default function ProductDetails() {
       <Box>
         <DescriptionProduct />
 
-       
-
-
-
+      
         <Button onClick={() => { addToCart({ productId: data.response.id, count: 1 }) }}>Add To Cart</Button>
 
       </Box>
