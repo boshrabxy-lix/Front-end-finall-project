@@ -1,16 +1,5 @@
 import React from 'react'
-import {
-  Box,
-  Container,
-  Grid,
-  Typography,
-  Button,
-  InputBase,
-  Link,
-  Divider,
-} from '@mui/material';
-
-
+import { Box, Container, Grid, Typography, Button, InputBase, Link, Divider, } from '@mui/material';
 
 export default function Footer() {
   const StaticCategories = ['Daily Deals', 'Electronics', 'Best Sellers', 'New Arrivals'];
@@ -25,13 +14,13 @@ export default function Footer() {
               </Typography>
             <Grid container spacing={6} sx={{ mb: 5, pb: 5 }}>
              
-              <Grid item xs={12} size={4}>
+              <Grid item size={{xs:12,sm:6,md:4}}>
                 <Typography variant="body2" sx={{ color: '#ffffff3f', mt: 2, lineHeight: 1.2, maxWidth: 280 }}>
                   Your ultimate destination for premium electronics and lifestyle products. We <br />focus on quality and innovation.
                 </Typography>
               </Grid>
 
-              <Grid item xs={6} size={2}>
+              <Grid item size={{xs:6,sm:6,md:2}}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.2 }}>
                   {StaticCategories.map((item) => (
                     <Link key={item} href="#" underline="none" sx={{ color: "white", fontSize: '0.85rem', '&:hover': { color: 'gray' } }}>
@@ -41,7 +30,7 @@ export default function Footer() {
                 </Box>
               </Grid>
 
-              <Grid item xs={6} size={2}>
+              <Grid item size={{xs:6,sm:6,md:2}}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                   {ContactList.map((item) => (
                     <Link key={item} href="#" underline="none" sx={{ color: "white", fontSize: '0.85rem', '&:hover': { color: 'gray' } }}>
@@ -51,7 +40,7 @@ export default function Footer() {
                 </Box>
               </Grid>
 
-              <Grid item xs={12} size={4}>
+              <Grid item size={{xs:12,sm:5,md:4}}>
                 <Typography component={"p"} variant="body2" sx={{ mb: 2, color: '#ffffff3f' }}>
                   Get the latest updates on new products<br /> and upcoming sales.
                 </Typography>
@@ -68,7 +57,7 @@ export default function Footer() {
             <Divider sx={{ borderColor: '#ffffff34', borderWidth: 1.5, borderStyle: 'solid', my: 3 }} />
 
             <Typography variant="caption" sx={{ display: 'flex', color: '#ffffff3f', alignItems: 'center', justifyContent: 'center' }}>
-              © 2024 KASHOP. All rights reserved.
+              © 2026 KASHOP. All rights reserved.
             </Typography>
           </Container>
         </Box>

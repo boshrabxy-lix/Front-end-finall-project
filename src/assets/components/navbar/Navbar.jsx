@@ -24,14 +24,14 @@ export default function Navbar() {
     navigate("/login");
   };
   return (
-    <Box component={"section"}>
-     <AppBar sx={{ position: "sticky", background: "linear-gradient(90deg, #142244 0%, #1c2f56 100%)", }} >
-        <Toolbar sx={{ gap: 4, py: 2 }}>
-         <Typography variant="h6" component="div" sx={{ fontWeight: 800, letterSpacing: 0.4, color: "#ffffff" }} >
+    <Box component={"section"} sx={{ flexGrow: 1 }}>
+      <AppBar sx={{ position: "static", background: "linear-gradient(90deg, #142244 0%, #1c2f56 100%)", }} >
+        <Toolbar sx={{ gap: 4, py: 2, flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ fontWeight: 800, letterSpacing: 0.4, color: "#ffffff" }} >
             KASHOP
           </Typography>
 
-          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 4, alignItems: "center" }}>
+          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 5, alignItems: "center" }}>
             <Link
               to={"/"}
               component={RouterLink}
@@ -59,7 +59,7 @@ export default function Navbar() {
             >
               Categorier
             </Link>
-            
+
             <Link
               to={"/register"}
               component={RouterLink}
@@ -75,26 +75,28 @@ export default function Navbar() {
             </Link>
           </Box>
 
+
           <Box
             sx={{
-              display: { sm: "none", md: "flex" },
-              alignItems: "center",
-              gap: 4,
-              bgcolor: "#ffffff14",
+              display: { xs: "none", md: "flex" },
+              gap: 3,
+              alignItems: 'center',
+              bgcolor: 'white',
               borderRadius: "20px",
-              px: 2,
+              px: 4,
               py: 0.5,
               maxWidth: 340,
-              ml: 2,
+              ml: 3,
             }}
           >
-            <SearchIcon sx={{ color: "#94a3b8", fontSize: 20 }} />
+            <SearchIcon sx={{ color: "#595e65d0", fontSize: 20, bgcolor: 'white' }} />
             <InputBase
               placeholder="Search for products..."
               sx={{
-                color: "#e2e8f0b1",
+                color: "#000000d0",
                 fontSize: "0.9rem",
                 alignItems: "center",
+                bgcolor: 'white'
               }}
             />
           </Box>
@@ -107,9 +109,6 @@ export default function Navbar() {
               ml: 2,
             }}
           >
-            <IconButton size="small" sx={{ color: "#e2e8f0" }}>
-              <PersonSharpIcon />
-            </IconButton>
 
             {token ? (
               <>
@@ -123,7 +122,7 @@ export default function Navbar() {
                     <ShoppingCartOutlinedIcon />
                   </Badge>
                 </IconButton>
-                
+
                 <Link
                   component={"button"}
                   onClick={handleLogout}
@@ -170,14 +169,20 @@ export default function Navbar() {
               </>
             )}
 
-          <IconButton size="small" sx={{ display: { md: "none" }, color: "#e2e8f0" }} >
+            <IconButton size="small" sx={{ color: "#e2e8f0" }}>
+              <PersonSharpIcon />
+            </IconButton>
+
+            <IconButton size="small" sx={{ color: "#e2e8f0" }}  >
               <DarkModeOutlinedIcon fontSize="small" />
             </IconButton>
+            
           </Box>
 
-       <IconButton color="inherit" sx={{ display: { xs: "flex", sm: "none" } }} >
+          <IconButton color="inherit" sx={{ display: { xs: "flex", sm: "none" } }} >
             <MenuIcon />
           </IconButton>
+
         </Toolbar>
       </AppBar>
     </Box>
