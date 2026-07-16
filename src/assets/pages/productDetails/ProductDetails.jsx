@@ -3,7 +3,7 @@ import useProdDetails from '../../hooks/useProdDetails';
 import { Box, CircularProgress, Button ,CardMedia,Card,CardContent} from '@mui/material';
 import Typography from "@mui/material/Typography";
 import useAddToCart from "../../hooks/useAddToCart";
-import DescriptionProduct from '../../components/description/descriptionProduct';
+import DescriptionProduct from '../../components/description/DescriptionProduct';
 
 export default function ProductDetails() {
   const { id } = useParams();
