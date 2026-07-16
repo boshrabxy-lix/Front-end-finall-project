@@ -5,9 +5,9 @@ import Loader from '../../components/loader/Loader';
 import { Button } from '@mui/material';
 import Typography from "@mui/material/Typography";
 import useUpdateCartItem from '../../hooks/useUpdateCartItem';
-import RemoveIcon from '@mui/icon-material/Remove';
-import AddIcon from '@mui/icon-material/AddIcon';
 import { useNavigate } from 'react-router-dom';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function Cart() {
   const { data, isError, error, isLoading } = useCart();
