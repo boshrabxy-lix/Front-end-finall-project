@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import authAxiosInstance from './../api/authAxiosInstance';
+import i18n from '../i18next';
 
 export default function useProdDetails(id) {
     const getProduct = async () => {
@@ -8,7 +9,7 @@ export default function useProdDetails(id) {
         return response.data;
     }
     const query = useQuery({
-        queryKey: ['product', 'en', id],
+        queryKey: ['product',  i18n.language, id],
         queryFn: getProduct,
         staleTime: 1000 * 60 * 5,
     })

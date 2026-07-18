@@ -18,7 +18,8 @@ export default function Navbar() {
   const { t } = useTranslation();
 
   const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
+    const newLang = i18n.language == "ar" ? "en" : "ar"
+    i18n.changeLanguage(newLang);
   }
 
   const token = useAuthStore((state) => state.token);
@@ -65,11 +66,12 @@ export default function Navbar() {
                 "&:hover": { color: "#ffffff" },
               }}
             >
-              Categorier
+              {t('Categories')}
+
             </Link>
 
             <Link
-              to={"/register"}
+              to={"products"}
               component={RouterLink}
               underline="none"
               sx={{
@@ -79,7 +81,7 @@ export default function Navbar() {
                 "&:hover": { color: "#ffffff" },
               }}
             >
-              Products
+                {t('Products')}
             </Link>
           </Box>
 
@@ -99,7 +101,7 @@ export default function Navbar() {
           >
             <SearchIcon sx={{ color: "#595e65d0", fontSize: 20, bgcolor: 'white' }} />
             <InputBase
-              placeholder="Search for products..."
+              placeholder={t('Search for products...')}
               sx={{
                 color: "#000000d0",
                 fontSize: "0.9rem",
@@ -142,7 +144,7 @@ export default function Navbar() {
                     "&:hover": { color: "#ffffff" },
                   }}
                 >
-                  logout
+                   {t('Logout')}
                 </Link>
               </>
             ) : (
@@ -158,7 +160,7 @@ export default function Navbar() {
                     "&:hover": { color: "#ffffff" },
                   }}
                 >
-                  Register
+                 {t('Register')} 
                 </Link>
 
                 <Link
@@ -172,11 +174,12 @@ export default function Navbar() {
                     "&:hover": { color: "#ffffff" },
                   }}
                 >
-                  Login
+                     {t('Login')} 
+            
                 </Link>
               </>
             )}
-            <Button onClick={changeLanguage}>{i18n.language}</Button>
+            <Button onClick={changeLanguage}>{i18n.language === "AR" ? "EN" : "AR"}</Button>
 
             <IconButton size="small" sx={{ color: "#e2e8f0" }}  >
               <DarkModeOutlinedIcon fontSize="small" />

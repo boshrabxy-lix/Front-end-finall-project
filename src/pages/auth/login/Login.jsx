@@ -9,6 +9,7 @@ import { LoginSchema } from "../../../validation/LoginSchema";
 import useAuthStore from "../../../store/useAuthStore";
 import { useNavigate } from 'react-router-dom';
 import Loader from "../../../components/loader/Loader";
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
   const [ServerErrors, setServerErrors] = useState([]);
@@ -17,7 +18,7 @@ export default function Login() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(LoginSchema), mode: 'onBlur'
   });
-
+     const { t } = useTranslation();
   const loginForm = async (data) => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BURL}/auth/Account/Register`, data);
@@ -35,7 +36,7 @@ export default function Login() {
   return (
     <Box component={"section"} className="register-form" py={5}>
       <Typography component={"h1"} variant="h3">
-        Login
+        {t('Login')}
       </Typography>
       {ServerErrors?.length > 0 ? ServerErrors.map((error) =>
         <Typography color="error" alignItems={'center'}>{error}</Typography>

@@ -8,8 +8,11 @@ import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { registerSchema } from "../../../validation/RegisterSchema";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useTranslation } from "react-i18next";
 
 export default function Register() {
+  const { t } = useTranslation();
+
   const [ServerErrors, setServerErrors] = useState([]);
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(registerSchema)
@@ -31,7 +34,7 @@ export default function Register() {
   return (
     <Box component={"section"} className="register-form" py={5}>
       <Typography component={"h1"} variant="h3">
-        Register
+        {t('Register')}
       </Typography>
       {ServerErrors?.length > 0 ? ServerErrors.map((error) =>
         <Typography color="error" alignItems={'center'}>{error}</Typography>

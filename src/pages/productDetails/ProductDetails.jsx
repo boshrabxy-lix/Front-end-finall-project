@@ -5,8 +5,10 @@ import Typography from "@mui/material/Typography";
 import useAddToCart from "../../hooks/useAddToCart";
 import DescriptionProduct from '../../components/description/DescriptionProduct';
 import Loader from '../../components/loader/Loader';
+import { useTranslation } from "react-i18next";
 
 export default function ProductDetails() {
+   const { t } = useTranslation();
   const { id } = useParams();
   const { mutate: addToCart ,isPending:AddToCartPending } = useAddToCart();
   const { data, isError, isLoading, error } = useProdDetails(id);
@@ -19,7 +21,7 @@ export default function ProductDetails() {
     <>
       <Box>
         <DescriptionProduct />
-        <Button disabled={AddToCartPending} onClick={() => { addToCart({ productId: data.response.id, count: 1 }) }}>Add To Cart</Button>
+        <Button disabled={AddToCartPending} onClick={() => { addToCart({ productId: data.response.id, count: 1 }) }}> {t('Add To Cart')}</Button>
       </Box>
 
     </>

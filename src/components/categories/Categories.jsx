@@ -6,8 +6,10 @@ import { Grid } from '@mui/material';
 import Category from '../../ui/categoryUi/CategoryUi';
 import Loader from '../loader/Loader';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Categories() {
+       const { t } = useTranslation();
     const { data, isLoading, isError, error } = useCategories();
     if (isLoading) return <Loader />
     if (isError) return <Box color={'red'}>{error.message}</Box>
@@ -15,8 +17,8 @@ export default function Categories() {
     return (
         <>
          <Box className="categories" py={3}>
-           <Typography component={'h2'} variant='h4' mb={2}>Categories</Typography>
-           <Link to ='/categories'>Show more</Link>
+           <Typography component={'h2'} variant='h4' mb={2}>{t('Categories')}</Typography>
+           <Link to ='/categories'>{t('Show more')}</Link>
            <Grid container spacing={6}>
              {data.response.data.map(category=>
                <Grid item size={{xs:12,sm:6,md:4,lg:3}}>
