@@ -1,7 +1,7 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import useCategories from '../../hooks/useCategories';
+import useCategories from './../../hooks/useCategories';
 import { Grid } from '@mui/material';
 import Category from '../../ui/categoryUi/CategoryUi';
 import Loader from '../loader/Loader';

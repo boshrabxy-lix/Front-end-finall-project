@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import authAxiosInstance from '../../api/authAxiosInstance';
+import authAxiosInstance from './../api/authAxiosInstance';
 
 export default function useUpdateCartItem() {
     const queryClient= useQueryClient();

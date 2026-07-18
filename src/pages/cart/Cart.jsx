@@ -13,7 +13,7 @@ export default function Cart() {
   const { data, isError, error, isLoading } = useCart();
   const { mutate: removeItem, isPending: removeItemPending } = useRemoveFromCart();
   const { mutate: UpdateItem, isPending: updateItemPending } = useUpdateCartItem();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   console.log(data);
 
   const handleUpdateQty = (productId, action) => {
@@ -54,18 +54,18 @@ export default function Cart() {
                 </TableCell>
 
 
-                    <TableCell>
-                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <IconButton size='small' disabled={updateItemPending} onClick={()=>handleUpdateQty(item.productId, '-')}>
-                          <RemoveIcon />
-                        </IconButton>
+                <TableCell>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <IconButton size='small' disabled={updateItemPending} onClick={() => handleUpdateQty(item.productId, '-')}>
+                      <RemoveIcon />
+                    </IconButton>
 
-                        <Typography>{item.count}</Typography>
+                    <Typography>{item.count}</Typography>
 
-                        <IconButton size='small' disabled={updateItemPending} onClick={()=>handleUpdateQty(item.productId, '+')}>
-                          <AddIcon />
-                        </IconButton>
-                      </Box>
+                    <IconButton size='small' disabled={updateItemPending} onClick={() => handleUpdateQty(item.productId, '+')}>
+                      <AddIcon />
+                    </IconButton>
+                  </Box>
                 </TableCell>
 
 

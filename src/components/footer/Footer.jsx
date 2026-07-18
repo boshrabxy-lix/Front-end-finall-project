@@ -4,9 +4,10 @@ import { Box, Container, Grid, Typography, Button, InputBase, Link, Divider, } f
 export default function Footer() {
   const StaticCategories = ['Daily Deals', 'Electronics', 'Best Sellers', 'New Arrivals'];
   const ContactList = ['About Us', 'Privacy Policy', 'Terms of Service', 'Contact Us'];
+  
   return (
     <>
-      <Box component="section" sx={{ bgcolor: '#0e1726', pt: 15, pb: 4 }}>
+      <Box component="section" sx={{ background: "linear-gradient(90deg, #142244 0%, #1c2f56 100%)", pt: 15, pb: 4 }}>
         <Box >
           <Container maxWidth="lg">
              <Typography variant="h5" sx={{ fontWeight: "bold", color: "white" }} gutterBottom>

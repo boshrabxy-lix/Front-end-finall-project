@@ -1,5 +1,5 @@
 import axios from "axios";
-import useAuthStore from "../assets/store/useAuthStore";
+import useAuthStore from "./../store/useAuthStore";
 
 const token = useAuthStore.getState().token;
 console.log(token);

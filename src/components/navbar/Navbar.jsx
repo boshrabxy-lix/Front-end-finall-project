@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/useAuthStore";
-import { AppBar, IconButton, Toolbar, Badge, InputBase } from "@mui/material";
+import { AppBar, IconButton, Toolbar, Badge, InputBase, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -11,8 +11,16 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import useCart from "../../hooks/useCart";
+import { useTranslation } from "react-i18next";
+import i18n from "../../i18next";
 
 export default function Navbar() {
+  const { t } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  }
+
   const token = useAuthStore((state) => state.token);
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
@@ -25,9 +33,9 @@ export default function Navbar() {
   };
   return (
     <Box component={"section"} sx={{ flexGrow: 1 }}>
-      <AppBar sx={{ position: "static", background: "linear-gradient(90deg, #142244 0%, #1c2f56 100%)", }} >
+      <AppBar sx={{ position: "static", background: "linear-gradient(90deg, #142244 0%, #1c2f56 100%)" }} >
         <Toolbar sx={{ gap: 4, py: 2, flexGrow: 1 }}>
-          <Typography variant="h6" component="div" sx={{ fontWeight: 800, letterSpacing: 0.4, color: "#ffffff" }} >
+          <Typography variant="h6" component="div" sx={{ fontWeight: 800, letterSpacing: 0.4, color: "#B8C4FF" }} >
             KASHOP
           </Typography>
 
@@ -44,7 +52,7 @@ export default function Navbar() {
                 borderBottom: "2px solid #3b82f6",
               }}
             >
-              Home
+              {t('Home')}
             </Link>
             <Link
               to={"/categories"}
@@ -168,15 +176,16 @@ export default function Navbar() {
                 </Link>
               </>
             )}
+            <Button onClick={changeLanguage}>{i18n.language}</Button>
+
+            <IconButton size="small" sx={{ color: "#e2e8f0" }}  >
+              <DarkModeOutlinedIcon fontSize="small" />
+            </IconButton>
 
             <IconButton size="small" sx={{ color: "#e2e8f0" }}>
               <PersonSharpIcon />
             </IconButton>
 
-            <IconButton size="small" sx={{ color: "#e2e8f0" }}  >
-              <DarkModeOutlinedIcon fontSize="small" />
-            </IconButton>
-            
           </Box>
 
           <IconButton color="inherit" sx={{ display: { xs: "flex", sm: "none" } }} >

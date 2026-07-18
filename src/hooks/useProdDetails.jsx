@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import authAxiosInstance from '../../api/authAxiosInstance';
+import authAxiosInstance from './../api/authAxiosInstance';
 
 export default function useProdDetails(id) {
     const getProduct = async () => {
