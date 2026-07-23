@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <>
       <Box component="section" sx={{ background: "linear-gradient(90deg, #142244 0%, #1c2f56 100%)", pt: 15, pb: 4 }}>
-        <Box >
+        <Box>
           <Container maxWidth="lg">
             <Typography variant="h5" sx={{ fontWeight: "bold", color: "white" }} gutterBottom>
               KASHOP
@@ -47,10 +47,11 @@ export default function Footer() {
                 <Typography component={"p"} variant="body2" sx={{ mb: 2, color: '#ffffff3f' }}>
                   {t('Get the latest updates on new products    and upcoming sales.')}
                 </Typography>
+
                 <Box sx={{ display: 'flex', bgcolor: 'rgba(255,255,255,0.05)', borderRadius: 2, p: 0.5, border: '1px solid rgba(255,255,255,0.08)' }}>
-                  <InputBase placeholder=   {t('Your email')}  sx={{ px: 2, color: 'white', flex: 1, fontSize: '0.85rem' }} />
+                  <InputBase placeholder={t('Your email')} sx={{ px: 2, color: 'white', flex: 1, fontSize: '0.85rem' }} />
                   <Button variant="contained" color="primary" sx={{ px: 3, borderRadius: 1.5, textTransform: 'none' }}>
-               {t('Join')}
+                    {t('Join')}
                   </Button>
                 </Box>
               </Grid>
@@ -60,7 +61,7 @@ export default function Footer() {
             <Divider sx={{ borderColor: '#ffffff34', borderWidth: 1.5, borderStyle: 'solid', my: 3 }} />
 
             <Typography variant="caption" sx={{ display: 'flex', color: '#ffffff3f', alignItems: 'center', justifyContent: 'center' }}>
-           {t(' © 2026 KASHOP. All rights reserved.')}
+              {t(' © 2026 KASHOP. All rights reserved.')}
             </Typography>
           </Container>
         </Box>

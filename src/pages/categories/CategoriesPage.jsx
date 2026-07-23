@@ -1,4 +1,4 @@
-import Category from '../../ui/categoryUi/CategoryUi';
+import Category from '../../ui/categoryUi/CategoryPageUi';
 import { Box, Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import Loader from '../../components/loader/Loader';
@@ -11,8 +11,8 @@ export default function CategoriesPage() {
     if (isLoading) return <Loader />
     if (isError) return <Box color={'red'}>{error.message}</Box>
     return (
-        <Box className="categories" py={3}>
-            <Typography component={'h2'} variant='h4' mb={2}> {t('Categories')}</Typography>
+        <Box className="categories" sx={{py:5}}>
+            <Typography component={'h2'} variant='h4' sx={{mb:2}}> {t('Categories')}</Typography>
             <Grid container spacing={6}>
                 {data.response.data.map(category=>
                     <Grid item size={{xs:12,sm:6,md:4,lg:3}}>

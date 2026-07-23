@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import useCategories from './../../hooks/useCategories';
 import { Grid } from '@mui/material';
-import Category from '../../ui/categoryUi/CategoryUi';
+import Category from '../../ui/categoryUi/CategorySectionUi';
 import Loader from '../loader/Loader';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -16,9 +16,12 @@ export default function Categories() {
 
     return (
         <>
-         <Box className="categories" py={3}>
-           <Typography component={'h2'} variant='h4' mb={2}>{t('Categories')}</Typography>
-           <Link to ='/categories'>{t('Show more')}</Link>
+         <Box className="categories" sx={{py:5}}>
+          <Box sx={{display:'flex',justifyContent:'space-between'}}>
+            <Typography component={'h2'} variant='h4' sx={{mb:2}}>{t('Shop By category')}</Typography>
+           <Link to ='/categories' component='Button' sx={{fontSize: 10}}>{t('Show more')}</Link>
+          </Box>
+           
            <Grid container spacing={6}>
              {data.response.data.map(category=>
                <Grid item size={{xs:12,sm:6,md:4,lg:3}}>

@@ -4,7 +4,7 @@ import { useTranslation, initReactI18next } from "react-i18next";
 import Detector from 'i18next-browser-languagedetector';
 
 i18n
-.use(Detector)
+    .use(Detector)
     .use(initReactI18next)
     .init({
         resources: {
@@ -17,6 +17,7 @@ i18n
                     "Cart": "Cart",
                     "Checkout": "Checkout",
                     "Categories": "Categories",
+                    "Shop By category": "Shop By category",
                     "Show more": "Show more",
                     "Products": "Products",
                     "Daily Deals": "Daily Deals",
@@ -31,6 +32,9 @@ i18n
                     "User Email": "User Email",
                     "Join": "Join",
                     "Your email": "Your email",
+                    "Subscribe Now": "Subscribe Now",
+                    "Enter Your Email Address...": "Enter Your Email Address...",
+
                     "Add To Cart": "Add To Cart",
                     "Search for products...": "Search for products...",
 
@@ -38,6 +42,11 @@ i18n
                         : "Your ultimate destination for premium electronics and lifestyle products.We focus on quality and innovation.",
 
                     "focus on quality and innovation.": "focus on quality and innovation.",
+
+                    "By Subscribing ,you agree to our Privacy Policy and Terms of Service.": "By Subscribing ,you agree to our Privacy Policy and Terms of Service.",
+ 
+                    "Subscribe to our newsletter and get 15% off your first order .Stay updated with the latest trenfs and exclusive drops.":
+                     "Subscribe to our newsletter and get 15% off your first order .Stay updated with the latest trenfs and exclusive drops.",
 
                     "Get the latest updates on new products    and upcoming sales.": "Get the latest updates on new products    and upcoming sales.",
                     " © 2026 KASHOP. All rights reserved.": " © 2026 KASHOP. All rights reserved."
@@ -53,6 +62,7 @@ i18n
                     "Cart": "السلة",
                     "Checkout": "الدفع",
                     "Categories": "التصنيفات",
+                    "Shop By category": "تسوق حسب التصنيفات",
                     "Show more": "رؤية المزيد",
                     "Products": "المنتجات",
                     "Daily Deals": "عروض يومية",
@@ -67,6 +77,8 @@ i18n
                     "Your email": "بريدك الإلكتروني",
                     "Add To Cart": "أضف للسلة",
                     "Search for products...": "البحث عن منتجات...",
+                    "Subscribe Now": "إشترك الآن ",
+                    "Enter Your Email Address...": "أدخل عنوان بريدك الإلكتروني...",
 
                     "Your ultimate destination for premium electronics and lifestyle products.We focus on quality and innovation.":
                         "وجهتك النهائية للإلكترونيات الممتازة ومنتجات أسلوب الحياة. نحن نركز على الجودة والابتكار.",
