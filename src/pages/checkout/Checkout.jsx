@@ -73,7 +73,7 @@ export default function Checkout() {
                     </Select>
                 </FormControl>
 
-                <Button variant="contained"disabled={checkoutPending} onClick={()=>checkout({paymentMethod})}>
+                <Button variant="contained" disabled={checkoutPending} onClick={()=>checkout({paymentMethod})}>
                     Pay Now
                 </Button>
             </Box>

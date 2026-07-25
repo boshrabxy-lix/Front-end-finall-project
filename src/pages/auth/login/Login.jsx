@@ -7,18 +7,19 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { LoginSchema } from "../../../validation/LoginSchema";
 import useAuthStore from "../../../store/useAuthStore";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loader from "../../../components/loader/Loader";
 import { useTranslation } from "react-i18next";
+import { Container } from "@mui/material";
 
 export default function Login() {
   const [ServerErrors, setServerErrors] = useState([]);
   const navigate = useNavigate();
-  const setToken =useAuthStore((state)=>state.setToken);
+  const setToken = useAuthStore((state) => state.setToken);
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(LoginSchema), mode: 'onBlur'
   });
-     const { t } = useTranslation();
+  const { t } = useTranslation();
   const loginForm = async (data) => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BURL}/auth/Account/Register`, data);
@@ -32,52 +33,54 @@ export default function Login() {
       setServerErrors(err.response.data.errors);
     }
   };
-  
+
   return (
-    <Box component={"section"} className="register-form" py={5}>
-      <Typography component={"h1"} variant="h3">
-        {t('Login')}
-      </Typography>
-      {ServerErrors?.length > 0 ? ServerErrors.map((error) =>
-        <Typography color="error" alignItems={'center'}>{error}</Typography>
-      ) : ' '}
+    <Container maxWidth="sm">
+      <Box component={"section"} className="Login-form" sx={{ py: 5 }}>
+        <Typography component={"h1"} variant="h2" sx={{ mb: 3 }}>
+          {t('Login')}
+        </Typography>
+        {ServerErrors?.length > 0 ? ServerErrors.map((error) =>
+          <Typography color="error" alignItems={'center'}>{error}</Typography>
+        ) : ' '}
 
-      <Box
-        component={"form"}
-        onSubmit={handleSubmit(loginForm)}
-        sx={{
-          flexDirection: "column",
-          gap: 4,
-          alignItems: "center",
-          mb: 3,
-          py: 3,
-        }}
-        py={2}
-        display={'flex'}
-      >
+        <Box
+          component={"form"}
+          onSubmit={handleSubmit(loginForm)}
+          sx={{
+            flexDirection: "column",
+            gap: 4,
+            alignItems: "center",
+            mb: 2,
+            display: 'flex'
+          }}
+        >
 
-        <TextField
-          {...register("email")}
-          fullWidth
-          label="User Email"
-          variant="outlined"
-          error={errors.email}
-          helperText={errors.email?.message}
-        />
-        <TextField
-          {...register("password")}
-          fullWidth
-          label="Password"
-          variant="outlined"
-          error={errors.password}
-          helperText={errors.password?.message}
-        />
+          <TextField
+            {...register("email")}
+            fullWidth
+            label="User Email"
+            variant="outlined"
+            error={errors.email}
+            helperText={errors.email?.message}
+          />
+          <TextField
+            {...register("password")}
+            fullWidth
+            label="Password"
+            variant="outlined"
+            error={errors.password}
+            helperText={errors.password?.message}
+          />
+        </Box>
 
-        <Button variant="contained " type="submit" disabled={isSubmitting} >
-          {isSubmitting ? <Loader /> : 'Login'}
-
-        </Button>
+        <Box sx={{display:'flex',alignContent:'center', justifyContent:'space-between',alignItems:'center'}}>
+            <Button variant="contained" type="submit" disabled={isSubmitting} >
+              {isSubmitting ? <Loader /> : 'Login'}
+            </Button>
+            <Link to={'ResetPass'} sx={{underline:'none'}}>Forgit password?</Link>
+          </Box>
       </Box>
-    </Box>
+    </Container>
   );
 }

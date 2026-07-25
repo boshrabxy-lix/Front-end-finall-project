@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { Links, useNavigate, useParams } from "react-router-dom";
 import useAuthStore from "../../store/useAuthStore";
 import { AppBar, IconButton, Toolbar, Badge, InputBase, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -226,7 +226,7 @@ export default function Navbar() {
                   padding: '10px 40px',
                 }}
               >
-                <MenuItem onClick={closeUserMenu}>Profile</MenuItem>
+                <MenuItem onClick={() => navigate('/profile') }>Profile</MenuItem>
                 <MenuItem onClick={closeUserMenu}>Sitting</MenuItem>
                 <hr sx={{ border: '0', borderTop: '2px solid #241f1f46', }} />
                 <MenuItem onClick={closeUserMenu} sx={{ color: '#ef4444' }}>Logout</MenuItem>

@@ -9,6 +9,9 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { registerSchema } from "../../../validation/RegisterSchema";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
+import { Container } from "@mui/material";
+import { Link } from 'react-router-dom';
+
 
 export default function Register() {
   const { t } = useTranslation();
@@ -24,7 +27,7 @@ export default function Register() {
         `${import.meta.env.VITE_BURL}/auth/Account/Register`,
         data,
       );
-      console.log("responce", response);
+      console.log("response", response);
     } catch (err) {
       console.log(err.response.data.errors);
       setServerErrors(err.response.data.errors);
@@ -32,72 +35,78 @@ export default function Register() {
   };
 
   return (
-    <Box component={"section"} className="register-form" py={5}>
-      <Typography component={"h1"} variant="h3">
-        {t('Register')}
-      </Typography>
-      {ServerErrors?.length > 0 ? ServerErrors.map((error) =>
-        <Typography color="error" alignItems={'center'}>{error}</Typography>
-      ) : ''}
+    <Container maxWidth="md">
+      <Box component={"section"} className="register-form" sx={{ py: 5 }}>
+        <Typography component={"h1"} variant="h2" sx={{ mb: 3 }}>
+          {t('Register')}
+        </Typography>
+        {ServerErrors?.length > 0 ? ServerErrors.map((error) =>
+          <Typography color="error" alignItems={'center'}>{error}</Typography>
+        ) : ''}
 
-      <Box
-        component={"form"}
-        onSubmit={handleSubmit(registerForm)}
-        sx={{
-          flexDirection: "column",
-          gap: 4,
-          alignItems: "center",
-          mb: 3,
-          py: 3,
-        }}
-        py={2}
-        display={'flex'}
-      >
-        <TextField
-          {...register("userName")}
-          fullWidth
-          label="User Name"
-          variant="outlined"
-          error={errors.userName}
-          helperText={errors.userName?.message}
-        />
-        <TextField
-          {...register("fullName")}
-          fullWidth
-          label="Full Name"
-          variant="outlined"
-          error={errors.fullName}
-          helperText={errors.fullName?.message}
-        />
-        <TextField
-          {...register("email")}
-          fullWidth
-          label="User Email"
-          variant="outlined"
-          error={errors.email}
-          helperText={errors.email?.message}
-        />
-        <TextField
-          {...register("password")}
-          fullWidth
-          label="Password"
-          variant="outlined"
-          error={errors.password}
-          helperText={errors.password?.message}
-        />
-        <TextField
-          {...register("phoneNumber")}
-          fullWidth
-          label="Phone Number"
-          variant="outlined"
-          error={errors.phoneNumber}
-          helperText={errors.phoneNumber?.message}
-        />
-        <Button variant="contained " type="submit" disabled={isSubmitting} >
-          {isSubmitting ? <CircularProgress /> : 'Register'}
+        <Box
+          component={"form"}
+          onSubmit={handleSubmit(registerForm)}
+          sx={{
+            flexDirection: "column",
+            gap: 2,
+            alignItems: "center",
+            py: 2,
+            display: 'flex'
+          }}
+        >
+          <TextField
+            {...register("userName")}
+            fullWidth
+            label="User Name"
+            variant="outlined"
+            error={errors.userName}
+            helperText={errors.userName?.message}
+          />
+          <TextField
+            {...register("fullName")}
+            fullWidth
+            label="Full Name"
+            variant="outlined"
+            error={errors.fullName}
+            helperText={errors.fullName?.message}
+          />
+          <TextField
+            {...register("email")}
+            fullWidth
+            label="User Email"
+            variant="outlined"
+            error={errors.email}
+            helperText={errors.email?.message}
+          />
+          <TextField
+            {...register("password")}
+            fullWidth
+            label="Password"
+            variant="outlined"
+            error={errors.password}
+            helperText={errors.password?.message}
+          />
+          <TextField
+            {...register("phoneNumber")}
+            fullWidth
+            label="Phone Number"
+            variant="outlined"
+            error={errors.phoneNumber}
+            helperText={errors.phoneNumber?.message}
+          />
+        </Box>
 
-        </Button>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Button variant="contained" type="submit" disabled={isSubmitting} >
+            {isSubmitting ? <CircularProgress /> : 'Register'}
+          </Button>
+          <Link variant="Button" underline='none' to={'/login'}>
+            Already you have account?
+          </Link>
+        </Box>
+
       </Box>
-    </Box>
-  );
+    </Container>
+  )
 }
