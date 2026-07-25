@@ -32,6 +32,7 @@ i18n
                     "User Email": "User Email",
                     "Join": "Join",
                     "Your email": "Your email",
+                    "Join the Modern Circle": " Join the Modern Circle",
                     "Subscribe Now": "Subscribe Now",
                     "Enter Your Email Address...": "Enter Your Email Address...",
 

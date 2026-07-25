@@ -5,7 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./i18next";
 import { useTranslation } from "react-i18next";
 import { ThemeProvider } from "styled-components";
-import useThemeStore from "./store/useThemeStore";
+import Theme from "./Theme";
+import { CssBaseline } from "@mui/material";
 
 export default function App() {
   const { i18n } = useTranslation();
@@ -14,15 +15,12 @@ export default function App() {
     document.documentElement.dir = dir;
   }, [i18n.language]);
 
-
   const queryClient = new QueryClient();
-
-  const mode = useThemeStore((state) => state.mode);
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <CssBaseline />
-        <ThemeProvider theme={getTheme(mode)}>
+        <ThemeProvider theme={Theme}>
           <RouterProvider router={router} />
         </ThemeProvider>
       </QueryClientProvider>

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import mode from "./../Theme"
 
 const useThemeStore = create((set) => {
     mode: 'light';

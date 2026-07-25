@@ -1,37 +1,52 @@
-import { Box, Button, Container, InputBase, Link, Typography } from '@mui/material'
-import React from 'react'
-import { useTranslation } from 'react-i18next';
+import React from 'react';
+import { Box, Typography, TextField, Button, Link, Container } from '@mui/material';
+import { useTranslation } from "react-i18next";
 
-export default function ModernCircle() {
-      const { t } = useTranslation();
+export default function NewsletterSection() {
+    const { t } = useTranslation();
+
     return (
-        <>
-            <Box component={'section'} className='modernCircle' sx={{ py: 3, bgcolor: '#266638', height: '450px' }} >
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', justifyContent: "center"}}>
-                    <Typography component={'h1'} variant='h4' sx={{ mb: 1.2, color: 'white' }}>Join the Modern Circle</Typography>
-                    <Typography component={'p'} variant="h6" sx={{ color: 'white' }}>{t('Subscribe to our newsletter and get 15% off your first order .Stay updated with the latest trenfs and exclusive drops.')}
+        <Box component={'section'} sx={{ py:{ xs: 3, md:7 }}}>
+  
+            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 4, background: 'linear-gradient(135deg, #0057ff 0%, #0041c4 100%)', px: { xs: 3, md: 8 }, py:{ xs: 6, md: 8 }, textAlign: 'center', mx: 'auto', }}>
+                <Box sx={{ position: 'absolute', top: -170, left: -60, width: 380, height: 380, borderRadius: '50%', bgcolor: 'rgba(255,255,255,0.08)', }} />
+                <Box sx={{ position: 'absolute', bottom: -250, right: -110, width: 460, height: 460, borderRadius: '50%', bgcolor: 'rgba(255,255,255,0.06)', }} />
+
+
+                <Box sx={{ position: 'relative', maxWidth: 560, alignItems: 'center', justifyContent: 'center', mx: 'auto' }}>
+                    <Typography variant="h4" sx={{ color: '#fff', fontWeight: 700, mb: 2, fontSize: { xs: '1.6rem', md: '2rem' } }} > {t('Join the Modern Circle')} </Typography>
+
+                    <Typography variant='body2' sx={{ color: '#ffffffb4', mb: 4, lineHeight: 1.7 }}>
+                        {t('Subscribe to our newsletter and get 15% off your first order .Stay updated with the latest trenfs and exclusive drops.')}
                     </Typography>
 
-                    <Box sx={{ display: 'flex', gap: 1.2 }}>
-                        <InputBase placeholder={t('Enter Your Email Address...')} sx={{ mt: 1, px: "54px", borderRadius: '4px', color: '#fff', flex: 1, fontSize: '14px', bgcolor: '#000000d2', alignItems: 'flexstart' }} />
-
-                        <Button variant="contained" href={"/register"}
-                            underline="none"
+                    <Box sx={{ display: 'flex', gap: 1.9, justifyContent: 'center', mb: 2,flexWrap:'wrap'}} >
+                        <TextField
+                            placeholder={t('Enter Your Email Address...')}
+                            variant="outlined"
                             sx={{
-                                bgcolor: 'black',
-                                color: "white",
-                                fontSize: "14px",
-                                mt: 1.2,
-                                px: "25px",
-                                py: '20px',
-                            }}>{t('Subscribe Now')}</Button>
+                                minWidth: 300,
+                                '& .MuiOutlinedInput-root': {
+                                    bgcolor: '#1a1b1f',
+                                    borderRadius: 2,
+                                    color: '#ffffffb0',
+                                    '& fieldset': { border: 'none' },
+                                },
+                                '& input::placeholder': {
+                                    color: 'rgba(255,255,255,0.5)',
+                                    opacity: 1,
+                                },
+                            }}
+                        />
+                        <Button variant="contained" href='register' sx={{ bgcolor: '#1a1b1f', color: '#ffffffd0', textTransform: 'none', fontWeight: 600, borderRadius: 2, px: 4,py:{xs:2}}} >{t('Subscribe Now')}</Button>
                     </Box>
 
-                    <Typography component={'p'} variant="body2" sx={{ color: 'white', mt: 2.2 }}>{t('By Subscribing ,you agree to our Privacy Policy and Terms of Service.')}
+                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)' }}>
+                        {t('By Subscribing ,you agree to our Privacy Policy and Terms of Service.')}
                     </Typography>
-
                 </Box>
             </Box>
-        </>
-    )
+        </Box>
+       
+    );
 }

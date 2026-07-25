@@ -1,17 +1,20 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-const getTheme = (mode) => {
-  return createTheme({
-    palette:
-      mode = mode,
+const Theme = createTheme({
+  mode: 'light',
+  palette: {
+    primary: {
+      main: "#000",
+      dark:'#ea753e'
+    },
     typography: {
-      fontFamily: 'cursive',
-      h2:{
-        fontWeight:500,
-        fontFamily:'revert'
-      }
-    }
 
-  })
-}
-export default getTheme();
+      fontFamily: 'cursive',
+      h2: {
+        fontWeight: 500,
+        fontFamily: 'rev',
+      }
+    },
+  }
+});
+export default Theme;

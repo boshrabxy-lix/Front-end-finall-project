@@ -210,7 +210,7 @@ export default function Navbar() {
             <Button onClick={changeLanguage} sx={{minWidth:'50px'}}>{i18n.language === "AR" ? "EN" : "AR"}</Button>
 
             <IconButton onClick={toggleTheme} size="small" sx={{ color: "#e2e8f0", display: { sm: "flex" }, }}  >
-              {mode ==='dark'?<DarkModeOutlinedIcon fontSize="small" />:< NightlightIcon  fontSize="small"/> }
+              {mode ==='dark'?<DarkModeOutlinedIcon fontSize="small" />:< LightModeIcon  fontSize="small"/> }
             </IconButton>
 
             <ProfileMenu />
