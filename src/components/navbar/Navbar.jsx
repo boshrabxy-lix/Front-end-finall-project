@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import PersonSharpIcon from "@mui/icons-material/PersonSharp";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import { Link } from "@mui/material";
@@ -15,6 +14,10 @@ import useCart from "../../hooks/useCart";
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18next";
 import { Menu, MenuItem } from '@mui/material';
+import ProfileMenu from '../profileMenu/ProfileMenu';
+import useThemeStore from '../../store/useThemeStore';
+import LightModeIcon from '@mui/icons-material/LightMode';
+
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -24,7 +27,8 @@ export default function Navbar() {
     const newLang = i18n.language == "ar" ? "en" : "ar"
     i18n.changeLanguage(newLang);
   }
-
+ 
+  const {toggleTheme,mode}=useThemeStore;
   const token = useAuthStore((state) => state.token);
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
@@ -116,7 +120,7 @@ export default function Navbar() {
           >
             <Box
               sx={{
-                display: { xs: "flex",sm:'none',md:'flex' },
+                display: { xs: "flex", sm: 'none', md: 'flex' },
                 gap: 3,
                 alignItems: 'center',
                 bgcolor: 'white',
@@ -203,36 +207,13 @@ export default function Navbar() {
               </>
             )}
 
-            <Button onClick={changeLanguage}>{i18n.language === "AR" ? "EN" : "AR"}</Button>
-            <IconButton size="small" sx={{ color: "#e2e8f0" , display: {sm: "flex" },}}  >
-              <DarkModeOutlinedIcon fontSize="small" />
+            <Button onClick={changeLanguage} sx={{minWidth:'50px'}}>{i18n.language === "AR" ? "EN" : "AR"}</Button>
+
+            <IconButton onClick={toggleTheme} size="small" sx={{ color: "#e2e8f0", display: { sm: "flex" }, }}  >
+              {mode ==='dark'?<DarkModeOutlinedIcon fontSize="small" />:< NightlightIcon  fontSize="small"/> }
             </IconButton>
 
-            <Box>
-              <IconButton onClick={openUserMenu} size="small" sx={{ color: "#e2e8f0" }}>
-                <PersonSharpIcon />
-              </IconButton>
-              <Menu
-                anchorEl={menuAnchorElement}
-                open={isMenuOpen}
-                onClose={closeUserMenu}
-                sx={{
-                  borderRadius: '15px',
-                  boxShadow: '2px 10px 25px -5px rgba(16, 15, 86, 0.54)',
-                  mt: 1,
-                  minWidth: '10px',
-                  transition: 'all 0.2s ease',
-                  fontSize: '14px',
-                  padding: '10px 40px',
-                }}
-              >
-                <MenuItem onClick={() => navigate('/profile') }>Profile</MenuItem>
-                <MenuItem onClick={closeUserMenu}>Sitting</MenuItem>
-                <hr sx={{ border: '0', borderTop: '2px solid #241f1f46', }} />
-                <MenuItem onClick={closeUserMenu} sx={{ color: '#ef4444' }}>Logout</MenuItem>
-              </Menu>
-            </Box>
-
+            <ProfileMenu />
           </Box>
 
 

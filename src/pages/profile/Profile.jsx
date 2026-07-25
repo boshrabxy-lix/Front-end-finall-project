@@ -1,9 +1,11 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material';
 import { Link, Outlet } from 'react-router-dom';
+import useProfilr from '../../hooks/useProfil';
 
 
 export default function Profile() {
+    const {data,isError,isLoading,error} =useProfil();
     return (
         <>
             <Box>My Profile</Box>

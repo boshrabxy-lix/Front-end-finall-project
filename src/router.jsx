@@ -15,7 +15,6 @@ import ProfileOrsers from "./pages/profile/ProfileOrsers";
 import ResetPass from "./pages/profile/ResetPass";
 import UpdateEmail from "./pages/profile/UpdateEmail";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,7 +25,7 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: "cart",
+        path: "carts",
         element:
           <ProtectedRouter>
             <Cart />

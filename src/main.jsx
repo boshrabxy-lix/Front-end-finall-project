@@ -6,8 +6,6 @@ import { CssBaseline } from "@mui/material";
 
 createRoot(document.getElementById("root")).render(
     <>
-        <CssBaseline />
         <App />
     </>
-
 );

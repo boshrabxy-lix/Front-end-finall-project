@@ -78,7 +78,7 @@ export default function Login() {
             <Button variant="contained" type="submit" disabled={isSubmitting} >
               {isSubmitting ? <Loader /> : 'Login'}
             </Button>
-            <Link to={'ResetPass'} sx={{underline:'none'}}>Forgit password?</Link>
+            <Link to={'profile/ResetPass'} sx={{underline:'none'}}>Forgit password?</Link>
           </Box>
       </Box>
     </Container>
