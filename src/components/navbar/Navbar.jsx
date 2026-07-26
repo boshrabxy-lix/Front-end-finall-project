@@ -15,8 +15,9 @@ import { useTranslation } from "react-i18next";
 import i18n from "../../i18next";
 import { Menu, MenuItem } from '@mui/material';
 import ProfileMenu from '../profileMenu/ProfileMenu';
-import useThemeStore from '../../store/useThemeStore';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import useThemeStore from '../../store/useThemeStore';
+
 
 
 export default function Navbar() {
@@ -27,18 +28,14 @@ export default function Navbar() {
     const newLang = i18n.language == "ar" ? "en" : "ar"
     i18n.changeLanguage(newLang);
   }
- 
-  const {toggleTheme,mode}=useThemeStore;
+
+  const {mode ,toggleTheme} = useThemeStore();
   const token = useAuthStore((state) => state.token);
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
   const { data } = useCart();
   const cartCount = data?.Items?.length || 0;
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
 
   const [menuAnchorElement, setMenuAnchorElement] = useState(null);
   const isMenuOpen = Boolean(menuAnchorElement);
@@ -120,7 +117,7 @@ export default function Navbar() {
           >
             <Box
               sx={{
-                display: { xs: "flex", sm: 'none', md: 'flex' },
+                display: { xs: "flex", md: 'flex' },
                 gap: 3,
                 alignItems: 'center',
                 bgcolor: 'white',
@@ -143,7 +140,7 @@ export default function Navbar() {
               />
             </Box>
 
-            {token ? (
+            {token && (
               <>
                 <IconButton
                   component={RouterLink}
@@ -156,61 +153,14 @@ export default function Navbar() {
                     <ShoppingCartOutlinedIcon />
                   </Badge>
                 </IconButton>
-
-                <Link
-                  component={"button"}
-                  onClick={handleLogout}
-                  underline="none"
-                  sx={{
-                    display: { xs: "none", sm: "flex" },
-                    color: "#cbd5e1",
-                    fontWeight: 500,
-                    fontSize: "0.9rem",
-                    "&:hover": { color: "#ffffff" },
-                  }}
-                >
-                  {t('Logout')}
-                </Link>
               </>
-            ) : (
-              <>
-                <Link
-                  to={"/register"}
-                  component={RouterLink}
-                  underline="none"
-                  sx={{
-                    display: { xs: "none", sm: "flex" },
-                    color: "#cbd5e1",
-                    fontWeight: 500,
-                    fontSize: "0.9rem",
-                    "&:hover": { color: "#ffffff" },
-                  }}
-                >
-                  {t('Register')}
-                </Link>
+            )
+            }
 
-                <Link
-                  to={"/login"}
-                  component={RouterLink}
-                  underline="none"
-                  sx={{
-                    display: { xs: "none", sm: "flex" },
-                    color: "#cbd5e1",
-                    fontWeight: 500,
-                    fontSize: "0.9rem",
-                    "&:hover": { color: "#ffffff" },
-                  }}
-                >
-                  {t('Login')}
-
-                </Link>
-              </>
-            )}
-
-            <Button onClick={changeLanguage} sx={{minWidth:'50px'}}>{i18n.language === "AR" ? "EN" : "AR"}</Button>
+            <Button onClick={changeLanguage} sx={{ minWidth: '50px' }}>{i18n.language === "AR" ? "EN" : "AR"}</Button>
 
             <IconButton onClick={toggleTheme} size="small" sx={{ color: "#e2e8f0", display: { sm: "flex" }, }}  >
-              {mode ==='dark'?<DarkModeOutlinedIcon fontSize="small" />:< LightModeIcon  fontSize="small"/> }
+              {mode === 'dark' ? (<DarkModeOutlinedIcon fontSize="small" />) : (< LightModeIcon fontSize="small" />)}
             </IconButton>
 
             <ProfileMenu />

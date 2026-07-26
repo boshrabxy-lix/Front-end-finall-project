@@ -4,7 +4,7 @@ import { useTranslation, initReactI18next } from "react-i18next";
 import Detector from 'i18next-browser-languagedetector';
 
 i18n
-.use(Detector)
+    .use(Detector)
     .use(initReactI18next)
     .init({
         resources: {
@@ -35,12 +35,15 @@ i18n
                     "Search for products...": "Search for products...",
                     "Subscribe Now": "Subscribe Now",
                     "Enter Your Email Address...": "Enter Your Email Address...",
-
+                    "Profile": "Profile",
+                    "Add another account": "Add another account",
+                    "Settings": "Settings",
                     "PREMIUM CURATION": "PREMIUM CURATION",
                     "Elevate Your": "Elevate Your",
                     "Lifestyle": "Lifestyle",
-                    "Discover a curated selection of global trends blended with modern Arabic sophistication.Seamless, high- end, and designed for you."
-                        : "Discover a curated selection of global trends blended with modern Arabic sophistication.Seamless, high- end, and designed for you.",
+
+                    "Discover a curated selection of global trends blended with modern Arabic sophistication. Seamless, high-end, and designed for you."
+                        : "Discover a curated selection of global trends blended with modern Arabic sophistication.Seamless, high-end, and designed for you.",
 
                     "Shop Collection": "Shop Collection",
                     "View Lookbook": "View Lookbook",
@@ -89,12 +92,15 @@ i18n
                     "Search for products...": "البحث عن منتجات...",
                     "Subscribe Now": "إشترك الآن ",
                     "Enter Your Email Address...": "أدخل عنوان بريدك الإلكتروني...",
+                    "Profile": "الحساب الشخصي",
+                    "Add another account": "إضافة حساب آخر",
+                    "Settings": "الإعدادات",
 
                     "PREMIUM CURATION": "تشكيلة مميزة",
                     "Elevate Your": "ارتقِ بـ",
                     "Lifestyle": "أسلوب حياتك",
 
-                    "Discover a curated selection of global trends blended with modern Arabic sophistication.Seamless, high- end, and designed for you."
+                    "Discover a curated selection of global trends blended with modern Arabic sophistication. Seamless, high-end, and designed for you."
                         : "اكتشف تشكيلة مختارة بعناية من أحدث صيحات الموضة العالمية الممزوجة بالرقي العربي العصري. تجربة سلسة وراقية، مصممة خصيصاً لك.",
 
                     "Shop Collection": "تسوق عبر التصنيفات",

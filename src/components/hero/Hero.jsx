@@ -17,7 +17,7 @@ export default function Hero() {
               {t('PREMIUM CURATION')}
             </Typography>
 
-            <Typography component="span" sx={{ display: "block", color: 'black', fontSize: { xs: 32, md: 40 }, fontWeight: 700, lineHeight: 1.15 }} >
+            <Typography component="span" sx={{ display: "block", fontSize: { xs: 32, md: 40 }, fontWeight: 700, lineHeight: 1.15 }} >
                 {t('Elevate Your')}
             </Typography>
 
@@ -26,7 +26,7 @@ export default function Hero() {
             </Typography>
 
             <Typography sx={{ color: '#9CA0AC', fontSize: 15, lineHeight: 1.7, maxWidth: 380, mt: 2 }} >
-                {t('Discover a curated selection of global trends blended with modern Arabic sophistication. Seamless, high-end, and designed for you.')}
+              {t('Discover a curated selection of global trends blended with modern Arabic sophistication.Seamless, high-end, and designed for you.')}
             </Typography>
 
             <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, mt: 4 }}>

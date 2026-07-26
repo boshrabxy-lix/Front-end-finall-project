@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { React, useState } from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -11,9 +11,19 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import PersonSharpIcon from "@mui/icons-material/PersonSharp";
+import useAuthStore from '../../store/useAuthStore';
+import { Link as RouterLink } from "react-router-dom";
+import { Link } from "@mui/material";
+import { useTranslation } from 'react-i18next';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import LoginIcon from '@mui/icons-material/Login';
+
 
 export default function ProfileMenu() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const token = useAuthStore((state) => state.token);
+    const { t } = useTranslation();
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -21,6 +31,11 @@ export default function ProfileMenu() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const handleLogout = () => {
+        logout();
+        navigate("/login");
+    };
+
     return (
         <>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -37,7 +52,7 @@ export default function ProfileMenu() {
                     </IconButton>
                 </Tooltip>
             </Box>
-            
+
             <Menu
                 anchorEl={anchorEl}
                 id="account-menu"
@@ -75,27 +90,122 @@ export default function ProfileMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={handleClose}>
-                    <Avatar /> Profile
+                <MenuItem onClick={handleClose} sx={{ "&:hover": { color: "#2F53E0" } }} >
+                    <Avatar sx={{ mx: 2, "&:hover": { backgroundColor: "#2F53E0" } }} />
+                    <Link to={"/profile"} underline="none"
+                        component={RouterLink} sx={{ mx: 1 }}> {t('Profile')}</Link>
                 </MenuItem>
+
                 <Divider />
-                <MenuItem onClick={handleClose}>
+
+                {token ? (
+                    <>
+                        <MenuItem onClick={handleClose}>
+                            <ListItemIcon>
+                                <ExitToAppIcon fontSize="small" />
+                            </ListItemIcon>
+                            <Link
+                                component={"button"}
+                                onClick={handleLogout}
+                                underline="none"
+                                sx={{
+                                    display: { xs: "none", sm: "flex" },
+                                    color: "#000",
+                                    fontWeight: 500,
+                                    fontSize: "0.9rem",
+                                    "&:hover": { color: "#2F53E0" },
+                                }}
+                            >
+                                {t('Logout')}
+                            </Link>
+                        </MenuItem>
+                    </>
+                ) : (
+                    <>
+                        <MenuItem onClick={handleClose}>
+                            <ListItemIcon>
+                                <LoginIcon fontSize="small" />
+                            </ListItemIcon>
+                            <Link
+                                to={"/login"}
+                                component={RouterLink}
+                                underline="none"
+                                sx={{
+                                    display: { xs: "none", sm: "flex" },
+                                    color: "#000",
+                                    fontWeight: 500,
+                                    fontSize: "0.9rem",
+                                    "&:hover": { color: "#2F53E0" },
+                                }}
+                            >
+                                {t('Login')}
+
+                            </Link>
+                        </MenuItem>
+
+                        <MenuItem onClick={handleClose}>
+                            <ListItemIcon>
+                                <HowToRegIcon fontSize="small" />
+                            </ListItemIcon>
+                            <Link
+                                to={"/register"}
+                                component={RouterLink}
+                                underline="none"
+                                sx={{
+                                    display: { xs: "none", sm: "flex" },
+                                    color: "#000",
+                                    fontWeight: 500,
+                                    fontSize: "0.9rem",
+                                    "&:hover": { color: "#2F53E0" },
+                                }}
+                            >
+                                {t('Register')}
+                            </Link>
+                        </MenuItem>
+
+                    </>
+                )}
+
+
+                <MenuItem onClick={handleClose} sx={{ "&:hover": { color: "#2F53E0" } }} >
                     <ListItemIcon>
                         <PersonAdd fontSize="small" />
                     </ListItemIcon>
-                    Add another account
+                    <Link
+                        to={"login"}
+                        component={RouterLink}
+                        underline="none"
+                        sx={{
+                            display: { xs: "none", sm: "flex" },
+                            color: "#000",
+                            fontWeight: 500,
+                            fontSize: "0.9rem",
+                            "&:hover": { color: "#2F53E0" },
+                        }}
+                    >
+                        {t('Add another account')}
+                    </Link>
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+
+                <MenuItem onClick={handleClose} sx={{ "&:hover": { color: "#2F53E0" } }}>
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>
-                    Settings
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                        <Logout fontSize="small" />
-                    </ListItemIcon>
-                    Logout
+                    <Link
+                        to={"profile"}
+                        component={RouterLink}
+                        underline="none"
+                        sx={{
+                            display: { xs: "none", sm: "flex" },
+                            color: "#000",
+                            fontWeight: 500,
+                            fontSize: "0.9rem",
+                            "&:hover": { color: "#2F53E0" },
+                        }}
+                    >
+                        {t('Settings')}
+                    </Link>
+
                 </MenuItem>
             </Menu>
         </>
