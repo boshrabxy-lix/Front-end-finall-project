@@ -8,7 +8,7 @@ export default function NewsletterSection() {
     return (
         <Box component={'section'} sx={{ py:{ xs: 3, md:7 }}}>
   
-            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 4, background: 'linear-gradient(135deg, #0057ff 0%, #0041c4 100%)', px: { xs: 3, md: 8 }, py:{ xs: 6, md: 8 }, textAlign: 'center', mx: 'auto', }}>
+            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 4, background: 'linear-gradient(135deg, #0057ff 0%, #0041c4 100%)', px: { xs: 3, md: 5}, py:{ xs: 7, md: 15}, textAlign: 'center', mx: 'auto'}}>
                 <Box sx={{ position: 'absolute', top: -170, left: -60, width: 380, height: 380, borderRadius: '50%', bgcolor: 'rgba(255,255,255,0.08)', }} />
                 <Box sx={{ position: 'absolute', bottom: -250, right: -110, width: 460, height: 460, borderRadius: '50%', bgcolor: 'rgba(255,255,255,0.06)', }} />
 

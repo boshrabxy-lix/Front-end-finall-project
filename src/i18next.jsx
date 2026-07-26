@@ -30,14 +30,22 @@ i18n
                     "Contact Us": "Contact Us",
                     "Join": "Join",
                     "User Email": "User Email",
-                    "Join": "Join",
                     "Your email": "Your email",
-                    "Join the Modern Circle": " Join the Modern Circle",
+                    "Add To Cart": "Add To Cart",
+                    "Search for products...": "Search for products...",
                     "Subscribe Now": "Subscribe Now",
                     "Enter Your Email Address...": "Enter Your Email Address...",
 
-                    "Add To Cart": "Add To Cart",
-                    "Search for products...": "Search for products...",
+                    "PREMIUM CURATION": "PREMIUM CURATION",
+                    "Elevate Your": "Elevate Your",
+                    "Lifestyle": "Lifestyle",
+                    "Discover a curated selection of global trends blended with modern Arabic sophistication.Seamless, high- end, and designed for you."
+                        : "Discover a curated selection of global trends blended with modern Arabic sophistication.Seamless, high- end, and designed for you.",
+
+                    "Shop Collection": "Shop Collection",
+                    "View Lookbook": "View Lookbook",
+
+                    "Join the Modern Circle": " Join the Modern Circle",
 
                     "Your ultimate destination for premium electronics and lifestyle products.We focus on quality and innovation."
                         : "Your ultimate destination for premium electronics and lifestyle products.We focus on quality and innovation.",
@@ -45,9 +53,9 @@ i18n
                     "focus on quality and innovation.": "focus on quality and innovation.",
 
                     "By Subscribing ,you agree to our Privacy Policy and Terms of Service.": "By Subscribing ,you agree to our Privacy Policy and Terms of Service.",
- 
+
                     "Subscribe to our newsletter and get 15% off your first order .Stay updated with the latest trenfs and exclusive drops.":
-                     "Subscribe to our newsletter and get 15% off your first order .Stay updated with the latest trenfs and exclusive drops.",
+                        "Subscribe to our newsletter and get 15% off your first order .Stay updated with the latest trenfs and exclusive drops.",
 
                     "Get the latest updates on new products    and upcoming sales.": "Get the latest updates on new products    and upcoming sales.",
                     " © 2026 KASHOP. All rights reserved.": " © 2026 KASHOP. All rights reserved."
@@ -75,16 +83,36 @@ i18n
                     "Terms of Service": "شروط الخدمة",
                     "Contact Us": "اتصل بنا",
                     "Join": "انضمام",
+                    "User Email": "البريد الإلكتروني للمستخدم",
                     "Your email": "بريدك الإلكتروني",
                     "Add To Cart": "أضف للسلة",
                     "Search for products...": "البحث عن منتجات...",
                     "Subscribe Now": "إشترك الآن ",
                     "Enter Your Email Address...": "أدخل عنوان بريدك الإلكتروني...",
 
+                    "PREMIUM CURATION": "تشكيلة مميزة",
+                    "Elevate Your": "ارتقِ بـ",
+                    "Lifestyle": "أسلوب حياتك",
+
+                    "Discover a curated selection of global trends blended with modern Arabic sophistication.Seamless, high- end, and designed for you."
+                        : "اكتشف تشكيلة مختارة بعناية من أحدث صيحات الموضة العالمية الممزوجة بالرقي العربي العصري. تجربة سلسة وراقية، مصممة خصيصاً لك.",
+
+                    "Shop Collection": "تسوق عبر التصنيفات",
+                    "View Lookbook": "عرض الكتالوج",
+                    "Join the Modern Circle": "انضم إلى الدائرة العصرية",
+
                     "Your ultimate destination for premium electronics and lifestyle products.We focus on quality and innovation.":
                         "وجهتك النهائية للإلكترونيات الممتازة ومنتجات أسلوب الحياة. نحن نركز على الجودة والابتكار.",
 
                     "Get the latest updates on new products    and upcoming sales.": "احصل على أحدث التحديثات حول المنتجات الجديدة والمبيعات القادمة.",
+
+                    "focus on quality and innovation.": "نركز على الجودة والابتكار.",
+
+                    "By Subscribing ,you agree to our Privacy Policy and Terms of Service.": "بالاشتراك، فإنك توافق على سياسة الخصوصية وشروط الخدمة الخاصة بنا.",
+
+                    "Subscribe to our newsletter and get 15% off your first order .Stay updated with the latest trenfs and exclusive drops.":
+                        "اشترك في نشرتنا البريدية واحصل على خصم 15% على طلبك الأول. ابقَ على اطلاع بأحدث الصيحات والعروض الحصرية.",
+
 
                     " © 2026 KASHOP. All rights reserved.": " © 2026 KASHOP. جميع الحقوق محفوظة."
                 }
