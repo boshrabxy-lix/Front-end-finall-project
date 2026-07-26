@@ -4,7 +4,7 @@ import { useTranslation, initReactI18next } from "react-i18next";
 import Detector from 'i18next-browser-languagedetector';
 
 i18n
-    .use(Detector)
+.use(Detector)
     .use(initReactI18next)
     .init({
         resources: {

@@ -5,7 +5,6 @@ import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useTranslation } from 'react-i18next';
 
-
 export default function Hero() {
   const { t } = useTranslation();
 
@@ -28,7 +27,6 @@ export default function Hero() {
 
             <Typography sx={{ color: '#9CA0AC', fontSize: 15, lineHeight: 1.7, maxWidth: 380, mt: 2 }} >
                 {t('Discover a curated selection of global trends blended with modern Arabic sophistication. Seamless, high-end, and designed for you.')}
-             
             </Typography>
 
             <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, mt: 4 }}>
