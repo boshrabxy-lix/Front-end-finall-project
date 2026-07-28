@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import { Rating, Typography ,Box } from '@mui/material';
 import { Card, CardMedia, CardContent } from '@mui/material';
 
@@ -19,6 +20,17 @@ export default function ProductPageUi({ product }) {
               sx={{ color: "primary.main" }}
             />
           </Box>
+=======
+import { Typography } from '@mui/material';
+import { Card, CardMedia, CardContent } from '@mui/material';
+
+export default function ProductPageUi({product}) {
+  return (
+    <>
+      <Card sx={{ py: 3, textAlign: 'center' }}>
+        <CardContent>
+          <Typography fontWeight={'600'} component={'h3'}>{product.name}</Typography>
+>>>>>>> e5120abd6af2959c29c274aab1e26cc5d1aaa660
         </CardContent>
       </Card>
     </>
