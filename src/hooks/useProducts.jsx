@@ -5,6 +5,7 @@ import i18n from '../i18next';
 export default function useProducts(limit=3) {
     const getProduct = async () => {
         const response = await axoisInstance.get(`/Products?limit=${limit}`);
+        console.log(response.data);
         return response.data;
     }
     

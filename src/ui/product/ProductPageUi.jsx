@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from '@mui/material';
 import { Card, CardMedia, CardContent } from '@mui/material';
 
-export default function productUi({product}) {
+export default function ProductPageUi({product}) {
   return (
     <>
       <Card sx={{ py: 3, textAlign: 'center' }}>

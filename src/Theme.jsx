@@ -13,6 +13,9 @@ const getTheme = (mode) => {
     typography: {
       fontFamily:'math',
       contrastText: '#fff',
+    }, 
+     text: {
+      secondary: '#94a3b8',
     }
   });
 }

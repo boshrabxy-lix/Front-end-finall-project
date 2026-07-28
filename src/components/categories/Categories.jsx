@@ -1,7 +1,5 @@
 import React from "react";
 import { Box, CircularProgress, Typography, Button } from '@mui/material';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import useCategories from './../../hooks/useCategories';
 import { Grid } from '@mui/material';
 import Category from '../../ui/categoryUi/CategorySectionUi';
@@ -37,8 +35,8 @@ export default function Categories() {
 
         <Grid container spacing={6}>
           {data.response.data.map(category =>
-            <Grid item size={{ xs: 6, sm: 6, md: 3 }}>
-              <Category category={category} key={category.name} />
+            <Grid item size={{ xs: 6, sm: 6, md: 3 }} key={category.name}>
+              <Category category={category} />
             </Grid>
           )}
         </Grid>

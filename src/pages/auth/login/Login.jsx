@@ -59,7 +59,7 @@ export default function Login() {
           <TextField
             {...register("email")}
             fullWidth
-            label="User Email"
+            label={t('User Email')}
             variant="outlined"
             error={errors.email}
             helperText={errors.email?.message}
@@ -67,19 +67,19 @@ export default function Login() {
           <TextField
             {...register("password")}
             fullWidth
-            label="Password"
+            label={t('Password')}
             variant="outlined"
             error={errors.password}
             helperText={errors.password?.message}
           />
         </Box>
 
-        <Box sx={{display:'flex',alignContent:'center', justifyContent:'space-between',alignItems:'center'}}>
-            <Button variant="contained" type="submit" disabled={isSubmitting} >
-              {isSubmitting ? <Loader /> : 'Login'}
-            </Button>
-            <Button variant="Link" href={'profile/change-password'} sx={{underline:'none'}}>Forgit password?</Button>
-          </Box>
+        <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Button variant="contained" type="submit" disabled={isSubmitting} >
+            {isSubmitting ? <Loader /> : 'Login'}
+          </Button>
+          <Button variant="Link" href={'profile/change-password'} sx={{ underline: 'none' }}>{t('Forgit password?')}</Button>
+        </Box>
       </Box>
     </Container>
   );
