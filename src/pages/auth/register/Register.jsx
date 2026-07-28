@@ -58,7 +58,7 @@ export default function Register() {
           <TextField
             {...register("userName")}
             fullWidth
-            label="User Name"
+            label= {t('User Name')}
             variant="outlined"
             error={errors.userName}
             helperText={errors.userName?.message}
@@ -66,7 +66,7 @@ export default function Register() {
           <TextField
             {...register("fullName")}
             fullWidth
-            label="Full Name"
+            label={t('Full Name')}
             variant="outlined"
             error={errors.fullName}
             helperText={errors.fullName?.message}
@@ -74,7 +74,7 @@ export default function Register() {
           <TextField
             {...register("email")}
             fullWidth
-            label="User Email"
+            label={t('User Email')}
             variant="outlined"
             error={errors.email}
             helperText={errors.email?.message}
@@ -82,7 +82,7 @@ export default function Register() {
           <TextField
             {...register("password")}
             fullWidth
-            label="Password"
+            label={t('Password')}
             variant="outlined"
             error={errors.password}
             helperText={errors.password?.message}
@@ -90,7 +90,7 @@ export default function Register() {
           <TextField
             {...register("phoneNumber")}
             fullWidth
-            label="Phone Number"
+            label={t('Phone Number')}
             variant="outlined"
             error={errors.phoneNumber}
             helperText={errors.phoneNumber?.message}
@@ -99,10 +99,10 @@ export default function Register() {
 
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Button variant="contained" type="submit" disabled={isSubmitting} >
-            {isSubmitting ? <CircularProgress /> : 'Register'}
+            {isSubmitting ? <CircularProgress /> : 'Register' }
           </Button>
           <Link variant="Button" underline='none' to={'/login'}>
-            Already you have account?
+           {t('Already you have account?')}
           </Link>
         </Box>
 

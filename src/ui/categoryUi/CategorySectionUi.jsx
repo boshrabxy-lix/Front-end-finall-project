@@ -15,7 +15,7 @@ export default function CategorySectionUi({ category }) {
                     },
                 }}
             >
-                <Typography fontWeight={'700'} component={'h3'} sx={{}} >{category.name}</Typography>
+                <Typography fontWeight={'700'} component={'h3'} >{category.name}</Typography>
             </Box>
         </>
     )

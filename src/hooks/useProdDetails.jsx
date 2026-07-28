@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import authAxiosInstance from './../api/authAxiosInstance';
 import i18n from '../i18next';
+import axoisInstance from '../api/axiosInstance';
 
 export default function useProdDetails(id) {
     const getProduct = async () => {
-        const response = await authAxiosInstance.get(`/Products/${id}`);
+        const response = await axoisInstance.get(`/Products/${id}`);
         return response.data;
     }
     const query = useQuery({

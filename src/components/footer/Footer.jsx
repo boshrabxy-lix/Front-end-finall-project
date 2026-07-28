@@ -12,7 +12,7 @@ export default function Footer() {
       <Box component="section" sx={{ background: "linear-gradient(90deg, #142244 0%, #1c2f56 100%)", pt: 15, pb: 4 }}>
         <Box>
           <Container maxWidth="lg">
-            <Typography variant="h5" sx={{ fontWeight: "bold", color: "white" }} gutterBottom>
+            <Typography variant="h5" sx={{ fontWeight: "bold", color:"#B8C4FF"   }} gutterBottom>
               KASHOP
             </Typography>
             <Grid container spacing={6} sx={{ mb: 5, pb: 5 }}>
