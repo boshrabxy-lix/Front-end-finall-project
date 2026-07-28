@@ -1,23 +1,20 @@
-import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import i18n from '../i18next'
-import axoisInstance from '../api/axiosInstance';
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import axoisInstance from '../api/axiosInstance';
 
-
-export default function useResetPass() {
+export default function useSendCode() {
   const queryClient= useQueryClient();
 
   return useMutation({
     mutationFn: async ({email}) => {
-      return await axoisInstance.patch('/auth/resetpassword', {
+      return await axoisInstance.post('/auth/SendCode', {
         email:email,
       });
     },onSuccess:()=>{
       queryClient.invalidateQueries(
-        {queryKey:['ResetPass',i18n.language]}
+        {queryKey:['sendCode']}
       )
     }
   });
 }
-

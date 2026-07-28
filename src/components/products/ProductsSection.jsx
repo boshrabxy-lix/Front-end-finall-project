@@ -6,7 +6,7 @@ import Loader from '../loader/Loader';
 import { useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import Product from '../../ui/product/ProductSectionUi';
+import Product from '../../ui/product/ProductUi';
 
 
 export default function ProductsSection() {
@@ -41,7 +41,9 @@ export default function ProductsSection() {
 
             <Grid container spacing={{ xs: 2, md: 3 }}>
                 {data.response.data.map(product =>
+                   <Grid item size={{ xs: 12, sm: 6, md: 3 }} >
                     <Product product={product} key={product.name} />
+                    </Grid>
                 )}
             </Grid>
         </Box>

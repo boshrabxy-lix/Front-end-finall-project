@@ -12,8 +12,8 @@ import ProductsPage from "./pages/products/ProductsPage";
 import Profile from "./pages/profile/Profile";
 import ProfileInfo from "./pages/profile/ProfileInfo";
 import ProfileOrsers from "./pages/profile/ProfileOrsers";
-import ResetPass from "./pages/profile/ResetPass";
-import UpdateEmail from "./pages/profile/UpdateEmail";
+import SendCodePage from "./pages/auth/SendCodePage";
+import ResetPassPage from "./pages/auth/ResetPassPage";
 
 const router = createBrowserRouter([
   {
@@ -53,14 +53,7 @@ const router = createBrowserRouter([
             path: "orders",
             element: <ProfileOrsers />
           },
-          {
-            path: "change-password",
-            element: <ResetPass />
-          },
-          {
-            path: "change-email",
-            element: <UpdateEmail />
-          }
+  
         ]
       },
       {
@@ -83,7 +76,14 @@ const router = createBrowserRouter([
         path: "Products/:id",
         element: <ProductDetails />
       },
-
+      {
+        path: "auth/SendCode",
+        element: <SendCodePage />
+      },
+      {
+        path: "auth/resetpassword",
+        element: <ResetPassPage />
+      },
     ]
   },
 ]);

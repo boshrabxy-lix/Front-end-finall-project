@@ -78,7 +78,7 @@ export default function Login() {
           <Button variant="contained" type="submit" disabled={isSubmitting} >
             {isSubmitting ? <Loader /> : 'Login'}
           </Button>
-          <Button variant="Link" href={'profile/change-password'} sx={{ underline: 'none' }}>{t('Forgit password?')}</Button>
+          <Button variant="Link" href={'auth/SendCode'} sx={{ underline: 'none' }}>{t('Forgit password?')}</Button>
         </Box>
       </Box>
     </Container>

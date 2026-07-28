@@ -14,17 +14,10 @@ import useAddReview from '../../hooks/useAddReview';
 export default function ProductDetails() {
   const { t } = useTranslation();
   const { id } = useParams();
+
   const { mutate: addToCart, isPending: AddToCartPending } = useAddToCart();
-<<<<<<< HEAD
   const { mutate: addReview, isPending: AddReviewPending } = useAddReview();
-
-  
-=======
-    const { mutate: addReview, isPending: AddReviewPending } = useAddReview();
->>>>>>> e5120abd6af2959c29c274aab1e26cc5d1aaa660
-
   const { data, isError, isLoading, error } = useProdDetails(id);
-  console.log(data);
 
   const [activeTab, setActiveTab] = useState(0);
   const handleTabChange = (event, newValue) => {
@@ -41,7 +34,6 @@ export default function ProductDetails() {
 
           <Box>
             <Grid container >
-
               <Grid item size={{ xs: 12, md: 6 }} sx={{ p: 5 }}>
                 <Card sx={{ border: '1.5px solid "#3a3c3d78"', borderRadius: '16px' }}>
                   <CardMedia component={'img'} image={data.response.image} sx={{
@@ -139,14 +131,8 @@ export default function ProductDetails() {
           </Box>
 
 
-
-<<<<<<< HEAD
           <Box sx={{ borderBottom: '1.7px solid #2a272769', my: 5, justifyContent: 'space-evenly' }}>
             <Tabs value={activeTab} onChange={handleTabChange}
-=======
-          <Box sx={{ borderBottom: '1.7px solid #2a272769', my: 5, gap: 2 }}>
-            <Tabs value={activeTab} onChange={handleTabChange} TabIndicatorProps={{ style: { backgroundColor: '#2563eb', height: '2px' } }}
->>>>>>> e5120abd6af2959c29c274aab1e26cc5d1aaa660
               sx={{
                 minHeight: '40px',
                 '& .MuiTab-root': {
@@ -154,15 +140,9 @@ export default function ProductDetails() {
                   fontWeight: 600,
                   fontSize: '16px',
                   color: '#64748b',
-<<<<<<< HEAD
                   px: 3,
                   pb: 2,
-
-=======
-                  px: 0,
-                  pb: 2,
                   gap: 2,
->>>>>>> e5120abd6af2959c29c274aab1e26cc5d1aaa660
                   minWidth: 'auto',
                   minHeight: '40px',
                   transition: 'color 0.3s',
@@ -206,7 +186,7 @@ export default function ProductDetails() {
                 <Box
                   component="img"
                   src={data.response.image}
-                  alt="Smart watch extreme close-up showing water resistance"
+                  alt=""
                   sx={{
                     width: '100%',
                     aspectRatio: '4 / 3',
@@ -221,26 +201,20 @@ export default function ProductDetails() {
 
           {activeTab === 1 && (
             <Box sx={{ py: 2 }}>
+
               <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 2 }}>
                 <Typography variant="h6" sx={{ color: '#9fb0ff', mb: 2, fontWeight: 700, fontSize: '1.4rem' }}>
                   Customer Reviews
                 </Typography>
-<<<<<<< HEAD
                 <Button onClick={() => { addReview({ productId: data.response.id, userName, Rating, Comment }) }} disabled={AddReviewPending} variant="contained" size="large" >Write a Reviwe</Button>
-=======
-                <Button variant="contained" size="large" >Write a Reviwe</Button>
->>>>>>> e5120abd6af2959c29c274aab1e26cc5d1aaa660
               </Box>
 
 
               {data.response.reviews.map((review, index) =>
                 <Card key={index} sx={{ mb: 4, py: 2 }}>
                   <CardContent sx={{ p: 2 }}>
-<<<<<<< HEAD
+
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-=======
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between'}}>
->>>>>>> e5120abd6af2959c29c274aab1e26cc5d1aaa660
                       <Typography variant="h5" gutterBottom sx={{ color: "primary.main" }}>{review.userName}</Typography>
 
                       <Rating
@@ -251,19 +225,16 @@ export default function ProductDetails() {
                       />
                     </Box>
 
-<<<<<<< HEAD
                     <Typography gutterBottom variant="h6">{review.comment}</Typography>
                     <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '14px', mt: 2 }}>
                       Pasted on {review.createdAt}
-=======
-                    <Typography gutterBottom variant="body1">{review.comment}</Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '14px',mt:1 }}>
-                      {review.createdAt}
->>>>>>> e5120abd6af2959c29c274aab1e26cc5d1aaa660
+
                     </Typography>
                   </CardContent>
                 </Card>
               )}
+
+
             </Box>
           )}
         </Box>
