@@ -11,6 +11,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { Container } from "@mui/material";
 import { Link } from 'react-router-dom';
+import Loader from "../../../components/loader/Loader";
 
 
 export default function Register() {
@@ -99,8 +100,9 @@ export default function Register() {
 
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Button variant="contained" type="submit" disabled={isSubmitting} >
-            {isSubmitting ? <CircularProgress /> : 'Register' }
+            {isSubmitting ? <Loader /> : 'Register' }
           </Button>
+
           <Link variant="Button" underline='none' to={'/login'}>
            {t('Already you have account?')}
           </Link>

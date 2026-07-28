@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./i18next";
 import { useTranslation } from "react-i18next";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import getTheme from "./theme";
+import getTheme from "./Theme";
 import useThemeStore from "./store/useThemeStore";
 
 export default function App() {
