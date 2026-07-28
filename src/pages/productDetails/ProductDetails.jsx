@@ -15,7 +15,9 @@ export default function ProductDetails() {
   const { t } = useTranslation();
   const { id } = useParams();
   const { mutate: addToCart, isPending: AddToCartPending } = useAddToCart();
-    const { mutate: addReview, isPending: AddReviewPending } = useAddReview();
+  const { mutate: addReview, isPending: AddReviewPending } = useAddReview();
+
+  
 
   const { data, isError, isLoading, error } = useProdDetails(id);
   console.log(data);
@@ -134,8 +136,8 @@ export default function ProductDetails() {
 
 
 
-          <Box sx={{ borderBottom: '1.7px solid #2a272769', my: 5, gap: 2 }}>
-            <Tabs value={activeTab} onChange={handleTabChange} TabIndicatorProps={{ style: { backgroundColor: '#2563eb', height: '2px' } }}
+          <Box sx={{ borderBottom: '1.7px solid #2a272769', my: 5, justifyContent: 'space-evenly' }}>
+            <Tabs value={activeTab} onChange={handleTabChange}
               sx={{
                 minHeight: '40px',
                 '& .MuiTab-root': {
@@ -143,9 +145,9 @@ export default function ProductDetails() {
                   fontWeight: 600,
                   fontSize: '16px',
                   color: '#64748b',
-                  px: 0,
+                  px: 3,
                   pb: 2,
-                  gap: 2,
+
                   minWidth: 'auto',
                   minHeight: '40px',
                   transition: 'color 0.3s',
@@ -208,14 +210,14 @@ export default function ProductDetails() {
                 <Typography variant="h6" sx={{ color: '#9fb0ff', mb: 2, fontWeight: 700, fontSize: '1.4rem' }}>
                   Customer Reviews
                 </Typography>
-                <Button variant="contained" size="large" >Write a Reviwe</Button>
+                <Button onClick={() => { addReview({ productId: data.response.id, userName, Rating, Comment }) }} disabled={AddReviewPending} variant="contained" size="large" >Write a Reviwe</Button>
               </Box>
 
 
               {data.response.reviews.map((review, index) =>
                 <Card key={index} sx={{ mb: 4, py: 2 }}>
                   <CardContent sx={{ p: 2 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between'}}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                       <Typography variant="h5" gutterBottom sx={{ color: "primary.main" }}>{review.userName}</Typography>
 
                       <Rating
@@ -226,9 +228,9 @@ export default function ProductDetails() {
                       />
                     </Box>
 
-                    <Typography gutterBottom variant="body1">{review.comment}</Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '14px',mt:1 }}>
-                      {review.createdAt}
+                    <Typography gutterBottom variant="h6">{review.comment}</Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '14px', mt: 2 }}>
+                      Pasted on {review.createdAt}
                     </Typography>
                   </CardContent>
                 </Card>

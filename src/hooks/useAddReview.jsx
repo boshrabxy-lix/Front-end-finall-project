@@ -8,7 +8,7 @@ export default function useAddReview() {
         mutationFn: (productId) => authAxiosInstance.post(`/products/${id}/reviews`),
         onSuccess: () => {
             queryClient.invalidateQueries(
-                { queryKey: ['review'] }
+                { queryKey: ['review'], userName, Rating, Comment }
             )
         }
     })
