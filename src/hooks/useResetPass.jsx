@@ -6,16 +6,18 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 
 export default function useResetPass() {
-  const queryClient= useQueryClient();
+  const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({email}) => {
+    mutationFn: async ({ values }) => {
       return await axoisInstance.patch('/auth/resetpassword', {
-        email:email,
+        code: values.code,
+        email: values.email,
+        newPassword: values.newPassword,
       });
-    },onSuccess:()=>{
+    }, onSuccess: () => {
       queryClient.invalidateQueries(
-        {queryKey:['ResetPass',i18n.language]}
+        { queryKey: ['ResetPass', i18n.language, email, newPassword, code] }
       )
     }
   });

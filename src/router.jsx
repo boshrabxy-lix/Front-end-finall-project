@@ -77,11 +77,11 @@ const router = createBrowserRouter([
         element: <ProductDetails />
       },
       {
-        path: "auth/SendCode",
+        path: "auth/Account/SendCode",
         element: <SendCodePage />
       },
       {
-        path: "auth/resetpassword",
+        path: "auth/Account/resetpassword",
         element: <ResetPassPage />
       },
     ]

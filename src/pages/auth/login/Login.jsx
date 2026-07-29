@@ -5,34 +5,38 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
-import { LoginSchema } from "../../../validation/LoginSchema";
 import useAuthStore from "../../../store/useAuthStore";
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from "../../../components/loader/Loader";
 import { useTranslation } from "react-i18next";
 import { Container } from "@mui/material";
+import axios from "axios";
+import { SendCodeSchema } from "../../../validation/SendCodeSchema";
 
 export default function Login() {
+    const { t } = useTranslation();
   const [ServerErrors, setServerErrors] = useState([]);
   const navigate = useNavigate();
   const setToken = useAuthStore((state) => state.setToken);
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
-    resolver: yupResolver(LoginSchema), mode: 'onBlur'
+    resolver: yupResolver(SendCodeSchema), mode: 'onBlur'
   });
-  const { t } = useTranslation();
-  const loginForm = async (data) => {
+
+ const loginForm = async (data) => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BURL}/auth/Account/Register`, data);
-      if (response.status === 200) {
-        setToken(response.data.accessToken);
-        navigate('/');
-      }
+      const response = await axios.post(
+        `${import.meta.env.VITE_BURL}/auth/Account/login`, data);
+     if (response.status ===200){
+      locslStorage.setItem("accessToken",response.data.accessToken)
+     }
       console.log("responce", response);
-    } catch (err) {
+    }catch (err) {
       console.log(err.response.data.errors);
       setServerErrors(err.response.data.errors);
     }
   };
+
+
 
   return (
     <Container maxWidth="sm">
@@ -55,7 +59,6 @@ export default function Login() {
             display: 'flex'
           }}
         >
-
           <TextField
             {...register("email")}
             fullWidth
@@ -72,13 +75,14 @@ export default function Login() {
             error={errors.password}
             helperText={errors.password?.message}
           />
-        </Box>
 
-        <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Button variant="contained" type="submit" disabled={isSubmitting} >
-            {isSubmitting ? <Loader /> : 'Login'}
-          </Button>
-          <Button variant="Link" href={'auth/SendCode'} sx={{ underline: 'none' }}>{t('Forgit password?')}</Button>
+          <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
+            <Button variant="contained" type="submit" disabled={isSubmitting} >
+              {isSubmitting ? <Loader /> : 'Login' }
+            </Button>
+            <Button variant="Link" href={'/auth/Account/SendCode'} sx={{ underline: 'none' }}>{t('Forgit password?')}</Button>
+          </Box>
+
         </Box>
       </Box>
     </Container>

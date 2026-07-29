@@ -59,7 +59,7 @@ export default function Register() {
           <TextField
             {...register("userName")}
             fullWidth
-            label= {t('User Name')}
+            label={t('User Name')}
             variant="outlined"
             error={errors.userName}
             helperText={errors.userName?.message}
@@ -96,17 +96,19 @@ export default function Register() {
             error={errors.phoneNumber}
             helperText={errors.phoneNumber?.message}
           />
+
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Button variant="contained" type="submit" disabled={isSubmitting} >
+              {isSubmitting ? <Loader /> : 'Register'}
+            </Button>
+
+            <Link variant="Button" underline='none' to={'/login'}>
+              {t('Already you have account?')}
+            </Link>
+          </Box>
+
         </Box>
 
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Button variant="contained" type="submit" disabled={isSubmitting} >
-            {isSubmitting ? <Loader /> : 'Register' }
-          </Button>
-
-          <Link variant="Button" underline='none' to={'/login'}>
-           {t('Already you have account?')}
-          </Link>
-        </Box>
 
       </Box>
     </Container>
