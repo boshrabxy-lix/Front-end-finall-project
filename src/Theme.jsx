@@ -6,14 +6,18 @@ const getTheme = (mode) => {
       mode: mode,
       primary: {
         main: '#9AA4F5',
+        dark: '#7887f4f9',
         contrastText: '#fff',
       },
+      secondary:{
+        main: '#94a3b8'
+      }
     },
     typography: {
-      fontFamily:'math',
+      fontFamily: 'math',
       contrastText: '#fff',
-    }, 
-     text: {
+    },
+    text: {
       secondary: '#94a3b8',
     }
   });

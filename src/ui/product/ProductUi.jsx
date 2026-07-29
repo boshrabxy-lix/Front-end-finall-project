@@ -1,14 +1,15 @@
 import React from 'react'
-import { Rating, Typography, Box } from '@mui/material';
+import { Rating, Typography, Box ,Link} from '@mui/material';
 import { Card, CardMedia, CardContent } from '@mui/material';
 import useProdDetails from '../../hooks/useProdDetails';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Loader from '../../components/loader/Loader';
+import { Link as RouterLink } from "react-router-dom";
 
 export default function ProductUi({ product }) {
   return (
     <>
-      <Link to={`/Products/${product.id}`} sx={{ textDecoration: 'none', color: 'inherit' }}>
+      <Link  component={RouterLink} to={`/Products/${product.id}`}  underline="none"  sx={{ color: 'inherit' }}>
         <Card sx={{ textAlign: 'center' }}>
           <CardMedia component={'img'} image={product.image} sx={{ width: '100%', height: 'auto' }}></CardMedia>
           <CardContent sx={{ justifyContent: 'center' }}>
