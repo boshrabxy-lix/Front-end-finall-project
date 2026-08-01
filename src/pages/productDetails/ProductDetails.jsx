@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { Grid, Tab, Tabs, Chip, Breadcrumbs, Link, Rating } from '@mui/material';
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import useAddReview from '../../hooks/useAddReview';
-
+import Modal from '../../components/modal/Modal';
 
 export default function ProductDetails() {
   const { t } = useTranslation();
@@ -18,6 +18,7 @@ export default function ProductDetails() {
   const { mutate: addToCart, isPending: AddToCartPending } = useAddToCart();
   const { mutate: addReview, isPending: AddReviewPending } = useAddReview();
   const { data, isError, isLoading, error } = useProdDetails(id);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [activeTab, setActiveTab] = useState(0);
   const handleTabChange = (event, newValue) => {
@@ -29,215 +30,214 @@ export default function ProductDetails() {
 
   return (
     <>
-      <Box>
-        <Box component={'section'} sx={{ py: 5 }}>
+      <Box component={'section'} sx={{ py: 5 }}>
 
-          <Box>
-            <Grid container >
-              <Grid item size={{ xs: 12, md: 6 }} sx={{ p: 5 }}>
-                <Card sx={{ border: '1.5px solid "#3a3c3d78"', borderRadius: '16px' }}>
-                  <CardMedia component={'img'} image={data.response.image} sx={{
-                    width: '100%',
-                    aspectRatio: '4 / 4',
-                    objectFit: 'contain',
-                    borderRadius: '16px', height: 'auto'
-                  }}>
+        <Box>
+          <Grid container >
+            <Grid item size={{ xs: 12, md: 6 }} sx={{ p: 5 }}>
+              <Card sx={{ border: '1.5px solid "#3a3c3d78"', borderRadius: '16px' }}>
+                <CardMedia component={'img'} image={data.response.image} sx={{
+                  width: '100%',
+                  aspectRatio: '4 / 4',
+                  objectFit: 'contain',
+                  borderRadius: '16px', height: 'auto'
+                }}>
 
-                  </CardMedia>
-                </Card>
-              </Grid>
-              <Grid item size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                <Box >
-                  <Chip label="LIMITED EDITION" size="larg" sx={{ bgcolor: "primary.main", color: "#1e3a8a", fontWeight: 700, letterSpacing: 0.5, mb: 2 }} />
+                </CardMedia>
+              </Card>
+            </Grid>
+            <Grid item size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+              <Box >
+                <Chip label="LIMITED EDITION" size="larg" sx={{ bgcolor: "primary.main", color: "#1e3a8a", fontWeight: 700, letterSpacing: 0.5, mb: 2 }} />
 
-                  <Typography variant="h3" fontWeight={700} gutterBottom>
-                    {data.response.name}
+                <Typography variant="h3" fontWeight={700} gutterBottom>
+                  {data.response.name}
+                </Typography>
+
+                <Box sx={{ display: 'flex', mb: 3, gap: 1, alignItems: 'center' }}>
+                  <Rating
+                    value={data.response.rate}
+                    precision={0.5}
+                    readOnly
+                    sx={{ color: "primary.main" }}
+                  />
+                  <Typography variant="body2" color="text.secondary">
+                    ( {data.response.reviews.length} Reviews)
                   </Typography>
+                </Box>
 
-                  <Box sx={{ display: 'flex', mb: 3, gap: 1, alignItems: 'center' }}>
+                <Box
+                  variant="outlined"
+                  sx={{
+                    mb: 3,
+                    borderColor: "#94a3b82e",
+                  }}
+                >
+                  <Box sx={{ gap: 1.5, border: '1.2px solid  #94a3b82e', py: 2 }}>
+                    <Typography variant="h4" fontWeight={800} color="primary">
+                      Price: {data.response.price}$
+                    </Typography>
+
+                    <Typography
+                      variant="h5"
+                      color="text.secondary"
+                    >
+                      Quantity: {data.response.quantity}
+                    </Typography>
+                  </Box>
+                </Box>
+
+                <Box sx={{ display: 'flex', gap: 2 }}>
+                  <Button
+                    disabled={AddToCartPending}
+                    onClick={() => { addToCart({ productId: data.response.id, count: 1 }) }}
+                    fullWidth
+                    variant="outlined"
+                    size="large"
+                    startIcon={<ShoppingCartOutlinedIcon />}
+                    sx={{ borderColor: "#94a3b84d", py: 2 }}
+                  >
+                    Add to Cart
+                  </Button>
+                  <Button fullWidth variant="contained" size="large" sx={{ py: 2, color: '#2563eb' }}>
+                    Buy Now
+                  </Button>
+                </Box>
+              </Box>
+
+            </Grid>
+
+
+          </Grid>
+
+          <Grid item size={{ xs: 12, md: 6 }}>
+            <Box spacing={1.5} sx={{ display: 'flex', mt: 2 }}>
+              {data.response.subImages.map((i) => (
+                <Box
+                  key={i}
+                  sx={{
+                    width: 64,
+                    height: 64,
+                    borderRadius: 2,
+                    bgcolor: "background.paper",
+                    border: "1px solid",
+                    borderColor: i === 0 ? "primary.main" : "rgba(148,163,184,0.18)",
+                  }}
+                />
+              ))}
+            </Box>
+
+          </Grid>
+        </Box>
+
+
+        <Box sx={{ borderBottom: '1.7px solid #2a272769', my: 5, justifyContent: 'space-evenly' }}>
+          <Tabs value={activeTab} onChange={handleTabChange}
+            sx={{
+              minHeight: '40px',
+              '& .MuiTab-root': {
+                textTransform: 'none',
+                fontWeight: 600,
+                fontSize: '16px',
+                color: '#64748b',
+                px: 3,
+                pb: 2,
+                gap: 2,
+                minWidth: 'auto',
+                minHeight: '40px',
+                transition: 'color 0.3s',
+                '&.Mui-selected': {
+                  color: '#3b82f6',
+                },
+                '&:hover': {
+                  color: '#9fb0ff',
+                },
+              },
+            }}
+          >
+            <Tab label="Product Description" />
+            <Tab label="Customer Reviews" />
+          </Tabs>
+        </Box>
+
+        {activeTab === 0 && (
+          <Grid container spacing={6} alignItems="center">
+            <Grid item size={{ xs: 12, md: 6 }}>
+              <Typography
+                variant="h6" component="h2"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: '1.4rem',
+                  color: '#9fb0ff',
+                  mb: 2,
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                Built for Endurance
+              </Typography>
+
+              <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.75, mb: 2.5, fontSize: '14px', }} >
+                {data.response.description}
+              </Typography>
+            </Grid>
+
+
+            <Grid item size={{ xs: 12, md: 6 }}>
+              <Box
+                component="img"
+                src={data.response.image}
+                alt=""
+                sx={{
+                  width: '100%',
+                  aspectRatio: '4 / 3',
+                  objectFit: 'cover',
+                  borderRadius: '16px',
+                  boxShadow: '0px 15px 35px rgba(0,0,0,0.35)',
+                }}
+              />
+            </Grid>
+          </Grid>
+        )}
+
+        {activeTab === 1 && (
+          <Box sx={{ py: 2 }}>
+
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 2 }}>
+              <Typography variant="h6" sx={{ color: '#9fb0ff', mb: 2, fontWeight: 700, fontSize: '1.4rem' }}>
+                Customer Reviews
+              </Typography>
+              <Button onClick={() => { addReview({ productId: data.response.id, userName, Rating, Comment }) }} disabled={AddReviewPending} variant="contained" size="large" >Write a Reviwe</Button>
+            </Box>
+
+
+            {data.response.reviews.map((review, index) =>
+              <Card key={index} sx={{ mb: 4, py: 2 }}>
+                <CardContent sx={{ p: 2 }}>
+
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Typography variant="h5" gutterBottom sx={{ color: "primary.main" }}>{review.userName}</Typography>
+
                     <Rating
-                      value={data.response.rate}
+                      value={review.rating}
                       precision={0.5}
                       readOnly
                       sx={{ color: "primary.main" }}
                     />
-                    <Typography variant="body2" color="text.secondary">
-                      ( {data.response.reviews.length} Reviews)
-                    </Typography>
                   </Box>
 
-                  <Box
-                    variant="outlined"
-                    sx={{
-                      mb: 3,
-                      borderColor: "#94a3b82e",
-                    }}
-                  >
-                    <Box sx={{ gap: 1.5, border: '1.2px solid  #94a3b82e', py: 2 }}>
-                      <Typography variant="h4" fontWeight={800} color="primary">
-                        Price: {data.response.price}$
-                      </Typography>
+                  <Typography gutterBottom variant="h6">{review.comment}</Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '14px', mt: 2 }}>
+                    Pasted on {review.createdAt}
 
-                      <Typography
-                        variant="h5"
-                        color="text.secondary"
-                      >
-                        Quantity: {data.response.quantity}
-                      </Typography>
-                    </Box>
-                  </Box>
-
-                  <Box sx={{ display: 'flex', gap: 2 }}>
-                    <Button
-                      disabled={AddToCartPending}
-                      onClick={() => { addToCart({ productId: data.response.id, count: 1 }) }}
-                      fullWidth
-                      variant="outlined"
-                      size="large"
-                      startIcon={<ShoppingCartOutlinedIcon />}
-                      sx={{ borderColor: "#94a3b84d", py: 2 }}
-                    >
-                      Add to Cart
-                    </Button>
-                    <Button fullWidth variant="contained" size="large" sx={{ py: 2, color: '#2563eb' }}>
-                      Buy Now
-                    </Button>
-                  </Box>
-                </Box>
-
-              </Grid>
+                  </Typography>
+                </CardContent>
+              </Card>
+            )}
 
 
-            </Grid>
-
-            <Grid item size={{ xs: 12, md: 6 }}>
-              <Box spacing={1.5} sx={{ display: 'flex', mt: 2 }}>
-                {data.response.subImages.map((i) => (
-                  <Box
-                    key={i}
-                    sx={{
-                      width: 64,
-                      height: 64,
-                      borderRadius: 2,
-                      bgcolor: "background.paper",
-                      border: "1px solid",
-                      borderColor: i === 0 ? "primary.main" : "rgba(148,163,184,0.18)",
-                    }}
-                  />
-                ))}
-              </Box>
-
-            </Grid>
           </Box>
+        )}
 
-
-          <Box sx={{ borderBottom: '1.7px solid #2a272769', my: 5, justifyContent: 'space-evenly' }}>
-            <Tabs value={activeTab} onChange={handleTabChange}
-              sx={{
-                minHeight: '40px',
-                '& .MuiTab-root': {
-                  textTransform: 'none',
-                  fontWeight: 600,
-                  fontSize: '16px',
-                  color: '#64748b',
-                  px: 3,
-                  pb: 2,
-                  gap: 2,
-                  minWidth: 'auto',
-                  minHeight: '40px',
-                  transition: 'color 0.3s',
-                  '&.Mui-selected': {
-                    color: '#3b82f6',
-                  },
-                  '&:hover': {
-                    color: '#9fb0ff',
-                  },
-                },
-              }}
-            >
-              <Tab label="Product Description" />
-              <Tab label="Customer Reviews" />
-            </Tabs>
-          </Box>
-
-          {activeTab === 0 && (
-            <Grid container spacing={6} alignItems="center">
-              <Grid item size={{ xs: 12, md: 6 }}>
-                <Typography
-                  variant="h6" component="h2"
-                  sx={{
-                    fontWeight: 700,
-                    fontSize: '1.4rem',
-                    color: '#9fb0ff',
-                    mb: 2,
-                    letterSpacing: '-0.01em',
-                  }}
-                >
-                  Built for Endurance
-                </Typography>
-
-                <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.75, mb: 2.5, fontSize: '14px', }} >
-                  {data.response.description}
-                </Typography>
-              </Grid>
-
-
-              <Grid item size={{ xs: 12, md: 6 }}>
-                <Box
-                  component="img"
-                  src={data.response.image}
-                  alt=""
-                  sx={{
-                    width: '100%',
-                    aspectRatio: '4 / 3',
-                    objectFit: 'cover',
-                    borderRadius: '16px',
-                    boxShadow: '0px 15px 35px rgba(0,0,0,0.35)',
-                  }}
-                />
-              </Grid>
-            </Grid>
-          )}
-
-          {activeTab === 1 && (
-            <Box sx={{ py: 2 }}>
-
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 2 }}>
-                <Typography variant="h6" sx={{ color: '#9fb0ff', mb: 2, fontWeight: 700, fontSize: '1.4rem' }}>
-                  Customer Reviews
-                </Typography>
-                <Button onClick={() => { addReview({ productId: data.response.id, userName, Rating, Comment }) }} disabled={AddReviewPending} variant="contained" size="large" >Write a Reviwe</Button>
-              </Box>
-
-
-              {data.response.reviews.map((review, index) =>
-                <Card key={index} sx={{ mb: 4, py: 2 }}>
-                  <CardContent sx={{ p: 2 }}>
-
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <Typography variant="h5" gutterBottom sx={{ color: "primary.main" }}>{review.userName}</Typography>
-
-                      <Rating
-                        value={review.rating}
-                        precision={0.5}
-                        readOnly
-                        sx={{ color: "primary.main" }}
-                      />
-                    </Box>
-
-                    <Typography gutterBottom variant="h6">{review.comment}</Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '14px', mt: 2 }}>
-                      Pasted on {review.createdAt}
-
-                    </Typography>
-                  </CardContent>
-                </Card>
-              )}
-
-
-            </Box>
-          )}
-        </Box>
       </Box>
     </>
   )

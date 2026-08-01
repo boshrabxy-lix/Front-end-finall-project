@@ -12,7 +12,7 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import PersonSharpIcon from "@mui/icons-material/PersonSharp";
 import useAuthStore from '../../store/useAuthStore';
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { Link } from "@mui/material";
 import { useTranslation } from 'react-i18next';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
@@ -21,8 +21,9 @@ import LoginIcon from '@mui/icons-material/Login';
 
 
 export default function ProfileMenu() {
+    const navigate = useNavigate();
     const token = useAuthStore((state) => state.token);
-  const logout = useAuthStore((state) => state.logout);
+    const logout = useAuthStore((state) => state.logout);
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);

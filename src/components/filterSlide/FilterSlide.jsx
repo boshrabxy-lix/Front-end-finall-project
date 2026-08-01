@@ -1,21 +1,43 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Box, Paper, Stack, TextField, FormControl, Select, MenuItem, Typography, Button, List, ListItemButton, ListItemText, Link, Grid } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import useCategories from '../../hooks/useCategories';
 import Loader from '../loader/Loader';
 import { useParams } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
+import useProducts from '../../hooks/useProducts';
 
 export default function FilterSlide() {
-
-  const { data, isError, isLoading, error } = useCategories(100);
+  const { data: category, isError, isLoading, error } = useCategories(100);
+  const { data: Products } = useProducts();
 
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [sortBy, setSortBy] = useState("Price");
   const [order, setOrder] = useState("Ascending");
-  const [activeCategory, setActiveCategory] = useState("All Categories");
-  const isActive = activeCategory;
+  const [currentCategory, setCurrentCategory] = useState("All Categories");
+  const [applied, setApplied] = useState({ min: '', max: '', sortBy: 'price', order: 'asc' });
+
+  const isActive = currentCategory;
+
+  const products = useMemo(() => {
+    const min = applied.min !== '' ? parseFloat(applied.min) : -Infinity;
+    const max = applied.max !== '' ? parseFloat(applied.max) : Infinity;
+    {
+      Products
+        .filter((p) => (category === 'all' || p.category === category) && p.price >= min && p.price <= max)
+        .sort((a, b) => {
+          const result = applied.sortBy === 'price' ? a.price - b.price : a.name.localeCompare(b.name);
+          return applied.order === 'asc' ? result : -result;
+        })
+    };[category, applied];
+  });
+
+  function handleApplyFilter() {
+    setApplied({ min: minPrice, max: maxPrice, sortBy, order });
+  }
+
+
 
   const selectSx = {
     "& .MuiOutlinedInput-notchedOutline": { borderColor: 'primary'},
@@ -142,12 +164,12 @@ export default function FilterSlide() {
 
             <List sx={{ mt: 2, }}>
               {data.response.data.map((category => {
-                const isActive = category === activeCategory;
+                const isActive = category === currentCategory;
                 return (
                   <ListItemButton
                     key={category.id}
                     selected={isActive}
-                    onClick={() => setActiveCategory(category)}
+                    onClick={() => setCurrentCategory(category)}
 
                     sx={{
                       borderRadius: "6px",
@@ -156,7 +178,7 @@ export default function FilterSlide() {
                       px: 1.75,
                       "&.Mui-selected": {
                         bgcolor: "primary.dark"
-                        ,fontWeight:900 ,fontSize:20,
+                        , fontWeight: 900, fontSize: 20,
                         "&:hover": { bgcolor: "primary.dark" },
                       },
                     }}
@@ -166,7 +188,6 @@ export default function FilterSlide() {
                       primaryTypographyProps={{
                         fontSize: 15,
                         color: isActive ? 'primary' : "#1A1A1A",
-                       
                       }}
                     >
                       {category.name}
