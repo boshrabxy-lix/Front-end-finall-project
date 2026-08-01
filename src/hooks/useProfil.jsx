@@ -5,7 +5,7 @@ import authAxiosInstance from '../api/authAxiosInstance'
 
 export default function useProfil() {
     return useQuery({
-        queryKey: [Profile, i18n.language],
+        queryKey: ['Profile', i18n.language],
         queryFn: async () => {
             const response = await authAxiosInstance.gat('profile');
             return response.data;

@@ -27,15 +27,16 @@ export default function Login() {
       const response = await axios.post(
         `${import.meta.env.VITE_BURL}/auth/Account/login`, data);
      if (response.status ===200){
-      locslStorage.setItem("accessToken",response.data.accessToken)
+       localStorage.setItem("accessToken", response.data.accessToken);
+        setToken(response.data.accessToken);
+        navigate('/'); 
      }
       console.log("responce", response);
     }catch (err) {
       console.log(err.response.data.errors);
-      setServerErrors(err.response.data.errors);
+      setServerErrors(err.response.data.errors || []);
     }
   };
-
 
 
   return (

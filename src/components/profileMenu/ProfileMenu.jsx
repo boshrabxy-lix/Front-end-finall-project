@@ -22,6 +22,7 @@ import LoginIcon from '@mui/icons-material/Login';
 
 export default function ProfileMenu() {
     const token = useAuthStore((state) => state.token);
+  const logout = useAuthStore((state) => state.logout);
     const { t } = useTranslation();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -110,7 +111,6 @@ export default function ProfileMenu() {
                                 underline="none"
                                 sx={{
                                     display: { xs: "none", sm: "flex" },
-                                    color: "#000",
                                     fontWeight: 500,
                                     fontSize: "0.9rem",
                                     "&:hover": { color: "#2F53E0" },
@@ -132,7 +132,6 @@ export default function ProfileMenu() {
                                 underline="none"
                                 sx={{
                                     display: { xs: "none", sm: "flex" },
-                                    color: "#000",
                                     fontWeight: 500,
                                     fontSize: "0.9rem",
                                     "&:hover": { color: "#2F53E0" },
@@ -153,7 +152,6 @@ export default function ProfileMenu() {
                                 underline="none"
                                 sx={{
                                     display: { xs: "none", sm: "flex" },
-                                    color: "#000",
                                     fontWeight: 500,
                                     fontSize: "0.9rem",
                                     "&:hover": { color: "#2F53E0" },
@@ -177,7 +175,6 @@ export default function ProfileMenu() {
                         underline="none"
                         sx={{
                             display: { xs: "none", sm: "flex" },
-                            color: "#000",
                             fontWeight: 500,
                             fontSize: "0.9rem",
                             "&:hover": { color: "#2F53E0" },
@@ -197,7 +194,6 @@ export default function ProfileMenu() {
                         underline="none"
                         sx={{
                             display: { xs: "none", sm: "flex" },
-                            color: "#000",
                             fontWeight: 500,
                             fontSize: "0.9rem",
                             "&:hover": { color: "#2F53E0" },

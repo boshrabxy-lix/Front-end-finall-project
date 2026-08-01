@@ -11,10 +11,10 @@ import AddIcon from '@mui/icons-material/Add';
 
 export default function Cart() {
   const { data, isError, error, isLoading } = useCart();
+    console.log(data);
   const { mutate: removeItem, isPending: removeItemPending } = useRemoveFromCart();
   const { mutate: UpdateItem, isPending: updateItemPending } = useUpdateCartItem();
   const navigate = useNavigate();
-  console.log(data);
 
   const handleUpdateQty = (productId, action) => {
     const Item = data.items.find((i) =>
@@ -32,7 +32,7 @@ export default function Cart() {
 
   return (
     <Box className="cart" component={'section'} sx={{ py: 5 }}>
-      <Typography component={'h1'}>My Cart</Typography>
+      <Typography component={'h1'} variant='h2'>My Cart</Typography>
       <TableContainer>
         <Table>
           <TableHead>

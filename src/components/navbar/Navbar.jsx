@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Links, useNavigate, useParams } from "react-router-dom";
-import useAuthStore from "../../store/useAuthStore";
 import { AppBar, IconButton, Toolbar, Badge, InputBase, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -17,6 +16,7 @@ import { Menu, MenuItem } from '@mui/material';
 import ProfileMenu from '../profileMenu/ProfileMenu';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import useThemeStore from '../../store/useThemeStore';
+import useAuthStore from "../../store/useAuthStore";
 
 
 
@@ -31,7 +31,6 @@ export default function Navbar() {
 
   const {mode ,toggleTheme} = useThemeStore();
   const token = useAuthStore((state) => state.token);
-  const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
   const { data } = useCart();
   const cartCount = data?.Items?.length || 0;
@@ -144,7 +143,7 @@ export default function Navbar() {
               <>
                 <IconButton
                   component={RouterLink}
-                  to={"/cart"}
+                  to={"/Carts"}
                   size="small"
                   sx={{ color: "#e2e8f0", display: { sm: "flex" } }}
 

@@ -18,7 +18,7 @@ export default function FilterSlide() {
   const isActive = activeCategory;
 
   const selectSx = {
-    "& .MuiOutlinedInput-notchedOutline": { borderColor: 'primary' },
+    "& .MuiOutlinedInput-notchedOutline": { borderColor: 'primary'},
     "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: 'primary' },
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: 'primary' },
   };
@@ -86,7 +86,7 @@ export default function FilterSlide() {
                 >
                   <MenuItem value="Price">Price</MenuItem>
                   <MenuItem value="Name">Name</MenuItem>
-                  <MenuItem value="Rating">Rating</MenuItem>
+                  <MenuItem value="Rating">Rate</MenuItem>
                 </Select>
               </FormControl>
 
@@ -155,7 +155,8 @@ export default function FilterSlide() {
                       py: 1.1,
                       px: 1.75,
                       "&.Mui-selected": {
-                        bgcolor: "primary.dark",
+                        bgcolor: "primary.dark"
+                        ,fontWeight:900 ,fontSize:20,
                         "&:hover": { bgcolor: "primary.dark" },
                       },
                     }}
@@ -165,6 +166,7 @@ export default function FilterSlide() {
                       primaryTypographyProps={{
                         fontSize: 15,
                         color: isActive ? 'primary' : "#1A1A1A",
+                       
                       }}
                     >
                       {category.name}
