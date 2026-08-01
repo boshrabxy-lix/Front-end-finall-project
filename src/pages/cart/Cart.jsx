@@ -8,12 +8,15 @@ import useUpdateCartItem from '../../hooks/useUpdateCartItem';
 import { useNavigate } from 'react-router-dom';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import useClearCart from '../../hooks/useClearCart';
 
 export default function Cart() {
   const { data, isError, error, isLoading } = useCart();
-    console.log(data);
+  console.log(data);
   const { mutate: removeItem, isPending: removeItemPending } = useRemoveFromCart();
   const { mutate: UpdateItem, isPending: updateItemPending } = useUpdateCartItem();
+  const { mutate: clearCart, isPending: ClearPending } = useClearCart();
+
   const navigate = useNavigate();
 
   const handleUpdateQty = (productId, action) => {
@@ -27,12 +30,28 @@ export default function Cart() {
     }
   }
 
+  const handelclearCart = () => {
+    if (data.items.length === 0) {
+      alert("Cart is already empty!");
+      return;
+    } else {
+      data.items.map((item) =>
+        clearCart(item.productId)
+      )
+    }
+  };
+
   if (isLoading) return <Loader />
   if (isError) return <Typography color='error'>{error}</Typography>
 
   return (
     <Box className="cart" component={'section'} sx={{ py: 5 }}>
-      <Typography component={'h1'} variant='h2'>My Cart</Typography>
+      <Box sx={{ display: 'flex', justifyContent:'space-between' ,alignItems:'center'}}>
+        <Typography component={'h1'} variant='h2'>My Cart</Typography>
+        <Button color='error' disabled={ClearPending} onClick={() => handelclearCart(clearCart)}>Clear</Button>
+      </Box>
+
+
       <TableContainer>
         <Table>
           <TableHead>

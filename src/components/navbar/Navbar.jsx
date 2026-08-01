@@ -53,6 +53,7 @@ export default function Navbar() {
           <Box sx={{ display: "flex", gap: 5, alignItems: "center" }}>
             <IconButton color="inherit" sx={{ display: { xs: "flex", sm: "none" } }} >
               <MenuIcon />
+              
             </IconButton>
 
             <Typography variant="h6" component="div" sx={{ display: { xs: 'block', sm: 'flex' }, fontWeight: 800, letterSpacing: 0.4, color: "#B8C4FF" }} >
@@ -116,7 +117,7 @@ export default function Navbar() {
           >
             <Box
               sx={{
-                display: { xs: "flex", md: 'flex' },
+                display: { xs: "none", md: 'flex' },
                 gap: 3,
                 alignItems: 'center',
                 bgcolor: 'white',
@@ -146,7 +147,6 @@ export default function Navbar() {
                   to={"/Carts"}
                   size="small"
                   sx={{ color: "#e2e8f0", display: { sm: "flex" } }}
-
                 >
                   <Badge badgeContent={cartCount} color="error">
                     <ShoppingCartOutlinedIcon />

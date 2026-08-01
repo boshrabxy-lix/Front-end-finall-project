@@ -3,13 +3,13 @@ import useCart from '../../hooks/useCart'
 import { Box, TableHead, TableContainer, TableCell, Table, TableBody, TableRow, TableFooter } from '@mui/material';
 import Loader from '../../components/loader/Loader';
 import Typography from "@mui/material/Typography";
-import useUpdateCartItem from '../../hooks/useUpdateCartItem';
 import {FormControl,InputLabel,Select,MenuItem, Button} from '@mui/material';
+import useChckout from '../../hooks/useCheckOut';
 
 
 export default function Checkout() {
     const [paymentMethod, setPaymentMethod] = useState('Cash');
-    const { mutate: checkout, isPending: checkoutPending } = useUpdateCartItem();
+    const { mutate: checkout, isPending: checkoutPending } = useChckout();
     const { data, isError, error, isLoading } = useCart();
     console.log(data);
     if (isLoading) return <Loader />

@@ -13,7 +13,7 @@ export default function useAddToCart() {
       });
     },onSuccess:()=>{
       queryClient.invalidateQueries(
-        {queryKey:['Carts']}
+        {queryKey:['carts']}
       )
     }
   });

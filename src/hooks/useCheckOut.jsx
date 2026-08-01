@@ -4,10 +4,10 @@ import authAxiosInstance from './../api/authAxiosInstance'
 export default function useChckout() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (PaymentMethod) => {
+    mutationFn: async ({paymentMethod}) => {
       console.log("mutation function");
-      console.log(PaymentMethod);
-      return await authAxiosInstance.post('/Checkouts', { PaymentMethod })
+      console.log(paymentMethod);
+      return await authAxiosInstance.post('/Checkouts', { paymentMethod })
     }, 
     onSuccess: (response) => {
       console.log(response);
