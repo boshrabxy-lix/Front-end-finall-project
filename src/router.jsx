@@ -14,6 +14,7 @@ import ProfileInfo from "./pages/profile/ProfileInfo";
 import ProfileOrsers from "./pages/profile/ProfileOrsers";
 import SendCodePage from "./pages/auth/SendCodePage";
 import ResetPassPage from "./pages/auth/ResetPassPage";
+import SettingPage from "./pages/settingPage/SettingPage";
 
 const router = createBrowserRouter([
   {
@@ -53,7 +54,10 @@ const router = createBrowserRouter([
             path: "orders",
             element: <ProfileOrsers />
           },
-  
+          {
+            path: "settings",
+            element: <SettingPage />
+          },
         ]
       },
       {

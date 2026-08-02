@@ -7,7 +7,7 @@ export default function useProfil() {
     return useQuery({
         queryKey: ['Profile', i18n.language],
         queryFn: async () => {
-            const response = await authAxiosInstance.gat('profile');
+            const response = await authAxiosInstance.get('profile');
             return response.data;
         },
         staleTime: 1000 * 60 * 5
