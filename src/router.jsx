@@ -15,6 +15,7 @@ import ProfileOrsers from "./pages/profile/ProfileOrsers";
 import SendCodePage from "./pages/auth/SendCodePage";
 import ResetPassPage from "./pages/auth/ResetPassPage";
 import SettingPage from "./pages/settingPage/SettingPage";
+import VerifyCode from "./pages/auth/VerifyCode";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: "auth/Account/resetpassword",
         element: <ResetPassPage />
+      }, 
+      {
+        path: "auth/Account/verifycode",
+        element: <VerifyCode />
       },
     ]
   },

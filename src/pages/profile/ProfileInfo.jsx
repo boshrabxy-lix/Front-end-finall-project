@@ -1,5 +1,5 @@
 import React from 'react'
-import Profileprodviewer from "./profileprodviewer";
+import Profileprodviewer from "./profileProdviewer";
 import { Box, Typography } from '@mui/material';
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
@@ -59,7 +59,7 @@ export default function ProfileInfo() {
       </Box>
 
 
-      <Profileprodviewer />
+      <ProfileProdviewer />
     </>
   );
 }

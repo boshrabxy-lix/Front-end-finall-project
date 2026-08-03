@@ -11,7 +11,11 @@ const getTheme = (mode) => {
       },
       secondary:{
         main: '#94a3b8'
-      }
+      },
+      info:{
+        main:'#2676f6',
+        dark:'#1057c9'
+      },
     },
     typography: {
       fontFamily: 'math',

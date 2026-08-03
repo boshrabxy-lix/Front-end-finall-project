@@ -5,7 +5,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import Product from '../../ui/product/ProductProfileUi';
 import getTheme from "../../Theme";
 
-export default function Profileprodviewer() {
+export default function ProfileProdviewer() {
     const { data, isError, isLoading, error } = useProducts(2);
 
     if (isLoading) return <Loader />

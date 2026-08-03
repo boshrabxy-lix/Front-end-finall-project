@@ -32,18 +32,22 @@ export default function SendCodePage() {
         try {
             const response = await axios.post(
                 `${import.meta.env.VITE_BURL}/auth/Account/SendCode`,
-              { email }
+                JSON.stringify(email),
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
             );
             queryClient.invalidateQueries(
                 console.log("response", response),
-                { queryKey: ['sendCode', variables.email] }),
-            navigate('auth/Account/resetpassword')
+                { queryKey: ['sendCode', email] }),
+                navigate('/auth/Account/verifycode')
         } catch (err) {
             console.log(err.response.data.errors);
             setServerErrors(err.response.data.errors);
         }
     };
-
 
     return (
         <>

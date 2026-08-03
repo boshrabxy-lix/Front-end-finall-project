@@ -10,7 +10,7 @@ export default function useResetPass() {
 
   return useMutation({
     mutationFn: async ({ values }) => {
-      return await axoisInstance.patch('/auth/resetpassword', {
+      return await axoisInstance.patch('auth/Account/resetpassword', {
         code: values.code,
         email: values.email,
         newPassword: values.newPassword,

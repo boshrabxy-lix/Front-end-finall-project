@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Typography, Box, Link,Card, CardMedia, CardContent,Button } from '@mui/material';
+import { Typography, Box, Link, Card, CardMedia, CardContent, Button } from '@mui/material';
 import useProdDetails from '../../hooks/useProdDetails';
 import { useParams } from 'react-router-dom';
 import Loader from '../../components/loader/Loader';
@@ -9,7 +9,7 @@ import useAddToCart from '../../hooks/useAddToCart';
 
 
 export default function ProductProfileUi({ product }) {
-    const { mutate: addToCart, isPending: AddToCartPending } = useAddToCart();
+  const { mutate: addToCart, isPending: AddToCartPending } = useAddToCart();
   return (
     <>
       <Link component={RouterLink} to={`/Products/${product.id}`} underline="none" sx={{ color: 'inherit' }}>
@@ -22,12 +22,13 @@ export default function ProductProfileUi({ product }) {
             </Box>
           </CardContent>
           <Button
+            fullWidth
             disabled={AddToCartPending}
             onClick={() => { addToCart({ productId: data.response.id, count: 1 }) }}
             variant="contained"
             size="large"
             startIcon={<ShoppingCartOutlinedIcon />}
-            sx={{ borderColor: "#94a3b84d" ,display:'flex',flexGrow:1}}
+            sx={{ borderColor: "#94a3b84d", display: 'flex', flexGrow: 1 }}
           >
             Add to Cart
           </Button>
