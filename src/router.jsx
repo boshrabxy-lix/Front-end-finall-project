@@ -11,7 +11,7 @@ import Checkout from "./pages/checkout/Checkout";
 import ProductsPage from "./pages/products/ProductsPage";
 import Profile from "./pages/profile/Profile";
 import ProfileInfo from "./pages/profile/ProfileInfo";
-import ProfileOrsers from "./pages/profile/ProfileOrsers";
+import ProfileOrders from "./pages/profile/ProfileOrders";
 import SendCodePage from "./pages/auth/SendCodePage";
 import ResetPassPage from "./pages/auth/ResetPassPage";
 import SettingPage from "./pages/settingPage/SettingPage";
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
           },
           {
             path: "orders",
-            element: <ProfileOrsers />
+            element: <ProfileOrders />
           },
           {
             path: "settings",

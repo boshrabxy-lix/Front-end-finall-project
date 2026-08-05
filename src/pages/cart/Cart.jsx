@@ -41,12 +41,20 @@ export default function Cart() {
     }
   };
 
+const handleCheckout = () => {
+  if (data.items.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+  navigate('/checkout');
+};
+
   if (isLoading) return <Loader />
   if (isError) return <Typography color='error'>{error}</Typography>
 
   return (
     <Box className="cart" component={'section'} sx={{ py: 5 }}>
-      <Box sx={{ display: 'flex', justifyContent:'space-between' ,alignItems:'center'}}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography component={'h1'} variant='h2'>My Cart</Typography>
         <Button color='error' disabled={ClearPending} onClick={() => handelclearCart(clearCart)}>Clear</Button>
       </Box>
@@ -109,14 +117,16 @@ export default function Cart() {
 
       <Box sx={{ display: 'flex', gap: 3 }}>
         <Button
-          variant='contained'
-          color='success'
+          variant="contained"
+          color="success"
           sx={{ flex: 1 }}
-          disabled={updateItemPending}
-          onClick={() => navigate('/checkout')}
+          disabled={updateItemPending || data.items.count === 0}
+          onClick={handleCheckout}
         >
           Procces To Checkout
         </Button>
+
+
         <Button
           variant='contained'
           color='primary'

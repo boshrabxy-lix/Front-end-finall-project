@@ -23,21 +23,22 @@ import useAuthStore from "../../store/useAuthStore";
 export default function Navbar() {
   const { t } = useTranslation();
   const { id } = useParams();
+  const { mode, toggleTheme } = useThemeStore();
+  const token = useAuthStore((state) => state.token);
+  const navigate = useNavigate();
+  const [menuAnchorElement, setMenuAnchorElement] = useState(null);
+  const isMenuOpen = Boolean(menuAnchorElement);
 
   const changeLanguage = (lng) => {
     const newLang = i18n.language == "ar" ? "en" : "ar"
     i18n.changeLanguage(newLang);
   }
 
-  const {mode ,toggleTheme} = useThemeStore();
-  const token = useAuthStore((state) => state.token);
-  const navigate = useNavigate();
   const { data } = useCart();
-  const cartCount = data?.Items?.length || 0;
 
+  const cartCount = data?.Item?.length ?? 0;
+  console.log("cartCount:", cartCount);
 
-  const [menuAnchorElement, setMenuAnchorElement] = useState(null);
-  const isMenuOpen = Boolean(menuAnchorElement);
 
   const openUserMenu = (event) => {
     setMenuAnchorElement(event.currentTarget);
@@ -53,7 +54,7 @@ export default function Navbar() {
           <Box sx={{ display: "flex", gap: 5, alignItems: "center" }}>
             <IconButton color="inherit" sx={{ display: { xs: "flex", sm: "none" } }} >
               <MenuIcon />
-              
+
             </IconButton>
 
             <Typography variant="h6" component="div" sx={{ display: { xs: 'block', sm: 'flex' }, fontWeight: 800, letterSpacing: 0.4, color: "#B8C4FF" }} >
@@ -148,13 +149,12 @@ export default function Navbar() {
                   size="small"
                   sx={{ color: "#e2e8f0", display: { sm: "flex" } }}
                 >
-                  <Badge badgeContent={cartCount} color="error">
-                    <ShoppingCartOutlinedIcon />
+                  <Badge badgeContent={cartCount ?? 1} color="error" >
+                    <ShoppingCartOutlinedIcon size="small" />
                   </Badge>
                 </IconButton>
               </>
-            )
-            }
+            )}
 
             <Button onClick={changeLanguage} sx={{ minWidth: '50px' }}>{i18n.language === "AR" ? "EN" : "AR"}</Button>
 
@@ -162,11 +162,9 @@ export default function Navbar() {
               {mode === 'dark' ? (<DarkModeOutlinedIcon fontSize="small" />) : (< LightModeIcon fontSize="small" />)}
             </IconButton>
 
+
             <ProfileMenu />
           </Box>
-
-
-
         </Toolbar>
       </AppBar>
     </Box>

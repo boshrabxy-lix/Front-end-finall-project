@@ -5,12 +5,13 @@ export default function useAddReview() {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (productId) => authAxiosInstance.post(`/products/${id}/reviews`),
-        onSuccess: () => {
-            queryClient.invalidateQueries(
-
-                { queryKey: ['review'], userName, Rating, Comment }
-            )
-        }
+        mutationFn: ({ productId, userName, rating, comment }) => authAxiosInstance.post(`/products/${productId}/reviews`,{
+        userName,  rating, comment,
+        }),
+        onSuccess: (data, variables) => {
+        queryClient.invalidateQueries(
+            { queryKey: ['review', variables.productId]}
+        )
+    }
     })
 }

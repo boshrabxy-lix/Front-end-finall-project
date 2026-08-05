@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'
 import useProdDetails from '../../hooks/useProdDetails';
-import { Box, Button, CardMedia, Card, CardContent } from '@mui/material';
 import Typography from "@mui/material/Typography";
 import useAddToCart from "../../hooks/useAddToCart";
 import Loader from '../../components/loader/Loader';
 import { useTranslation } from "react-i18next";
-import { Grid, Tab, Tabs, Chip, Breadcrumbs, Link, Rating } from '@mui/material';
+import { Grid, Tab, Tabs, Chip, Breadcrumbs, Link, Rating, Box, Button, CardMedia, Card, CardContent, Container } from '@mui/material';
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import useAddReview from '../../hooks/useAddReview';
 import Modal from '../../components/modal/Modal';
+import WriteReviewModal from '../../components/writePreviewModal/WritePreviewModal';
 
 export default function ProductDetails() {
   const { t } = useTranslation();
   const { id } = useParams();
+  const [open, setOpen] = useState(false);
 
   const { mutate: addToCart, isPending: AddToCartPending } = useAddToCart();
   const { mutate: addReview, isPending: AddReviewPending } = useAddReview();
@@ -24,6 +25,9 @@ export default function ProductDetails() {
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
   };
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   if (isLoading) return <Loader />
   if (isError) return <Typography color='error'>{error}</Typography>
@@ -203,42 +207,48 @@ export default function ProductDetails() {
           <Box sx={{ py: 2 }}>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 2 }}>
-              <Typography variant="h6" sx={{ color: '#9fb0ff', mb: 2, fontWeight: 700, fontSize: '1.4rem' }}>
+              <Typography variant="h6" sx={{ color: '#9fb0ff', mb: 3, fontWeight: 700, fontSize: '1.4rem' }}>
                 Customer Reviews
               </Typography>
-              <Button onClick={() => { addReview({ productId: data.response.id, userName, Rating, Comment }) }} disabled={AddReviewPending} variant="contained" size="large" >Write a Reviwe</Button>
+              <Button onClick={handleOpen} disabled={() => AddReviewPending({ id, userName, rating, comment })} variant="contained" size="large" >Write a Reviwe</Button>
             </Box>
 
-
             {data.response.reviews.map((review, index) =>
-              <Card key={index} sx={{ mb: 4, py: 2 }}>
-                <CardContent sx={{ p: 2 }}>
+              <Container maxWidth='md'>
+                <Card key={index} sx={{ mb: 4, py: 2 }}>
+                  <CardContent sx={{ p: 3 }}>
 
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Typography variant="h5" gutterBottom sx={{ color: "primary.main" }}>{review.userName}</Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <Typography variant="h5" gutterBottom sx={{ color: "primary.main" }}>{review.userName}</Typography>
 
-                    <Rating
-                      value={review.rating}
-                      precision={0.5}
-                      readOnly
-                      sx={{ color: "primary.main" }}
-                    />
-                  </Box>
+                      <Rating
+                        value={review.rating}
+                        precision={0.5}
+                        readOnly
+                        sx={{ color: "primary.main" }}
+                      />
+                    </Box>
 
-                  <Typography gutterBottom variant="h6">{review.comment}</Typography>
-                  <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '14px', mt: 2 }}>
-                    Pasted on {review.createdAt}
-
-                  </Typography>
-                </CardContent>
-              </Card>
+                    <Typography gutterBottom variant="h6">{review.comment}</Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '14px', mt: 2 }}>
+                      Pasted on {review.createdAt}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Container>
             )}
-
-
           </Box>
         )}
-
       </Box>
+
+
+      <WriteReviewModal open={open}
+        onClose={handleClose}
+        productId={id}
+        onSubmitReview={addReview}
+        isSubmitting={AddReviewPending} />
+
+
     </>
   )
 }

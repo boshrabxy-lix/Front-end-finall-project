@@ -5,10 +5,13 @@ import useProfil from '../../hooks/useProfil';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/useAuthStore';
 import { Link as RouterLink } from "react-router-dom";
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
+import Loader from '../loader/Loader';
 
 export default function ProfileSlider() {
     const { data: user, isError, isLoading, error } = useProfil();
@@ -29,7 +32,7 @@ export default function ProfileSlider() {
     return (
         <>
             <Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', border: "1px solid secondary", borderRadius: 3, p: 2, alignItems: "center", textAlign: "center", border: "1px solid #22314f" }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', border: "1px solid secondary", borderRadius: 3, p: 2, alignItems: "center", textAlign: "center", border: "1px solid #22314f",mb:3 }}>
                     <Box>
                         <Badge
                             overlap="circular"
@@ -88,7 +91,7 @@ export default function ProfileSlider() {
                                 }}
                             >
                                 <ListItemIcon sx={{ minWidth: 38, color: "inherit" }}>
-                                    <LocalShippingIcon />
+                                    <InfoOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Info"
@@ -118,7 +121,7 @@ export default function ProfileSlider() {
                                 }}
                             >
                                 <ListItemIcon sx={{ minWidth: 38, color: "inherit" }}>
-                                    <LocalShippingIcon />
+                                    <ShoppingBagOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="My Orders"
@@ -148,7 +151,7 @@ export default function ProfileSlider() {
                                 }}
                             >
                                 <ListItemIcon sx={{ minWidth: 38, color: "inherit" }}>
-                                    <LocalShippingIcon />
+                                    <LocalShippingOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Address Book"
@@ -178,7 +181,7 @@ export default function ProfileSlider() {
                                 }}
                             >
                                 <ListItemIcon sx={{ minWidth: 38, color: "inherit" }}>
-                                    <LocalShippingIcon />
+                                    <CreditCardOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Payment Methods"

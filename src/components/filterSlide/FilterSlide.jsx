@@ -163,7 +163,7 @@ export default function FilterSlide() {
 
 
             <List sx={{ mt: 2, }}>
-              {data.response.data.map((category => {
+              {category.response.data.map((category => {
                 const isActive = category === currentCategory;
                 return (
                   <ListItemButton
