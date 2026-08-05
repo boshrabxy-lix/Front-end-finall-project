@@ -8,12 +8,10 @@ import ProfileInfo from "./ProfileDetails";
 
 export default function ProfileOrders() {
   const { data, isError, isLoading, error } = useProfil();
-  console.log(data);
 
   const STATUS_STYLES = {
     3: { bg: "#3b82f62e", color: "#7dd3fc" },
     Active: { bg: "#22c55e29", color: "#4ade80" },
-
   };
 
   if (isLoading) return <Loader />
@@ -114,4 +112,3 @@ export default function ProfileOrders() {
     </Grid>
   );
 }
-

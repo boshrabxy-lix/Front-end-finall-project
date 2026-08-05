@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState } from 'react';
+import { React, useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -13,18 +12,21 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import useAddReview from '../../hooks/useAddReview';
 import Loader from '../loader/Loader';
 
-export default function WriteReviewModal({ productId }) {
+export default function WriteReviewModal({ open, onClose, productId, onSubmitReview, isSubmitting }) {
     const { mutate: addReview, isPending: AddReviewPending } = useAddReview();
-    const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState('');
 
-    const handleOpen = () => setOpen(true);
+    const ReviewForm = () => {
+        setName('');
+        setRating(0);
+        setReview('');
+    };
 
     const handleClose = () => {
         if (isSubmitting) return;
-        resetForm();
+        ReviewForm();
         onClose();
     };
 
@@ -32,14 +34,10 @@ export default function WriteReviewModal({ productId }) {
 
     const handleSubmit = () => {
         if (!isValid || isSubmitting) return;
-        addReview({
-            productId: id,
-            userName: name,
-            rating,
-            comment: review, 
-        });
-        console.log({ name, rating, review });
-        handleClose();
+        onSubmitReview(
+            { productId, userName: name, rating, comment: review },
+            { onSuccess: () => { ReviewForm(); onClose(); } }
+        );
     };
     return (
         <Box>
@@ -56,6 +54,7 @@ export default function WriteReviewModal({ productId }) {
                 }}>
                     <IconButton
                         onClick={handleClose}
+                        disabled={isSubmitting}
                         size="small"
                         sx={{ position: 'absolute', top: 12, right: 12, color: 'grey.500' }}
                     >
@@ -96,14 +95,15 @@ export default function WriteReviewModal({ productId }) {
                         sx={{ mb: 3 }}
                     />
 
+
                     <Button
                         fullWidth
                         variant="contained"
-                        disabled={!isValid}
+                        disabled={!isValid || isSubmitting}
                         onClick={handleSubmit}
                         sx={{ borderRadius: 5, py: 1.2, fontWeight: 700, letterSpacing: 1 }}
                     >
-                        SUBMIT REVIEW
+                        {isSubmitting ? 'SUBMITTING...' : 'SUBMIT REVIEW'}
                     </Button>
                 </Box>
             </Modal>
