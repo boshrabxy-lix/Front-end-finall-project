@@ -7,44 +7,31 @@ import { useParams } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
 import useProducts from '../../hooks/useProducts';
 
-export default function FilterSlide() {
+export default function FilterSlide({currentCategory, onCategoryChange, onApply }) {
   const { data: category, isError, isLoading, error } = useCategories(100);
   const { data: Products } = useProducts();
+ const categories = [category.response.data];
 
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [sortBy, setSortBy] = useState("Price");
   const [order, setOrder] = useState("Ascending");
-  const [currentCategory, setCurrentCategory] = useState("All Categories");
-  const [applied, setApplied] = useState({ min: '', max: '', sortBy: 'price', order: 'asc' });
-
   const isActive = currentCategory;
 
-  const products = useMemo(() => {
-    const min = applied.min !== '' ? parseFloat(applied.min) : -Infinity;
-    const max = applied.max !== '' ? parseFloat(applied.max) : Infinity;
-    {
-      Products
-        .filter((p) => (category === 'all' || p.category === category) && p.price >= min && p.price <= max)
-        .sort((a, b) => {
-          const result = applied.sortBy === 'price' ? a.price - b.price : a.name.localeCompare(b.name);
-          return applied.order === 'asc' ? result : -result;
-        })
-    };[category, applied];
-  });
-
-  function handleApplyFilter() {
-    setApplied({ min: minPrice, max: maxPrice, sortBy, order });
-  }
-
-
+  const handleApply = () => {
+    setApplied({
+      min: minInput !== "" ? parseFloat(minInput) : -Infinity,
+      max: maxInput !== "" ? parseFloat(maxInput) : Infinity,
+      sortBy,
+      order,
+    });
+  };
 
   const selectSx = {
-    "& .MuiOutlinedInput-notchedOutline": { borderColor: 'primary'},
+    "& .MuiOutlinedInput-notchedOutline": { borderColor: 'primary' },
     "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: 'primary' },
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: 'primary' },
   };
-
 
   if (isLoading) return <Loader />
   if (isError) return <Box color={'red'}>{error.message}</Box>
@@ -63,10 +50,10 @@ export default function FilterSlide() {
               <Divider sx={{ borderStyle: 'solid', borderWidth: 1.5, borderColor: 'secendory' }} />
             </Box>
 
-
             <Stack spacing={2} sx={{ mt: 3 }}>
               <Stack direction="row" spacing={1.2}>
                 <TextField
+                 type="number"
                   placeholder="Min Price"
                   size="small"
                   fullWidth
@@ -78,6 +65,7 @@ export default function FilterSlide() {
                   placeholder="Max Price"
                   size="small"
                   fullWidth
+                   type="number"
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(e.target.value)}
                   sx={{ "& .MuiOutlinedInput-root": { borderRadius: "6px" } }}
@@ -133,6 +121,7 @@ export default function FilterSlide() {
 
               <Button
                 fullWidth
+                onClick={handleApply}
                 variant="contained"
                 disableElevation
                 sx={{
@@ -149,10 +138,7 @@ export default function FilterSlide() {
             </Stack>
           </Paper>
 
-
-
           <Paper variant="outlined" sx={{ borderColor: 'secondary', borderRadius: "10px", p: 2 }}>
-
             <Box>
               <Divider textAlign="left" borderWidth='1.75' borderColor='secendory'><Typography gutterBottom sx={{
                 fontWeight: 600,
@@ -161,30 +147,27 @@ export default function FilterSlide() {
               <Divider sx={{ borderStyle: 'solid', borderWidth: 1.5, borderColor: 'secendory' }} />
             </Box>
 
-
             <List sx={{ mt: 2, }}>
               {category.response.data.map((category => {
-                const isActive = category === currentCategory;
+                const isActive = category === currentCategory.id;
                 return (
                   <ListItemButton
                     key={category.id}
                     selected={isActive}
-                    onClick={() => setCurrentCategory(category)}
-
+                    onClick={() => onCategoryChange(category)}
                     sx={{
                       borderRadius: "6px",
                       mb: 0.5,
                       py: 1.1,
                       px: 1.75,
                       "&.Mui-selected": {
-                        bgcolor: "primary.dark"
+                        bgcolor: "primary.main"
                         , fontWeight: 900, fontSize: 20,
                         "&:hover": { bgcolor: "primary.dark" },
                       },
                     }}
                   >
                     <ListItemText
-
                       primaryTypographyProps={{
                         fontSize: 15,
                         color: isActive ? 'primary' : "#1A1A1A",
@@ -194,10 +177,7 @@ export default function FilterSlide() {
                     </ListItemText>
                   </ListItemButton>
                 )
-              }
-              ))
-              }
-
+              } ))}
             </List>
           </Paper>
         </Stack>

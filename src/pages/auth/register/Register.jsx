@@ -29,7 +29,7 @@ export default function Register() {
       console.log("response", response);
     } catch (err) {
       console.log(err.response.data.errors);
-      setServerErrors(err.response.data.errors);
+      setServerErrors(err.response?.data?.errors);
     }
   };
 

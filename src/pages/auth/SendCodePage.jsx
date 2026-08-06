@@ -42,7 +42,7 @@ export default function SendCodePage() {
             queryClient.invalidateQueries(
                 console.log("response", response),
                 { queryKey: ['sendCode', email] }),
-                navigate('/auth/Account/verifycode')
+                navigate('/auth/Account/resetpassword')
         } catch (err) {
             console.log(err.response.data.errors);
             setServerErrors(err.response.data.errors);
@@ -83,7 +83,7 @@ export default function SendCodePage() {
                             sx={{ mb: 4 }}
                         />
 
-                        <Button to={'/auth/resetpassword'} fullWidth variant="contained" type="submit" disabled={isSubmitting} onClick={() => sendcodeForm({ email })}>
+                        <Button to={'/auth/Account/resetpassword'} fullWidth variant="contained" type="submit" disabled={isSubmitting} onClick={() => sendcodeForm({ email })}>
                             {isSubmitting ? <Loader /> : 'Send Code'}
                         </Button>
                     </Box>
