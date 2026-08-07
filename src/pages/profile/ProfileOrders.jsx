@@ -55,14 +55,7 @@ export default function ProfileOrders() {
 
             <TableBody>
               {data.orders.map((order) => (
-                <TableRow
-                  key={order.id}
-                  hover
-                  sx={{
-                    cursor: "pointer",
-
-                  }}
-                >
+               <TableRow key={order.id} hover sx={{ cursor: "pointer", }} >
                   <TableCell sx={{ fontWeight: 600 }}>
                     <Typography color="primary" >
                       #ORD-{order.id}
@@ -95,7 +88,6 @@ export default function ProfileOrders() {
                       }}
                     />
                   </TableCell>
-
 
                   <TableCell align="right">
                     <IconButton size="small" sx={{ color: "#626e80" }}>

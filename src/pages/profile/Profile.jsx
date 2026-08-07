@@ -8,6 +8,8 @@ import ProfileSlider from "../../components/profileSlider/ProfileSlider";
 import ProfileProdviewer from "./profileProdviewer";
 
 export default function Profile() {
+     const { data:user , isError, isLoading, error } = useProfil();
+    console.log(user);
     return (
         <>
             <Box className="profilePage" sx={{ my: 3 }}>

@@ -8,30 +8,31 @@ import { Link } from "react-router-dom"
 import Product from '../../ui/product/ProductUi';
 import FilterSlide from '../../components/filterSlide/FilterSlide';
 
-
-function sortProducts(products, sortBy, order) {
-  return [...products].sort((a, b) => {
-    const result =
-      sortBy === "price" ? a.price - b.price : a.name.localeCompare(b.name);
-    return order === "asc" ? result : -result;
-  });
+function sortProduct(products, sortBy, order) {
+    return [...products].sort((a, b) => {
+        let result;
+        if (sortBy === "price") result = a.price - b.price;
+        else if (sortBy === "rating") result = a.rating - b.rating; // تأكد إنه اسم الحقل صحيح بالمنتج عندك
+        else result = a.name.localeCompare(b.name);
+        return order === "asc" ? result : -result;
+    });
 }
-
 
 export default function ProductsPage() {
     const { t } = useTranslation();
     const { data, isLoading, error, isError } = useProducts(100);
-    const [currentCategory, setCurrentCategory] = useState('');
-    const [ applied, setApplied] = useState({
+    const [currentCategory, setCurrentCategory] = useState({ id: 'all' });
+
+    const [applied, setApplied] = useState({
         min: -Infinity,
         max: Infinity,
         sortBy: "price",
         order: "asc",
     });
 
+
     const visibleProducts = useMemo(() => {
         if (!data) return [];
-
         const inRange = data.response.data.filter((product) => {
             const matchesCategory =
                 currentCategory.id === 'all' || product.categoryId === currentCategory.id;
@@ -40,7 +41,7 @@ export default function ProductsPage() {
             return matchesCategory && matchesPrice;
         });
 
-        return sortProducts(inRange, applied.sortBy, applied.order);
+        return sortProduct(inRange, applied.sortBy, applied.order);
     }, [data, currentCategory, applied]);
 
 
@@ -62,16 +63,14 @@ export default function ProductsPage() {
 
                     <Grid item size={{ sm: 9 }}>
                         <Grid container spacing={2}>
-                            {data.response.data.map(product => 
                             {visibleProducts.length === 0 ? (
-                                    <Typography variant='h5' className="no-results">No products match these filters.</Typography>
-                                ) : (
-                                    visibleProducts.map((product) =>
-                                        <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={product.id} >
-                                            <Product product={product} />
-                                        </Grid>
-                                    ))
-                            }
+                                <Typography variant='h6' className="no-results" color="error">No products match these filters.</Typography>
+                            ) : (
+                                visibleProducts.map((product) => (
+                                    <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
+                                        <Product product={product} />
+                                    </Grid>
+                                ))
                             )}
                         </Grid>
                     </Grid>

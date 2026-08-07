@@ -10,22 +10,21 @@ import useProducts from '../../hooks/useProducts';
 export default function FilterSlide({currentCategory, onCategoryChange, onApply }) {
   const { data: category, isError, isLoading, error } = useCategories(100);
   const { data: Products } = useProducts();
- const categories = [category.response.data];
 
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [sortBy, setSortBy] = useState("Price");
-  const [order, setOrder] = useState("Ascending");
-  const isActive = currentCategory;
+  const [sortBy, setSortBy] = useState("price"); 
+  const [order, setOrder] = useState("asc"); 
 
-  const handleApply = () => {
-    setApplied({
-      min: minInput !== "" ? parseFloat(minInput) : -Infinity,
-      max: maxInput !== "" ? parseFloat(maxInput) : Infinity,
-      sortBy,
-      order,
-    });
+const handleApply = () => {
+  const newFilter = {
+    min: minPrice !== "" ? parseFloat(minPrice) : -Infinity,
+    max: maxPrice !== "" ? parseFloat(maxPrice) : Infinity,
+    sortBy,
+    order,
   };
+  onApply(newFilter);
+};
 
   const selectSx = {
     "& .MuiOutlinedInput-notchedOutline": { borderColor: 'primary' },
@@ -108,14 +107,15 @@ export default function FilterSlide({currentCategory, onCategoryChange, onApply 
                 >
                   Order
                 </Typography>
+                
                 <Select
                   value={order}
                   onChange={(e) => setOrder(e.target.value)}
                   IconComponent={KeyboardArrowDownIcon}
                   sx={{ selectSx, "& .MuiOutlinedInput-notchedOutline": { borderColor: 'primary' } }}
                 >
-                  <MenuItem value="Ascending">Ascending</MenuItem>
-                  <MenuItem value="Descending">Descending</MenuItem>
+                  <MenuItem value="asc">Ascending</MenuItem>
+                  <MenuItem value="desc">Descending</MenuItem>
                 </Select>
               </FormControl>
 
@@ -149,11 +149,11 @@ export default function FilterSlide({currentCategory, onCategoryChange, onApply 
 
             <List sx={{ mt: 2, }}>
               {category.response.data.map((category => {
-                const isActive = category === currentCategory.id;
+                const isItemActive = category.id === currentCategory.id;
                 return (
                   <ListItemButton
                     key={category.id}
-                    selected={isActive}
+                    selected={isItemActive}
                     onClick={() => onCategoryChange(category)}
                     sx={{
                       borderRadius: "6px",
@@ -170,7 +170,7 @@ export default function FilterSlide({currentCategory, onCategoryChange, onApply 
                     <ListItemText
                       primaryTypographyProps={{
                         fontSize: 15,
-                        color: isActive ? 'primary' : "#1A1A1A",
+                        color: isItemActive ? 'primary' : "#1A1A1A",
                       }}
                     >
                       {category.name}

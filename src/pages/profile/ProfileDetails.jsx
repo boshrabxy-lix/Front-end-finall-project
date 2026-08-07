@@ -9,11 +9,14 @@ import Loader from '../../components/loader/Loader';
 
 export default function ProfileDetails() {
   const { data, isError, isLoading, error } = useProfil();
+  console.log(data);
 
-  let total = 0;
+ let total = 0;
+if (data?.orders) {
   for (let i = 0; i < data.orders.length; i++) {
     total += data.orders[i].amountPaid;
   }
+}
   if (isLoading) return <Loader />
   if (isError) return <Box color={'red'}>{error.message}</Box>
   return (
