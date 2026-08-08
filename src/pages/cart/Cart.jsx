@@ -9,8 +9,10 @@ import { useNavigate } from 'react-router-dom';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import useClearCart from '../../hooks/useClearCart';
+import { useTranslation } from 'react-i18next';
 
 export default function Cart() {
+  const { t } = useTranslation();
   const { data, isError, error, isLoading } = useCart();
   console.log(data);
   const { mutate: removeItem, isPending: removeItemPending } = useRemoveFromCart();
@@ -41,13 +43,13 @@ export default function Cart() {
     }
   };
 
-const handleCheckout = () => {
-  if (data.items.length === 0) {
-    alert("Your cart is empty!");
-    return;
-  }
-  navigate('/checkout');
-};
+  const handleCheckout = () => {
+    if (data.items.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+    navigate('/checkout');
+  };
 
   if (isLoading) return <Loader />
   if (isError) return <Typography color='error'>{error}</Typography>
@@ -55,7 +57,7 @@ const handleCheckout = () => {
   return (
     <Box className="cart" component={'section'} sx={{ py: 5 }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography component={'h1'} variant='h2'>My Cart</Typography>
+        <Typography component={'h1'} variant='h2'>{t('My Cart')}</Typography>
         <Button color='error' disabled={ClearPending} onClick={() => handelclearCart(clearCart)}>Clear</Button>
       </Box>
 
@@ -63,11 +65,11 @@ const handleCheckout = () => {
       <TableContainer>
         <Table>
           <TableHead>
-            <TableCell>Product Name</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>Quantity</TableCell>
-            <TableCell>Total</TableCell>
-            <TableCell>Actions</TableCell>
+            <TableCell>{t('Product Name')}</TableCell>
+            <TableCell>{t('Price')}</TableCell>
+            <TableCell>{t('Quantity')}</TableCell>
+            <TableCell>{t('Total')}</TableCell>
+            <TableCell>{t('Actions')}</TableCell>
           </TableHead>
 
           <TableBody>
@@ -100,7 +102,7 @@ const handleCheckout = () => {
                   {item.count * item.price}$
                 </TableCell>
                 <TableCell>
-                  <Button color='error' variant='contained' disabled={removeItemPending} onClick={() => removeItem(item.productId)}>Remove</Button>
+                  <Button color='error' variant='contained' disabled={removeItemPending} onClick={() => removeItem(item.productId)}>{t('Remove')}</Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -123,7 +125,7 @@ const handleCheckout = () => {
           disabled={updateItemPending || data.items.count === 0}
           onClick={handleCheckout}
         >
-          Procces To Checkout
+          {t('Procces To Checkout')}
         </Button>
 
 
@@ -134,7 +136,7 @@ const handleCheckout = () => {
           disabled={updateItemPending}
           onClick={() => navigate('/')}
         >
-          Countinue Shopping
+          {t('Countinue Shopping')}
         </Button>
       </Box>
     </Box >

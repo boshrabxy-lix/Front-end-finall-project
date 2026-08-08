@@ -1,9 +1,15 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
+import { Box, Typography} from "@mui/material";
 
 export default function SettingPage() {
+  const { t } = useTranslation();
   return (
-    <div>
-      SettingPage
-    </div>
+    <>
+      <Box>
+        <Typography variant='h6'> {t('SettingPage')} </Typography>
+      </Box>
+    </>
+
   )
 }

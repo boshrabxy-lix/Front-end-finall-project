@@ -6,10 +6,12 @@ import Loader from '../loader/Loader';
 import { useParams } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
 import useProducts from '../../hooks/useProducts';
+import { useTranslation } from 'react-i18next';
 
 export default function FilterSlide({currentCategory, onCategoryChange, onApply }) {
   const { data: category, isError, isLoading, error } = useCategories(100);
   const { data: Products } = useProducts();
+  const { t } = useTranslation();
 
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -44,7 +46,7 @@ const handleApply = () => {
                 <Typography sx={{
                   fontWeight: 600, fontSize: '20px',
                   color: '#3b82f6',
-                }}>Filters</Typography>
+                }}>{t('Filters')}</Typography>
               </Divider>
               <Divider sx={{ borderStyle: 'solid', borderWidth: 1.5, borderColor: 'secendory' }} />
             </Box>
@@ -53,7 +55,7 @@ const handleApply = () => {
               <Stack direction="row" spacing={1.2}>
                 <TextField
                  type="number"
-                  placeholder="Min Price"
+                  placeholder={t('Min Price')}
                   size="small"
                   fullWidth
                   value={minPrice}
@@ -61,7 +63,7 @@ const handleApply = () => {
                   sx={{ "& .MuiOutlinedInput-root": { borderRadius: "6px" } }}
                 />
                 <TextField
-                  placeholder="Max Price"
+                  placeholder={t('"Max Price"')}
                   size="small"
                   fullWidth
                    type="number"
@@ -82,7 +84,7 @@ const handleApply = () => {
                     mb: 0.75,
                   }}
                 >
-                  Sort By
+                 {t('Sort By')}
                 </Typography>
                 <Select
                   value={sortBy}
@@ -105,7 +107,7 @@ const handleApply = () => {
                     fontSize: 12, fontWeight: 600, color: '#3b82f6', textTransform: "uppercase", letterSpacing: "0.04em", mb: 0.75,
                   }}
                 >
-                  Order
+                 {t('Order')}
                 </Typography>
                 
                 <Select
@@ -114,8 +116,8 @@ const handleApply = () => {
                   IconComponent={KeyboardArrowDownIcon}
                   sx={{ selectSx, "& .MuiOutlinedInput-notchedOutline": { borderColor: 'primary' } }}
                 >
-                  <MenuItem value="asc">Ascending</MenuItem>
-                  <MenuItem value="desc">Descending</MenuItem>
+                  <MenuItem value="asc">{t('Ascending')}</MenuItem>
+                  <MenuItem value="desc">{t('Descending')}</MenuItem>
                 </Select>
               </FormControl>
 
@@ -133,7 +135,7 @@ const handleApply = () => {
                   "&:hover": { bgcolor: "primary.dark" },
                 }}
               >
-                APPLY FILTER
+                {t('APPLY FILTER')}
               </Button>
             </Stack>
           </Paper>
@@ -181,7 +183,6 @@ const handleApply = () => {
             </List>
           </Paper>
         </Stack>
-
       </Box>
     </>
   )

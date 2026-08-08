@@ -54,22 +54,15 @@ export default function SendCodePage() {
             <Container maxWidth="sm">
                 <Box className="forgetPass" sx={{ p: 6, my: 3 }}>
                     <Box>
-                        <Typography variant='h3' >Forget Password</Typography>
-                        <Typography variant='body1' gutterBottom sx={{ color: '#3b82f6' }}>*Please enter your email to send reset code </Typography>
+                        <Typography variant='h3' >{t('Forget Password')}</Typography>
+                        <Typography variant='body1' gutterBottom sx={{ color: '#3b82f6' }} required>{t('*Please enter your email to send reset code')}</Typography>
                         <Divider sx={{ mt: 1, borderStyle: 'solid', borderWidth: 1.6, borderColor: 'secendory' }} />
                     </Box>
 
                     <Box
                         component={"form"}
                         onSubmit={handleSubmit(sendcodeForm)}
-                        sx={{
-                            flexDirection: "column",
-                            alignItems: "center",
-                            my: 4,
-
-                            display: 'flex'
-                        }}
-                    >
+                        sx={{ flexDirection: "column", alignItems: "center", my: 4, display: 'flex' }} >
                         <TextField
                             {...register("email")}
                             value={email}

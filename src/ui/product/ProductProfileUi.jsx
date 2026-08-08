@@ -6,9 +6,11 @@ import Loader from '../../components/loader/Loader';
 import { Link as RouterLink } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import useAddToCart from '../../hooks/useAddToCart';
+import { useTranslation } from 'react-i18next';
 
 
 export default function ProductProfileUi({ product }) {
+    const { t } = useTranslation();
   const { mutate: addToCart, isPending: AddToCartPending } = useAddToCart();
   return (
     <>
@@ -30,7 +32,7 @@ export default function ProductProfileUi({ product }) {
             startIcon={<ShoppingCartOutlinedIcon />}
             sx={{ borderColor: "#94a3b84d", display: 'flex', flexGrow: 1 }}
           >
-            Add to Cart
+            {t('Add to Cart')}
           </Button>
         </Card>
       </Link>

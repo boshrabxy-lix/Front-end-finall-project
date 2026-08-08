@@ -4,14 +4,21 @@ import useProfil from "../../hooks/useProfil";
 import Loader from '../../components/loader/Loader';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ProfileInfo from "./ProfileDetails";
+import { useTranslation } from "react-i18next";
 
 
 export default function ProfileOrders() {
+  const { t } = useTranslation();
+
   const { data, isError, isLoading, error } = useProfil();
 
   const STATUS_STYLES = {
-    3: { bg: "#3b82f62e", color: "#7dd3fc" },
-    Active: { bg: "#22c55e29", color: "#4ade80" },
+    1: { bg: "#c360c56e", color: "#c360c5", labless: 'Pending' },
+    2: { bg: "#962d3996", color: "#c81a3a", labless: 'Canceled' },
+    3: { bg: "#3b82f62e", color: "#7dd3fc", labless: 'Approved' },
+    4: { bg: "#ace45129", color: "#bdac14", labless: 'Shipped' },
+    5: { bg: "#226bc529", color: "#4ade80", labless: 'Delivered' },
+
   };
 
   if (isLoading) return <Loader />
@@ -21,10 +28,10 @@ export default function ProfileOrders() {
     <Grid size={{ sm: 12 }}>
       <ProfileInfo />
 
-      <Box sx={{ borderRadius: "16px", py: 1, px: 1, border: "1.5px solid ", borderColor: "secondary.main",mb: 3 }} >
+      <Box sx={{ borderRadius: "16px", py: 1, px: 1, border: "1.5px solid ", borderColor: "secondary.main", mb: 3 }} >
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", pb: 2, mb: 1, borderBottom: "1.5px solid ", borderColor: "secondary.main", }}>
           <Typography component={'h2'} variant='h4' color="primary" sx={{ fontWeight: 700, pl: 2, py: 1 }}>
-            Recent Orders
+            {t('Recent Orders')}
           </Typography>
         </Box>
 
@@ -44,10 +51,10 @@ export default function ProfileOrders() {
                 }}
               >
                 <TableCell sx={{ borderRadius: "8px 0 0 8px" }}>Order ID</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>paymentStatus</TableCell>
-                <TableCell align="right">Amount</TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell>{t('Date')}</TableCell>
+                <TableCell>{t('paymentStatus')}</TableCell>
+                <TableCell align="right">{t('Amount')}</TableCell>
+                <TableCell>{t('Status')}</TableCell>
                 <TableCell sx={{ borderRadius: "0 8px 8px 0" }} />
               </TableRow>
             </TableHead>
@@ -55,7 +62,7 @@ export default function ProfileOrders() {
 
             <TableBody>
               {data.orders.map((order) => (
-               <TableRow key={order.id} hover sx={{ cursor: "pointer", }} >
+                <TableRow key={order.id} hover sx={{ cursor: "pointer", }} >
                   <TableCell sx={{ fontWeight: 600 }}>
                     <Typography color="primary" >
                       #ORD-{order.id}
@@ -77,12 +84,13 @@ export default function ProfileOrders() {
                   </TableCell>
 
                   <TableCell>
-                    <Chip
-                      label={order.status}
+                    <Chip  
+                   
                       size="small"
                       sx={{
                         bgcolor: STATUS_STYLES[order.status]?.bg,
                         color: STATUS_STYLES[order.status]?.color,
+                      
                         fontWeight: 600,
                         fontSize: 12,
                       }}
@@ -94,7 +102,6 @@ export default function ProfileOrders() {
                       <ChevronRightIcon fontSize="small" />
                     </IconButton>
                   </TableCell>
-
                 </TableRow>
               ))}
             </TableBody>

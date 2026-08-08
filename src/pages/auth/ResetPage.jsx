@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { Box, Typography, TextField, Button ,Alert} from "@mui/material";
+import { Box, Typography, TextField, Button, Alert } from "@mui/material";
 import useResetPass from '../../hooks/useResetPass'
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { resetSchema } from "../../validation/ResetSchema";
 import Loader from "../../components/loader/Loader";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 export default function ResetPage() {
+  const { t } = useTranslation();
+
   const { mutate, isPending, isError, error } = useResetPass();
   const [serverErrors, setServerErrors] = useState([]);
   const [digits, setDigits] = useState(["", "", "", ""]);
@@ -33,10 +36,10 @@ export default function ResetPage() {
       }
     );
   };
-  
-      if (isPending) return <Loader />
-      if (isError) return <Box color={'red'}>{error.message}</Box>
-  
+
+  if (isPending) return <Loader />
+  if (isError) return <Box color={'red'}>{error.message}</Box>
+
   return (
     <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", p: 7, mt: 5, mb: 5 }}>
       <Box
@@ -45,11 +48,11 @@ export default function ResetPage() {
         sx={{ width: "100%", maxWidth: 400, textAlign: "center", px: 3 }}
       >
         <Typography component="h2" variant="h3" color="info" sx={{ fontWeight: 800, mb: 2 }}>
-          Verify Code
+          {t('Reset Page')}
         </Typography>
 
         <Typography sx={{ color: "text.secondary", mb: 4 }}>
-          Enter the 4-Digit sent to your Email
+          {t('Enter the Verify Code 4-Digit sent to your Email')}
         </Typography>
 
         <TextField
@@ -57,23 +60,19 @@ export default function ResetPage() {
           error={!!errors.code}
           helperText={errors.code?.message}
           autoComplete="one-time-code"
-  fullWidth
-     label=" Verify Code"
+          fullWidth
+          label={t('Verify Code')}
           inputProps={{
             maxLength: 4,
             inputMode: "numeric",
             style: { textAlign: "center", letterSpacing: "1.5rem", fontSize: 22, fontWeight: 600 },
           }}
-          sx={{
-            mb: 3,
-          
-            "& .MuiOutlinedInput-root": { borderRadius: "15px" },
-          }}
+          sx={{ mb: 3, "& .MuiOutlinedInput-root": { borderRadius: "15px" }, }}
         />
-        {serverErrors> 0 && (
+        {serverErrors > 0 && (
           <Alert severity="error" sx={{ mb: 2, textAlign: "left" }}>
-            {serverErrors.map((e, i) => (
-              <div key={i}>{e}</div>
+            {serverErrors.map((error, i) => (
+              <div key={i}>{error}</div>
             ))}
           </Alert>
         )}
@@ -81,7 +80,7 @@ export default function ResetPage() {
           {...register("email")}
           fullWidth
           type="email"
-          label="Email"
+          label={t('User Email')}
           autoComplete="email"
           error={!!errors.email}
           helperText={errors.email?.message}
@@ -92,7 +91,7 @@ export default function ResetPage() {
           {...register("newPassword")}
           fullWidth
           type="password"
-          label="New Password"
+          label={t('New Password')}
           error={!!errors.newPassword}
           autoComplete="new-password"
           helperText={errors.newPassword?.message}
@@ -107,7 +106,10 @@ export default function ResetPage() {
           disabled={isSubmitting || isPending}
           sx={{ py: 1.7, borderRadius: "10px", fontWeight: 700, color: "#fff" }}
         >
-          {isSubmitting || isPending ? (<Loader size={24} sx={{ color: "#fff" }} />) : ("Reset Password")}
+          {isSubmitting || isPending ? (
+            <Loader size={24} sx={{ color: "#fff" }} />
+          ) : (
+            'Reset Password')}
         </Button>
       </Box>
     </Box>

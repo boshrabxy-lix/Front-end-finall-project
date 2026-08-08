@@ -11,8 +11,10 @@ import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import useAddReview from '../../hooks/useAddReview';
 import Loader from '../loader/Loader';
+import { useTranslation } from 'react-i18next';
 
 export default function WriteReviewModal({ open, onClose, productId, onSubmitReview, isSubmitting }) {
+    const { t } = useTranslation();
     const { mutate: addReview, isPending: AddReviewPending } = useAddReview();
     const [name, setName] = useState('');
     const [rating, setRating] = useState(0);
@@ -40,7 +42,7 @@ export default function WriteReviewModal({ open, onClose, productId, onSubmitRev
         );
     };
     return (
-        <Box>
+        <Box className='ReviewModel'>
             <Modal open={open} onClose={handleClose} aria-labelledby="review-modal-title">
                 <Box sx={{
                     p: 4, width: 420, position: 'absolute',
@@ -62,20 +64,20 @@ export default function WriteReviewModal({ open, onClose, productId, onSubmitRev
                     </IconButton>
 
                     <Typography id="review-modal-title" variant="h5" sx={{ fontWeight: 700, mb: 3 }}>
-                        Write a Review
+                      {t('Write a Review')}
                     </Typography>
 
                     <TextField
                         fullWidth
                         autoFocus
-                        label="Your Name"
-                        variant="outlined"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        sx={{ mb: 3 }}
+                        label={t('User Name')}
+                    variant="outlined"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    sx={{ mb: 3 }}
                     />
 
-                    <Typography sx={{ fontWeight: 700, mb: 1 }}>Rating</Typography>
+                    <Typography sx={{ fontWeight: 700, mb: 1 }}>{t('Rating')}</Typography>
                     <Rating
                         value={rating}
                         onChange={(e, newValue) => setRating(newValue)}
@@ -86,7 +88,7 @@ export default function WriteReviewModal({ open, onClose, productId, onSubmitRev
 
                     <TextField
                         fullWidth
-                        placeholder="Your Review"
+                        placeholder={t("Your Review")}
                         variant="outlined"
                         multiline
                         minRows={4}

@@ -43,7 +43,7 @@ export default function ProductDetails() {
 
             <Grid item size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
               <Box >
-                <Chip label="LIMITED EDITION" size="larg" sx={{ bgcolor: "primary.main", color: "#1e3a8a", fontWeight: 700, letterSpacing: 0.5, mb: 2 }} />
+                <Chip label={t('LIMITED EDITION')} size="larg" sx={{ bgcolor: "primary.main", color: "#1e3a8a", fontWeight: 700, letterSpacing: 0.5, mb: 2 }} />
 
                 <Typography variant="h3" fontWeight={700} gutterBottom>
                   {data.response.name}
@@ -52,25 +52,25 @@ export default function ProductDetails() {
                 <Box sx={{ display: 'flex', mb: 3, gap: 1, alignItems: 'center' }}>
                   <Rating value={data.response.rate} precision={0.5} readOnly sx={{ color: "primary.main" }} />
                   <Typography variant="body2" color="text.secondary">
-                    ( {data.response.reviews.length} Reviews)
+                    ( {data.response.reviews.length} {t('Reviews')})
                   </Typography>
                 </Box>
 
                 <Box variant="outlined" sx={{ mb: 3, borderColor: "#94a3b82e", }} >
                   <Box sx={{ gap: 1.5, border: '1.2px solid  #94a3b82e', py: 2 }}>
                     <Typography variant="h4" fontWeight={800} color="primary">
-                      Price: {data.response.price}$
+                      {t('Price')}: {data.response.price}$
                     </Typography>
 
-                    <Typography variant="h5" color="text.secondary" > Quantity: {data.response.quantity} </Typography>
+                    <Typography variant="h5" color="text.secondary" > {t('Quantity')}: {data.response.quantity} </Typography>
                   </Box>
                 </Box>
 
                 <Box sx={{ display: 'flex', gap: 2 }}>
                   <Button disabled={AddToCartPending} onClick={() => { addToCart({ productId: data.response.id, count: 1 }) }} fullWidth
-                    variant="outlined" size="large" startIcon={<ShoppingCartOutlinedIcon />} sx={{ borderColor: "#94a3b84d", py: 2 }} > Add to Cart </Button>
+                    variant="outlined" size="large" startIcon={<ShoppingCartOutlinedIcon />} sx={{ borderColor: "#94a3b84d", py: 2 }} >{t('Add to Cart')} </Button>
 
-                  <Button fullWidth variant="contained" size="large" sx={{ py: 2, color: '#2563eb' }}> Buy Now </Button>
+                  <Button fullWidth variant="contained" size="large" sx={{ py: 2, color: '#2563eb' }}> {t('Buy Now')} </Button>
                 </Box>
               </Box>
             </Grid>
@@ -94,15 +94,15 @@ export default function ProductDetails() {
               },
             }}
           >
-            <Tab label="Product Description" />
-            <Tab label="Customer Reviews" />
+            <Tab label={t('Product Description')} />
+            <Tab label={t('Customer Reviews')} />
           </Tabs>
         </Box>
 
         {activeTab === 0 && (
           <Grid container spacing={6} alignItems="center">
             <Grid item size={{ xs: 12, md: 6 }}>
-              <Typography variant="h6" component="h2" sx={{ fontWeight: 700, fontSize: '1.4rem', color: '#9fb0ff', mb: 2, letterSpacing: '-0.01em', }} > Built for Endurance </Typography>
+              <Typography variant="h6" component="h2" sx={{ fontWeight: 700, fontSize: '1.4rem', color: '#9fb0ff', mb: 2, letterSpacing: '-0.01em', }} > {t('Built for Endurance')} </Typography>
               <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.75, mb: 2.5, fontSize: '14px', }} >
                 {data.response.description}
               </Typography>
@@ -119,9 +119,9 @@ export default function ProductDetails() {
           <Box sx={{ py: 2 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 2 }}>
               <Typography variant="h6" sx={{ color: '#9fb0ff', mb: 3, fontWeight: 700, fontSize: '1.4rem' }}>
-                Customer Reviews
+                {t('Customer Reviews')}
               </Typography>
-              <Button onClick={handleOpen} variant="contained" size="large" >Write a Reviwe</Button>
+              <Button onClick={handleOpen} variant="contained" size="large" >{t('Write a Reviwe')}</Button>
             </Box>
 
             {data.response.reviews.map((review, index) =>
@@ -131,7 +131,6 @@ export default function ProductDetails() {
 
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                       <Typography variant="h5" gutterBottom sx={{ color: "primary.main" }}>{review.userName}</Typography>
-
                       <Rating
                         value={review.rating}
                         precision={0.5}
@@ -142,7 +141,7 @@ export default function ProductDetails() {
 
                     <Typography gutterBottom variant="h6">{review.comment}</Typography>
                     <Typography variant="body2" sx={{ color: 'text.secondary', fontSize: '14px', mt: 2 }}>
-                      Pasted on {review.createdAt}
+                      {t('Pasted on')} {review.createdAt}
                     </Typography>
                   </CardContent>
                 </Card>

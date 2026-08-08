@@ -3,11 +3,13 @@ import useCart from '../../hooks/useCart'
 import { Box, TableHead, TableContainer, TableCell, Table, TableBody, TableRow, TableFooter } from '@mui/material';
 import Loader from '../../components/loader/Loader';
 import Typography from "@mui/material/Typography";
-import {FormControl,InputLabel,Select,MenuItem, Button} from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
 import useChckout from '../../hooks/useCheckOut';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Checkout() {
+    const { t } = useTranslation();
     const [paymentMethod, setPaymentMethod] = useState('Cash');
     const { mutate: checkout, isPending: checkoutPending } = useChckout();
     const { data, isError, error, isLoading } = useCart();
@@ -17,14 +19,14 @@ export default function Checkout() {
 
     return (
         <Box className="checkout" component={'section'} sx={{ py: 5 }}>
-            <Typography component={'h1'}>Checkout</Typography>
+            <Typography component={'h1'}>{t('Checkout')}</Typography>
             <TableContainer>
                 <Table>
                     <TableHead>
-                        <TableCell>Product Name</TableCell>
-                        <TableCell>Price</TableCell>
-                        <TableCell>Quantity</TableCell>
-                        <TableCell>Total</TableCell>
+                        <TableCell>{t('Product Name')}</TableCell>
+                        <TableCell>{t('Price')}</TableCell>
+                        <TableCell>{t('Quantity')}</TableCell>
+                        <TableCell>{t('Total')}</TableCell>
                     </TableHead>
 
                     <TableBody>
@@ -60,21 +62,20 @@ export default function Checkout() {
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center' }}>
                 <FormControl fullWidth>
-                    <InputLabel id="paymentMethod">Payment Method</InputLabel>
+                    <InputLabel id="paymentMethod">{t('Payment Method')}</InputLabel>
                     <Select
-                        labelId="paymentMethod"
                         id="paymentMethod"
                         value={paymentMethod}
-                        label="paymentMethod"
+                        label={t('paymentMethod')}
                         onChange={(e) => setPaymentMethod(e.target.value)}
                     >
-                        <MenuItem value={'Cash'}>Cash</MenuItem>
-                        <MenuItem value={'Visa'}>Visa</MenuItem>
+                        <MenuItem value={'Cash'}>{t('Cash')}</MenuItem>
+                        <MenuItem value={'Visa'}>{t('Visa')}</MenuItem>
                     </Select>
                 </FormControl>
 
-                <Button variant="contained" disabled={checkoutPending} onClick={()=>checkout({paymentMethod})}>
-                    Pay Now
+                <Button variant="contained" disabled={checkoutPending} onClick={() => checkout({ paymentMethod })}>
+                    {t('Pay Now')}
                 </Button>
             </Box>
         </Box >

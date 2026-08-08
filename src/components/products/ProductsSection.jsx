@@ -17,17 +17,12 @@ export default function ProductsSection() {
 
 
     return (
-        <Box className='products' component="section" sx={{
-            py: 5,
-            maxWidth: 1100,
-            mx: "auto",
-            my: 4,
-        }}>
+       <Box className='products' component="section" sx={{ py: 5, maxWidth: 1100, mx: "auto", my: 4, }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2, py: 3, }}>
                 <Box>
                     <Typography component={'h2'} variant='h4' sx={{ fontSize: 38, fontWeight: 700 }}>{t('Products')}</Typography>
                     <Typography variant="body2" sx={{ color: "#6B7280" }}>
-                        The most loved items this month.
+                        {t('The most loved items this month.')}
                     </Typography>
                 </Box>
                 <Box sx={{ cursor: "pointer", alignItems: "center" }}>

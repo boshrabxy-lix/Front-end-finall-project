@@ -12,11 +12,12 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import Loader from '../loader/Loader';
+import { useTranslation } from 'react-i18next';
 
 export default function ProfileSlider() {
     const { data: user, isError, isLoading, error } = useProfil();
     console.log(user);
-
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [activeIndex, setActiveIndex] = useState(0);
     const isActive = activeIndex;
@@ -31,8 +32,8 @@ export default function ProfileSlider() {
     if (isError) return <Box color={'red'}>{error.message}</Box>
     return (
         <>
-            <Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', border: "1px solid secondary", borderRadius: 3, p: 2, alignItems: "center", textAlign: "center", border: "1px solid #22314f",mb:3 }}>
+            <Box className='ProfileSlider'>
+                <Box sx={{ display: 'flex', flexDirection: 'column', border: "1px solid secondary", borderRadius: 3, p: 2, alignItems: "center", textAlign: "center", border: "1px solid #22314f", mb: 3 }}>
                     <Box>
                         <Badge
                             overlap="circular"
@@ -94,7 +95,7 @@ export default function ProfileSlider() {
                                     <InfoOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Info"
+                                    primary={t('Info')}
                                     primaryTypographyProps={{ fontWeight: 600, fontSize: 14.5 }}
                                 />
                             </ListItemButton>
@@ -124,7 +125,7 @@ export default function ProfileSlider() {
                                     <ShoppingBagOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="My Orders"
+                                    primary={t('My Orders')}
                                     primaryTypographyProps={{ fontWeight: 600, fontSize: 14.5 }}
                                 />
                             </ListItemButton>
@@ -154,7 +155,7 @@ export default function ProfileSlider() {
                                     <LocalShippingOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Address Book"
+                                    primary={t('Address Book')}
                                     primaryTypographyProps={{ fontWeight: 600, fontSize: 14.5 }}
                                 />
                             </ListItemButton>
@@ -184,7 +185,7 @@ export default function ProfileSlider() {
                                     <CreditCardOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Payment Methods"
+                                    primary={t('Payment Methods')}
                                     primaryTypographyProps={{ fontWeight: 600, fontSize: 14.5 }}
                                 />
                             </ListItemButton>
@@ -214,7 +215,7 @@ export default function ProfileSlider() {
                                     <SettingsOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Account Settings"
+                                    primary={t('Account Settings')}
                                     primaryTypographyProps={{ fontWeight: 600, fontSize: 14.5 }}
                                 />
                             </ListItemButton>
@@ -235,7 +236,7 @@ export default function ProfileSlider() {
                             <LogoutOutlinedIcon />
                         </ListItemIcon>
                         <ListItemText
-                            primary="Sign Out"
+                            primary={t('Logout')}
                             primaryTypographyProps={{ fontWeight: 600, fontSize: 14.5 }}
                         />
                     </ListItemButton>

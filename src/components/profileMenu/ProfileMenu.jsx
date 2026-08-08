@@ -95,7 +95,7 @@ export default function ProfileMenu() {
                 <MenuItem onClick={handleClose} sx={{ "&:hover": { color: "#2F53E0" } }} >
                     <Avatar sx={{ mx: 2, "&:hover": { backgroundColor: "#2F53E0" } }} />
                     <Link to={"/profile"} underline="none"
-                        component={RouterLink} sx={{ mx: 1 }}> {t('Profile')}</Link>
+                        component={RouterLink} sx={{ mx: 1 }}>{t('Profile')}</Link>
                 </MenuItem>
 
                 <Divider />
@@ -202,7 +202,6 @@ export default function ProfileMenu() {
                     >
                         {t('Settings')}
                     </Link>
-
                 </MenuItem>
             </Menu>
         </>

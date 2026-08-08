@@ -14,7 +14,7 @@ import axios from "axios";
 import { SendCodeSchema } from "../../../validation/SendCodeSchema";
 
 export default function Login() {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
   const [ServerErrors, setServerErrors] = useState([]);
   const navigate = useNavigate();
   const setToken = useAuthStore((state) => state.setToken);
@@ -22,23 +22,21 @@ export default function Login() {
     resolver: yupResolver(SendCodeSchema), mode: 'onBlur'
   });
 
- const loginForm = async (data) => {
+  const loginForm = async (data) => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BURL}/auth/Account/login`, data);
-     if (response.status ===200){
-       localStorage.setItem("accessToken", response.data.accessToken);
+      if (response.status === 200) {
+        localStorage.setItem("accessToken", response.data.accessToken);
         setToken(response.data.accessToken);
-        navigate('/'); 
-     }
+        navigate('/');
+      }
       console.log("responce", response);
-    }catch (err) {
+    } catch (err) {
       console.log(err.response.data.errors);
       setServerErrors(err.response.data.errors || []);
     }
   };
-
-
   return (
     <Container maxWidth="sm">
       <Box component={"section"} className="Login-form" sx={{ py: 5 }}>
@@ -79,7 +77,7 @@ export default function Login() {
 
           <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
             <Button variant="contained" type="submit" disabled={isSubmitting} >
-              {isSubmitting ? <Loader /> : 'Login' }
+              {isSubmitting ? <Loader /> : 'Login'}
             </Button>
             <Button variant="Link" href={'/auth/Account/SendCode'} sx={{ underline: 'none' }}>{t('Forgit password?')}</Button>
           </Box>

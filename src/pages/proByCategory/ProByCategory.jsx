@@ -18,13 +18,14 @@ export default function ProByCategory() {
     return (
         <>
             <Box className="productsSection" sx={{ py: 5 }}>
-                <Typography component={'h2'} variant='h2' sx={{ mb: 3 }}> {t('Products')}</Typography>
+                <Typography component={'h2'} variant='h2' sx={{ mb: 3 }}>{t('Products')}</Typography>
                 <Grid container spacing={3}>
                     {data.response.length === 0 ? (
                         <Box sx={{ height: 300, justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
                             <Typography color='error' variant='h4'>
                                 <DoNotDisturbAltIcon fontSize='medium' />
-                                Thier is no Product in this Category</Typography>
+                                {t('Thier is no Product in this Category')}
+                            </Typography>
 
                         </Box>
                     ) : (
