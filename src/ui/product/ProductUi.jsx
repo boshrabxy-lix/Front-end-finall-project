@@ -2,7 +2,6 @@ import React from 'react'
 import { Rating, Typography, Box ,Link} from '@mui/material';
 import { Card, CardMedia, CardContent } from '@mui/material';
 import useProdDetails from '../../hooks/useProdDetails';
-import { useParams } from 'react-router-dom';
 import Loader from '../../components/loader/Loader';
 import { Link as RouterLink } from "react-router-dom";
 

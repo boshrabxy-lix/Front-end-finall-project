@@ -15,6 +15,7 @@ import ProfileOrders from "./pages/profile/ProfileOrders";
 import SendCodePage from "./pages/auth/SendCodePage";
 import SettingPage from "./pages/settingPage/SettingPage";
 import ResetPage from "./pages/auth/ResetPage";
+import ProByCategory from "./pages/proByCategory/ProByCategory";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "categories",
         element: <CategoriesPage />
+      },
+      {
+        path: "Products/category/:id",
+        element: <ProByCategory />
       },
       {
         path: "Products/:id",
