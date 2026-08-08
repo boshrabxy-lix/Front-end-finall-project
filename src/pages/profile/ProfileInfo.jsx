@@ -1,6 +1,7 @@
 import React from 'react'
 import ProfileDetails from './ProfileDetails'
 import { Box } from '@mui/material';
+
 import ProfileProdviewer from './ProfileProdviewer';
 
 
