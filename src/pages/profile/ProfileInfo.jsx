@@ -1,5 +1,4 @@
 import ProfileDetails from './ProfileDetails'
-import ProfileProdviewer from './ProfileProdviewer';
 import React from 'react'
 import useProducts from '../../hooks/useProducts'
 import Loader from '../../components/loader/Loader';
@@ -17,7 +16,6 @@ export default function ProfileInfo() {
   return (
     <Box>
       <ProfileDetails />
-
 
       <Box sx={{py:3}}>
             <Typography component={'h2'} variant='h4' gutterBottom sx={{ color: "primary", fontSize: 38, fontWeight: 700, mt: 3 }}>{t('Picked For You')}</Typography>
