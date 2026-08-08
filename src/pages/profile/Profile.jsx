@@ -5,7 +5,6 @@ import Loader from '../../components/loader/Loader';
 import { Box, Link, Grid, Typography, Avatar, Badge, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Divider, } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ProfileSlider from "../../components/profileSlider/ProfileSlider";
-import ProfileProdviewer from "./profileProdviewer";
 import { useTranslation } from "react-i18next";
 
 export default function Profile() {
