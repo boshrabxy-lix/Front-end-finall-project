@@ -4,6 +4,7 @@ import Categories from "../../components/categories/Categories";
 import ProductsSection from "../../components/products/ProductsSection";
 import Hero from "../../components/hero/Hero";
 import ModernCircle from "../../components/modernCircle/ModernCircle";
+import StatsSection from "../../components/statsSection/StatsSection";
 
 export default function Home() {
 
@@ -13,6 +14,7 @@ export default function Home() {
         <Hero />
         <Categories />
         <ProductsSection />
+        <StatsSection />
         <ModernCircle />
       </Box>
     </>

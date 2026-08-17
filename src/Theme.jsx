@@ -10,7 +10,8 @@ const getTheme = (mode) => {
         contrastText: '#fff',
       },
       secondary:{
-        main: '#94a3b8'
+        main: '#94a3b8',
+        light:'#d2dae443',
       },
       info:{
         main:'#2676f6',
