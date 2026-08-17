@@ -36,7 +36,7 @@ export default function Navbar() {
 
   const { data } = useCart();
 
-  const cartCount = data?.Item?.length ?? 0;
+  const cartCount = data?.items?.length ?? 0;
   console.log("cartCount:", cartCount);
 
 
@@ -149,14 +149,14 @@ export default function Navbar() {
                   size="small"
                   sx={{ color: "#e2e8f0", display: { sm: "flex" } }}
                 >
-                  <Badge badgeContent={cartCount ?? 1} color="error" >
+                  <Badge badgeContent={cartCount ?? 1} color="info" >
                     <ShoppingCartOutlinedIcon size="small" />
                   </Badge>
                 </IconButton>
               </>
             )}
 
-            <Button onClick={changeLanguage} sx={{ minWidth: '50px' }}>{i18n.language === "AR" ? "EN" : "AR"}</Button>
+            <Button onClick={changeLanguage} sx={{ minWidth: '50px' }}>{i18n.language == "ar" ? "EN":"AR"}</Button>
 
             <IconButton onClick={toggleTheme} size="small" sx={{ color: "#e2e8f0", display: { sm: "flex" }, }}  >
               {mode === 'dark' ? (<DarkModeOutlinedIcon fontSize="small" />) : (< LightModeIcon fontSize="small" />)}

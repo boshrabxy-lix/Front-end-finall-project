@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { Box, Typography, TextField, Button, Alert } from "@mui/material";
 import useResetPass from '../../hooks/useResetPass'
 import { useForm } from "react-hook-form";
@@ -8,6 +8,7 @@ import Loader from "../../components/loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
+import useEmailStore from '../../store/useEmailStore';
 
 
 export default function ResetPage() {
@@ -17,8 +18,12 @@ export default function ResetPage() {
   const [serverErrors, setServerErrors] = useState([]);
   const [digits, setDigits] = useState(["", "", "", ""]);
   const navigate = useNavigate();
+  const email = useEmailStore((state) => state.email);
+  const clearStoredEmail = useEmailStore((state) => state.clearEmail);
+
   const { register, handleSubmit, formState: { errors, isSubmitting }, } = useForm({
     resolver: yupResolver(resetSchema),
+    defaultValues: { email }
   });
 
   const ResetForm = ({ code, email, newPassword }) => {
@@ -33,7 +38,7 @@ export default function ResetPage() {
             text: 'Go To Login',
             confirmButtonText: 'Okay'
           })
-          
+          clearStoredEmail();
           navigate('/login');
         },
         onError: (err) => {
@@ -44,14 +49,13 @@ export default function ResetPage() {
     );
   };
 
-  if (isPending) return <Loader />
-  if (isError) return <Box color={'red'}>{error.message}</Box>
-
   return (
     <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", p: 7, mt: 5, mb: 5 }}>
       <Box
         component="form"
-        onSubmit={handleSubmit(ResetForm)}
+        onSubmit={handleSubmit(ResetForm, (validationErrors) => {
+          console.log("Validation failed:", validationErrors);
+        })}
         sx={{ width: "100%", maxWidth: 400, textAlign: "center", px: 3 }}
       >
         <Typography component="h2" variant="h3" color="info" sx={{ fontWeight: 800, mb: 2 }}>
@@ -83,16 +87,7 @@ export default function ResetPage() {
             ))}
           </Alert>
         )}
-        <TextField
-          {...register("email")}
-          fullWidth
-          type="email"
-          label={t('User Email')}
-          autoComplete="email"
-          error={!!errors.email}
-          helperText={errors.email?.message}
-          sx={{ mb: 3 }}
-        />
+
 
         <TextField
           {...register("newPassword")}

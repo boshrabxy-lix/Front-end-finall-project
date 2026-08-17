@@ -14,6 +14,8 @@ import axios from 'axios';
 import { SendCodeSchema } from '../../validation/SendCodeSchema';
 import { useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import useEmailStore from '../../store/useEmailStore';
+
 
 export default function SendCodePage() {
     const queryClient = useQueryClient();
@@ -21,7 +23,7 @@ export default function SendCodePage() {
     const [email, setEmail] = useState(" ");
     const [ServerErrors, setServerErrors] = useState([]);
     const navigate = useNavigate();
-
+    const setStoredEmail = useEmailStore((state) => state.setEmail);
 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
         resolver: yupResolver(SendCodeSchema), mode: 'onBlur'
@@ -32,12 +34,9 @@ export default function SendCodePage() {
             const response = await axios.post(
                 `${import.meta.env.VITE_BURL}/auth/Account/SendCode`,
                 JSON.stringify(email),
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
+                { headers: { 'Content-Type': 'application/json' } }
             );
+            setStoredEmail(email.email);
             Swal.fire({
                 icon: 'success',
                 title: 'Code sent Successfully',
