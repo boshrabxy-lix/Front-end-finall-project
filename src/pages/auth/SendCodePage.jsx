@@ -13,8 +13,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { SendCodeSchema } from '../../validation/SendCodeSchema';
 import { useQueryClient } from '@tanstack/react-query';
-
-
+import Swal from 'sweetalert2';
 
 export default function SendCodePage() {
     const queryClient = useQueryClient();
@@ -39,6 +38,12 @@ export default function SendCodePage() {
                     }
                 }
             );
+            Swal.fire({
+                icon: 'success',
+                title: 'Code sent Successfully',
+                text: 'Check Your Email',
+                confirmButtonText: 'Okay'
+            })
             queryClient.invalidateQueries(
                 console.log("response", response),
                 { queryKey: ['sendCode', email] }),

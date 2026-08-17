@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import LoginIcon from '@mui/icons-material/Login';
+import Swal from 'sweetalert2';
 
 
 export default function ProfileMenu() {
@@ -35,6 +36,12 @@ export default function ProfileMenu() {
     };
     const handleLogout = () => {
         logout();
+        Swal.fire({
+            icon: 'success',
+            title: 'You have been successfully logged out.',
+            text: 'You have been successfully logged out.',
+            confirmButtonText: 'Okay'
+        })
         navigate("/login");
     };
 

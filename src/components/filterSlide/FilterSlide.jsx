@@ -63,7 +63,7 @@ const handleApply = () => {
                   sx={{ "& .MuiOutlinedInput-root": { borderRadius: "6px" } }}
                 />
                 <TextField
-                  placeholder={t('"Max Price"')}
+                  placeholder={t('Max Price')}
                   size="small"
                   fullWidth
                    type="number"

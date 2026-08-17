@@ -26,7 +26,6 @@ export default function ProByCategory() {
                                 <DoNotDisturbAltIcon fontSize='medium' />
                                 {t('Thier is no Product in this Category')}
                             </Typography>
-
                         </Box>
                     ) : (
                         data.response.map((product) => (
@@ -34,8 +33,7 @@ export default function ProByCategory() {
                                 <Product product={product} />
                             </Grid>
                         ))
-                    )
-                    }
+                    )}
                 </Grid>
             </Box>
         </>

@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { Container } from "@mui/material";
 import { Link } from 'react-router-dom';
 import Loader from "../../../components/loader/Loader";
+import Swal from "sweetalert2";
 
 
 export default function Register() {
@@ -27,6 +28,13 @@ export default function Register() {
       const response = await axios.post(
         `${import.meta.env.VITE_BURL}/auth/Account/Register`, data);
       console.log("response", response);
+      Swal.fire({
+        icon: 'success',
+        title: 'You have successfully registered',
+        text: 'You have successfully registered',
+        confirmButtonText: 'Okay'
+      })
+
     } catch (err) {
       console.log(err.response.data.errors);
       setServerErrors(err.response?.data?.errors);
@@ -95,15 +103,13 @@ export default function Register() {
             helperText={errors.phoneNumber?.message}
           />
 
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', mt: 2 }}>
             <Button variant="contained" type="submit" disabled={isSubmitting} >
               {isSubmitting ? <Loader /> : 'Register'}
             </Button>
-
-            <Link variant="Button" underline='none' to={'/login'}>
-              {t('Already you have account?')}
-            </Link>
+            <Button variant="text" component={Link} underline='none' to={'/login'}> {t('Already you have account?')}</Button>
           </Box>
+
 
         </Box>
 

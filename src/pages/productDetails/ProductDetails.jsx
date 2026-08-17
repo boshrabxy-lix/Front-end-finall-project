@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useProdDetails from '../../hooks/useProdDetails';
 import Typography from "@mui/material/Typography";
 import useAddToCart from "../../hooks/useAddToCart";
@@ -21,6 +21,8 @@ export default function ProductDetails() {
   const { data, isError, isLoading, error } = useProdDetails(id);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const navigate = useNavigate();     
+
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
   };
@@ -70,7 +72,8 @@ export default function ProductDetails() {
                   <Button disabled={AddToCartPending} onClick={() => { addToCart({ productId: data.response.id, count: 1 }) }} fullWidth
                     variant="outlined" size="large" startIcon={<ShoppingCartOutlinedIcon />} sx={{ borderColor: "#94a3b84d", py: 2 }} >{t('Add to Cart')} </Button>
 
-                  <Button fullWidth variant="contained" size="large" sx={{ py: 2, color: '#2563eb' }}> {t('Buy Now')} </Button>
+                  <Button fullWidth variant="contained" size="large" onClick={() => { addToCart({ productId: data.response.id, count: 1 }),navigate('/checkout') }}
+                    sx={{ py: 2, color: '#2563eb' }}> {t('Buy Now')} </Button>
                 </Box>
               </Box>
             </Grid>

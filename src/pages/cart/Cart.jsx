@@ -10,6 +10,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import useClearCart from '../../hooks/useClearCart';
 import { useTranslation } from 'react-i18next';
+import Swal from 'sweetalert2';
 
 export default function Cart() {
   const { t } = useTranslation();
@@ -18,7 +19,6 @@ export default function Cart() {
   const { mutate: removeItem, isPending: removeItemPending } = useRemoveFromCart();
   const { mutate: UpdateItem, isPending: updateItemPending } = useUpdateCartItem();
   const { mutate: clearCart, isPending: ClearPending } = useClearCart();
-
   const navigate = useNavigate();
 
   const handleUpdateQty = (productId, action) => {
@@ -34,18 +34,28 @@ export default function Cart() {
 
   const handelclearCart = () => {
     if (data.items.length === 0) {
-      alert("Cart is already empty!");
+      Swal.fire({
+        title: 'Cart is Empty!',
+        text: "Cart Is Already Empty!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Close'
+      })
       return;
-    } else {
-      data.items.map((item) =>
-        clearCart(item.productId)
-      )
     }
+    data.items.forEach((item) => 
+      clearCart(item.productId));
   };
 
   const handleCheckout = () => {
     if (data.items.length === 0) {
-      alert("Your cart is empty!");
+      Swal.fire({
+        title: 'Cart is Empty!',
+        text: "Cart Is Already Empty!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Close'
+      })
       return;
     }
     navigate('/checkout');

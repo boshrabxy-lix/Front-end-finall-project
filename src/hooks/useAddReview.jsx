@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import authAxiosInstance from '../api/authAxiosInstance';
+import Swal from 'sweetalert2';
 
 export default function useAddReview() {
     const queryClient = useQueryClient();
@@ -9,6 +10,12 @@ export default function useAddReview() {
             userName, rating, comment,
         }),
         onSuccess: (data, variables) => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Comment added successfully',
+                text: 'Comment added successfully',
+                confirmButtonText: 'Okay'
+            })
             queryClient.invalidateQueries(
                 { queryKey: ['review', variables.productId] }
             )

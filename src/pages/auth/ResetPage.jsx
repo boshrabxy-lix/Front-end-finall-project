@@ -7,6 +7,7 @@ import { resetSchema } from "../../validation/ResetSchema";
 import Loader from "../../components/loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import Swal from "sweetalert2";
 
 
 export default function ResetPage() {
@@ -26,7 +27,13 @@ export default function ResetPage() {
       {
         onSuccess: (response) => {
           console.log("PassWord Reset Successfully", response);
-          alert("Password has been reset successfully");
+          Swal.fire({
+            icon: 'success',
+            title: 'Password has been reset successfully',
+            text: 'Go To Login',
+            confirmButtonText: 'Okay'
+          })
+          
           navigate('/login');
         },
         onError: (err) => {

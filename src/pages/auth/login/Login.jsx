@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { Container } from "@mui/material";
 import axios from "axios";
 import { SendCodeSchema } from "../../../validation/SendCodeSchema";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const { t } = useTranslation();
@@ -29,6 +30,12 @@ export default function Login() {
       if (response.status === 200) {
         localStorage.setItem("accessToken", response.data.accessToken);
         setToken(response.data.accessToken);
+        Swal.fire({
+          icon: 'success',
+          title: 'You have successfully logged in',
+          text: 'You have successfully logged in',
+          confirmButtonText: 'Okay'
+        })
         navigate('/');
       }
       console.log("responce", response);
@@ -50,14 +57,7 @@ export default function Login() {
         <Box
           component={"form"}
           onSubmit={handleSubmit(loginForm)}
-          sx={{
-            flexDirection: "column",
-            gap: 4,
-            alignItems: "center",
-            mb: 2,
-            display: 'flex'
-          }}
-        >
+          sx={{ flexDirection: "column", gap: 4, alignItems: "center", mb: 2, display: 'flex' }} >
           <TextField
             {...register("email")}
             fullWidth
@@ -75,15 +75,16 @@ export default function Login() {
             helperText={errors.password?.message}
           />
 
-          <Box sx={{ display: 'flex', alignContent: 'center', justifyContent: 'space-between' }}>
-            <Button variant="contained" type="submit" disabled={isSubmitting} >
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+            <Button variant="contained" type="submit" disabled={isSubmitting}>
               {isSubmitting ? <Loader /> : 'Login'}
             </Button>
-            <Button variant="Link" href={'/auth/Account/SendCode'} sx={{ underline: 'none' }}>{t('Forgit password?')}</Button>
+            <Button variant="text" component={Link} to={'/auth/Account/SendCode'} sx={{ underline: 'none' }}>{t('Forgit password?')}</Button>
           </Box>
 
+          </Box>
         </Box>
-      </Box>
+ 
     </Container>
   );
 }
