@@ -104,14 +104,22 @@ export default function ProductDetails() {
 
         {activeTab === 0 && (
           <Grid container spacing={6} alignItems="center">
-            <Grid item size={{ xs: 12, md: 6 }}>
+            <Grid item size={{ xs: 12, md: 6 }}
+             data-aos="fade-right"
+          data-aos-offset="200"
+          data-aos-delay="60"
+          data-aos-duration="1000">
               <Typography variant="h6" component="h2" sx={{ fontWeight: 700, fontSize: '1.4rem', color: '#9fb0ff', mb: 2, letterSpacing: '-0.01em', }} > {t('Built for Endurance')} </Typography>
               <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.75, mb: 2.5, fontSize: '14px', }} >
                 {data.response.description}
               </Typography>
             </Grid>
 
-            <Grid item size={{ xs: 12, md: 6 }}>
+            <Grid item size={{ xs: 12, md: 6 }}
+            data-aos="fade-left"
+          data-aos-offset="200"
+          data-aos-delay="60"
+          data-aos-duration="1000">
               <Box component="img" src={data.response.image} alt=""
                 sx={{ width: '100%', aspectRatio: '4 / 3', objectFit: 'cover', borderRadius: '16px', boxShadow: '0px 15px 35px #00000059' }} />
             </Grid>
@@ -129,7 +137,8 @@ export default function ProductDetails() {
 
             {data.response.reviews.map((review, index) =>
               <Container maxWidth='md' key={index}>
-                <Card key={index} sx={{ mb: 4, py: 2 }}>
+                <Card key={index} sx={{ mb: 4, py: 2 }}
+                 data-aos="zoom-out-up"  data-aos-duration="1000">
                   <CardContent sx={{ p: 3 }}>
 
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

@@ -5,17 +5,16 @@ import useCategories from '../../hooks/useCategories';
 import Loader from '../loader/Loader';
 import { useParams } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
-import useProducts from '../../hooks/useProducts';
 import { useTranslation } from 'react-i18next';
 
 export default function FilterSlide({currentCategory, onCategoryChange, onApply }) {
   const { data: category, isError, isLoading, error } = useCategories(100);
-  const { data: Products } = useProducts();
+  
   const { t } = useTranslation();
 
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [sortBy, setSortBy] = useState("price"); 
+  const [sortBy, setSortBy] = useState("Price"); 
   const [order, setOrder] = useState("asc"); 
 
 const handleApply = () => {
@@ -95,9 +94,9 @@ const handleApply = () => {
                     "& .MuiOutlinedInput-notchedOutline": { borderColor: 'primary' },
                   }}
                 >
-                  <MenuItem value="Price">Price</MenuItem>
-                  <MenuItem value="Name">Name</MenuItem>
-                  <MenuItem value="Rating">Rate</MenuItem>
+                  <MenuItem value="Price">{t('Price')}</MenuItem>
+                  <MenuItem value="Name">{t('Name')}</MenuItem>
+                  <MenuItem value="Rating">{t('Rate')}</MenuItem>
                 </Select>
               </FormControl>
 
@@ -156,7 +155,7 @@ const handleApply = () => {
                   <ListItemButton
                     key={category.id}
                     selected={isItemActive}
-                    onClick={() => onCategoryChange(category)}
+                     onClick={() => onCategoryChange(isItemActive ? { id: 'all' } : category)}
                     sx={{
                       borderRadius: "6px",
                       mb: 0.5,

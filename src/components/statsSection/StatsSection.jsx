@@ -13,8 +13,12 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <Box sx={{ backgroundColor: 'secondary.light', borderRadius: 3, py: { xs: 4, md: 5 }, px: { xs: 3, md: 4 }, }} >
-      <Grid container spacing={{ xs: 2, md: 3 }}>
+    <Box sx={{ backgroundColor: 'secondary.light', borderRadius: 3, py: { xs: 4, md: 5 }, px: { xs: 3, md: 4 }, }}
+      data-aos="flip-down"
+      data-aos-offset="100"
+      data-aos-duration="900"
+    >
+      <Grid container spacing={{ xs: 2, md: 3 }} >
         {stats.map(({ icon: Icon, value, labelKey }) => (
           <Grid item size={{ xs: 6, sm: 3 }} key={labelKey}>
             <Box sx={{ textAlign: 'center' }}>

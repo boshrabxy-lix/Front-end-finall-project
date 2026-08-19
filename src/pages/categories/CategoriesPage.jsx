@@ -20,7 +20,10 @@ export default function CategoriesPage() {
             <Typography component={'h2'} variant='h2' sx={{ mb: 3 }}> {t('Categories')}</Typography>
             <Grid container spacing={6}>
                 {data.response.data.map(category =>
-                    <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={category.id}>
+                    <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={category.id}
+                        data-aos="flip-right"
+                        data-aos-easing="ease-out-cubic"
+                        data-aos-duration="2000">
                         <Category category={category} />
                     </Grid>
                 )}

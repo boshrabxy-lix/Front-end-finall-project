@@ -17,7 +17,10 @@ export default function ProByCategory() {
     if (isError) return <Box color={'red'}>{error.message}</Box>
     return (
         <>
-            <Box className="productsSection" sx={{ py: 5 }}>
+            <Box className="productsSection" sx={{ py: 5 }}
+                data-aos="fade-down-right"
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration="2000">
                 <Typography component={'h2'} variant='h2' sx={{ mb: 3 }}>{t('Products')}</Typography>
                 <Grid container spacing={3}>
                     {data.response.length === 0 ? (
@@ -29,7 +32,7 @@ export default function ProByCategory() {
                         </Box>
                     ) : (
                         data.response.map((product) => (
-                            <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
+                            <Grid item size={{ xs: 12, sm: 6, md: 3 }} key={product.id}>
                                 <Product product={product} />
                             </Grid>
                         ))

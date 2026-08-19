@@ -6,9 +6,14 @@ export default function NewsletterSection() {
     const { t } = useTranslation();
 
     return (
-        <Box component={'section'} sx={{ py:{ xs: 3, md:7 }}}>
-  
-            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 4, background: 'linear-gradient(135deg, #0057ff 0%, #0041c4 100%)', px: { xs: 3, md: 5}, py:{ xs: 7, md: 15}, textAlign: 'center', mx: 'auto'}}>
+        <Box component={'section'} sx={{ py: { xs: 3, md: 7 } }}>
+
+            <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: 4, background: 'linear-gradient(135deg, #0057ff 0%, #0041c4 100%)', px: { xs: 3, md: 5 }, py: { xs: 7, md: 15 }, textAlign: 'center', mx: 'auto' }}
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-center"
+                data-aos-offset="100"
+                data-aos-duration="800"
+            >
                 <Box sx={{ position: 'absolute', top: -170, left: -60, width: 380, height: 380, borderRadius: '50%', bgcolor: 'rgba(255,255,255,0.08)', }} />
                 <Box sx={{ position: 'absolute', bottom: -250, right: -110, width: 460, height: 460, borderRadius: '50%', bgcolor: 'rgba(255,255,255,0.06)', }} />
 
@@ -20,7 +25,7 @@ export default function NewsletterSection() {
                         {t('Subscribe to our newsletter and get 15% off your first order .Stay updated with the latest trenfs and exclusive drops.')}
                     </Typography>
 
-                    <Box sx={{ display: 'flex', gap: 1.9, justifyContent: 'center', mb: 2,flexWrap:'wrap'}} >
+                    <Box sx={{ display: 'flex', gap: 1.9, justifyContent: 'center', mb: 2, flexWrap: 'wrap' }} >
                         <TextField
                             placeholder={t('Enter Your Email Address...')}
                             variant="outlined"
@@ -38,7 +43,7 @@ export default function NewsletterSection() {
                                 },
                             }}
                         />
-                        <Button variant="contained" href='register' sx={{ bgcolor: '#1a1b1f', color: '#ffffffd0', textTransform: 'none', fontWeight: 600, borderRadius: 2, px: 4,py:{xs:2}}} >{t('Subscribe Now')}</Button>
+                        <Button variant="contained" href='register' sx={{ bgcolor: '#1a1b1f', color: '#ffffffd0', textTransform: 'none', fontWeight: 600, borderRadius: 2, px: 4, py: { xs: 2 } }} >{t('Subscribe Now')}</Button>
                     </Box>
 
                     <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)' }}>
@@ -47,6 +52,6 @@ export default function NewsletterSection() {
                 </Box>
             </Box>
         </Box>
-       
+
     );
 }

@@ -16,7 +16,7 @@ export default function Categories() {
 
   return (
     <>
-      <Box className="categories" sx={{ py: 5, mb:6 }}>
+      <Box className="categories" sx={{ py: 5, mb: 6 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 2, alignItems: 'center', mb: 4, }}>
           <Typography component={'h2'} variant='h4' sx={{ my: 2, fontSize: 32, fontWeight: 700 }}>{t('Shop By category')}</Typography>
 
@@ -35,7 +35,10 @@ export default function Categories() {
 
         <Grid container spacing={6}>
           {data.response.data.map(category =>
-            <Grid item size={{ xs: 6, sm: 6, md: 3 }} key={category.name}>
+            <Grid item size={{ xs: 6, sm: 6, md: 3 }} key={category.name}
+              data-aos="flip-left"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="2000">
               <Category category={category} />
             </Grid>
           )}

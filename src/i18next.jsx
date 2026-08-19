@@ -54,7 +54,9 @@ i18n
                     "Filters": "Filters",
                     "Min Price": "Min Price",
                     "Max Price": "Max Price",
-                    "Sort By": " Sort By",
+                    "Sort By": " Sort By",  
+                    "Name": "Name",
+                    "Rate": "Rate",
                     "Order": "Order",
                     "Ascending": "Ascending",
                     "Descending": "Descending",
@@ -90,8 +92,6 @@ i18n
                     "Built for Endurance": "Built for Endurance",
                     "LIMITED EDITION": "LIMITED EDITION",
                     "Reviews": "Reviews",
-                    "Price": "Price",
-                    "Quantity": "Quantity",
                     "Buy Now": "Buy Now",
                     "Product Description": "Product Description",
                     "Customer Reviews": "Customer Reviews",
@@ -109,7 +109,7 @@ i18n
                     "Amount": "Amount",
                     "Status": "Status",
                     "Picked For You": "Picked For You",
-
+                    "No products match these filters.": "No products match these filters.",
 
                     "Enter the Verify Code 4-Digit sent to your Email": "Enter the Verify Code 4-Digit sent to your Email",
                     "Discover a curated selection of global trends blended with modern Arabic sophistication. Seamless, high-end, and designed for you."
@@ -182,6 +182,8 @@ i18n
                     "Min Price": "أقل سعر",
                     "Max Price": "أعلى سعر",
                     "Sort By": "ترتيب حسب",
+                    "Name": "الإسم",
+                    "Rate": "التقييم",
                     "Order": "الترتيب",
                     "Ascending": "تصاعدي",
                     "Descending": "تنازلي",
@@ -232,7 +234,7 @@ i18n
                     "Amount": "المبلغ",
                     "Status": "الحالة",
                     "Picked For You": "مختار لك",
-
+                    "No products match these filters.": "لا توجد منتجات تطابق هذه الفلاتر.",
 
                     "Discover a curated selection of global trends blended with modern Arabic sophistication. Seamless, high-end, and designed for you."
                         : "اكتشف تشكيلة مختارة بعناية من أحدث صيحات الموضة العالمية الممزوجة بالرقي العربي العصري. تجربة سلسة وراقية، مصممة خصيصاً لك.",

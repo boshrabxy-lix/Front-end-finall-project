@@ -13,13 +13,18 @@ export default function ProfileOrders() {
   const { data, isError, isLoading, error } = useProfil();
 
   const STATUS_STYLES = {
-    1: { bg: "#c360c56e", color: "#c360c5", labless: 'Pending' },
+    Active: { bg: "#c360c56e", color: "#c360c5", labless: 'Pending' },
     2: { bg: "#962d3996", color: "#c81a3a", labless: 'Canceled' },
     3: { bg: "#3b82f62e", color: "#7dd3fc", labless: 'Approved' },
     4: { bg: "#ace45129", color: "#bdac14", labless: 'Shipped' },
     5: { bg: "#226bc529", color: "#4ade80", labless: 'Delivered' },
-
   };
+
+  const paymentState={
+    unpaid:{labels:'Cash' },
+    "paid":{labels:'Visa'},
+  }
+
 
   if (isLoading) return <Loader />
   if (isError) return <Typography color='error'>{error}</Typography>
@@ -72,7 +77,7 @@ export default function ProfileOrders() {
                   <TableCell sx={{ fontWeight: 600 }}>{order.orderDate}</TableCell>
                   <TableCell align="center">
                     <Typography color="primary" >
-                      {order.paymentStatus}
+                    {paymentState[order.paymentStatus]?.labels}
                     </Typography>
                   </TableCell>
 
@@ -84,16 +89,15 @@ export default function ProfileOrders() {
                   </TableCell>
 
                   <TableCell>
-                    <Chip  
-                   
-                      size="small"
-                      sx={{
-                        bgcolor: STATUS_STYLES[order.status]?.bg,
-                        color: STATUS_STYLES[order.status]?.color,
-                      
-                        fontWeight: 600,
-                        fontSize: 12,
-                      }}
+                    <Chip
+                    label= {STATUS_STYLES[order.status]?.labless}
+                    size="small"
+                    sx={{
+                      bgcolor: STATUS_STYLES[order.status]?.bg,
+                      color: STATUS_STYLES[order.status]?.color,
+                      fontWeight: 600,
+                      fontSize: 12,
+                    }}
                     />
                   </TableCell>
 

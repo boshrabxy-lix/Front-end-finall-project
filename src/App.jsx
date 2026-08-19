@@ -7,6 +7,9 @@ import { useTranslation } from "react-i18next";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import getTheme from "./Theme";
 import useThemeStore from "./store/useThemeStore";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 export default function App() {
   const { i18n } = useTranslation();
@@ -14,7 +17,7 @@ export default function App() {
     const dir = i18n.language === "ar" ? "rtl" : "ltr";
     document.documentElement.dir = dir;
   }, [i18n.language]);
-
+AOS.init();
   const queryClient = new QueryClient();
   const mode= useThemeStore((state)=>state.mode);
   return (

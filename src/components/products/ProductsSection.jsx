@@ -17,7 +17,9 @@ export default function ProductsSection() {
 
 
     return (
-       <Box className='products' component="section" sx={{ py: 5, maxWidth: 1100, mx: "auto", my: 4, }}>
+        <Box className='products' component="section" sx={{ py: 5, maxWidth: 1100, mx: "auto", my: 4, }}  data-aos="fade-down-right"
+                        data-aos-easing="ease-out-cubic"
+                        data-aos-duration="2000">
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2, py: 3, }}>
                 <Box>
                     <Typography component={'h2'} variant='h4' sx={{ fontSize: 38, fontWeight: 700 }}>{t('Products')}</Typography>
@@ -36,8 +38,8 @@ export default function ProductsSection() {
 
             <Grid container spacing={{ xs: 2, md: 3 }}>
                 {data.response.data.map(product =>
-                   <Grid item size={{ xs: 12, sm: 6, md: 3 }} key={product.id}>
-                    <Product product={product}  />
+                    <Grid item size={{ xs: 12, sm: 6, md: 3 }} key={product.id} >
+                        <Product product={product} />
                     </Grid>
                 )}
             </Grid>

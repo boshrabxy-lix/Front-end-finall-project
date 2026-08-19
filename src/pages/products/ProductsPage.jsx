@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import Product from '../../ui/product/ProductUi';
 import FilterSlide from '../../components/filterSlide/FilterSlide';
 import SearchIcon from "@mui/icons-material/Search";
+import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
 
 function sortProduct(products, sortBy, order) {
     return [...products].sort((a, b) => {
@@ -86,7 +87,10 @@ export default function ProductsPage() {
                     <Grid item size={{ sm: 9 }}>
                         <Grid container spacing={2}>
                             {visibleProducts.length === 0 ? (
-                                <Typography variant='h6' className="no-results" color="error">No products match these filters.</Typography>
+                                <Typography variant='h6' className="no-results" color="error">
+                                    <DoNotDisturbAltIcon fontSize='small' />
+                                    {t('No products match these filters.')}
+                                </Typography>
                             ) : (
                                 visibleProducts.map((product) => (
                                     <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
