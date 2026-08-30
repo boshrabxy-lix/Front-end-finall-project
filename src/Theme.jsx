@@ -18,13 +18,14 @@ const getTheme = (mode) => {
         dark:'#1057c9'
       },
     },
-    typography: {
-      fontFamily: 'math',
-      contrastText: '#fff',
-    },
     text: {
       secondary: '#94a3b8',
-    }
+    },
+
+    background: {
+      paper: '#fff',
+      default: '#fff',
+    },
   });
 }
 export default getTheme;

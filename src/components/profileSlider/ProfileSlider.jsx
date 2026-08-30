@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Link, Grid, Typography, Avatar, Badge, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Divider, } from "@mui/material";
+import { Box, Link, Typography, Avatar, Badge, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Divider, } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import useProfil from '../../hooks/useProfil';
 import { useNavigate } from 'react-router-dom';
@@ -71,7 +71,39 @@ export default function ProfileSlider() {
 
                 <Box sx={{ border: "1px solid #22314f", borderRadius: 3, p: 1.5, }} >
                     <List>
-                        <Link component={RouterLink} to='' underline='none'>
+                        <Link component={RouterLink} to="UserInfo" underline="none" >
+                            <ListItemButton
+                                selected={isActive}
+                                onClick={() => setActiveIndex(index)}
+                                sx={{
+                                    borderRadius: 2,
+                                    mb: 1,
+                                    py: 1.3,
+                                    color: "text.secondary",
+                                    "&.Mui-selected": {
+                                        bgcolor: "#5b93f5",
+                                        color: "#fff",
+                                        "& .MuiListItemIcon-root": { color: "#fff" },
+                                        "&:hover": { bgcolor: "#4a82e4" },
+                                    },
+                                    "&:hover": {
+                                        bgcolor: isActive ? "#4a82e4" : "#1e2c48",
+                                    },
+                                }}
+                            >
+                                <ListItemIcon sx={{ minWidth: 38, color: "inherit" }}>
+                                    <SettingsOutlinedIcon />
+                                </ListItemIcon>
+
+                                <ListItemText
+                                    primary={t('User Information')}
+                                    primaryTypographyProps={{ fontWeight: 600, fontSize: 14.5 }}
+                                />
+                            </ListItemButton>
+                        </Link>
+
+
+                        <Link component={RouterLink} underline='none'>
                             <ListItemButton
                                 selected={isActive}
                                 onClick={() => setActiveIndex(index)}
@@ -214,6 +246,7 @@ export default function ProfileSlider() {
                                 <ListItemIcon sx={{ minWidth: 38, color: "inherit" }}>
                                     <SettingsOutlinedIcon />
                                 </ListItemIcon>
+
                                 <ListItemText
                                     primary={t('Account Settings')}
                                     primaryTypographyProps={{ fontWeight: 600, fontSize: 14.5 }}

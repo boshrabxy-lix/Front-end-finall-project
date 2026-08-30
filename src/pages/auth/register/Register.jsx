@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { registerSchema } from "../../../validation/RegisterSchema";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { Container } from "@mui/material";
 import { Link } from 'react-router-dom';

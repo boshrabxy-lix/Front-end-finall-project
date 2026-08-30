@@ -11,11 +11,13 @@ import Checkout from "./pages/checkout/Checkout";
 import ProductsPage from "./pages/products/ProductsPage";
 import Profile from "./pages/profile/Profile";
 import ProfileInfo from "./pages/profile/ProfileInfo";
+import PUserInfo from "./pages/profile/PUserInfo";
 import ProfileOrders from "./pages/profile/ProfileOrders";
 import SendCodePage from "./pages/auth/SendCodePage";
 import SettingPage from "./pages/settingPage/SettingPage";
 import ResetPage from "./pages/auth/ResetPage";
 import ProByCategory from "./pages/proByCategory/ProByCategory";
+
 
 const router = createBrowserRouter([
   {
@@ -58,6 +60,10 @@ const router = createBrowserRouter([
           {
             path: "settings",
             element: <SettingPage />
+          },
+           {
+            path: "UserInfo",
+            element: <PUserInfo />
           },
         ]
       },
