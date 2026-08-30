@@ -3,15 +3,19 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
+import { useTranslation } from 'react-i18next';
 
-const stats = [
-  { icon: PeopleAltOutlinedIcon, value: '150K+', labelKey: 'Happy Customers' },
-  { icon: PublicOutlinedIcon, value: '50+', labelKey: 'Global Brands' },
-  { icon: SupportAgentOutlinedIcon, value: '24/7', labelKey: 'Premium Support' },
-  { icon: VerifiedUserOutlinedIcon, value: '100%', labelKey: 'Secure Payments' },
-];
 
 export default function StatsSection() {
+    const { t } = useTranslation();
+  
+const stats = [
+  { icon: PeopleAltOutlinedIcon, value: '150K+', labelKey: t('Happy Customers') },
+  { icon: PublicOutlinedIcon, value: '50+', labelKey: t('Global Brands') },
+  { icon: SupportAgentOutlinedIcon, value: '24/7', labelKey: t('Premium Support') },
+  { icon: VerifiedUserOutlinedIcon, value: '100%', labelKey: t('Secure Payments') },
+];
+
   return (
     <Box sx={{ backgroundColor: 'secondary.light', borderRadius: 3, py: { xs: 4, md: 5 }, px: { xs: 3, md: 4 }, }}
       data-aos="flip-down"

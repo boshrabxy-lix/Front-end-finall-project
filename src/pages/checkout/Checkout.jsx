@@ -19,7 +19,9 @@ export default function Checkout() {
 
     return (
         <Box className="checkout" component={'section'} sx={{ py: 5 }}>
-            <Typography component={'h1'}>{t('Checkout')}</Typography>
+            <Typography component={'h1'} variant='h2' color='primary'>
+                {t('Checkout')}
+            </Typography>
             <TableContainer>
                 <Table>
                     <TableHead>
@@ -53,7 +55,7 @@ export default function Checkout() {
 
                     <TableFooter>
                         <TableCell colSpan={5} sx={{ fontWeight: 800 }}>
-                            Total : {data.cartTotal}$
+                          {t('Total')} : {data.cartTotal}$
                         </TableCell>
                     </TableFooter>
                 </Table>

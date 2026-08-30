@@ -32,7 +32,7 @@ export default function Hero() {
             </Typography>
 
             <Typography sx={{ color: '#9CA0AC', fontSize: 15, lineHeight: 1.7, maxWidth: 380, mt: 2 }} >
-              {t('Discover a curated selection of global trends blended with modern Arabic sophistication.Seamless, high-end, and designed for you.')}
+              {t('Discover a curated selection of global trends blended with modern Arabic sophistication. Seamless, high-end, and designed for you.')}
             </Typography>
 
             <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, mt: 4 }}
@@ -52,8 +52,8 @@ export default function Hero() {
           </Box>
         </Grid>
 
-        <Grid item size={{ xs: 12, md: 6 }} 
-        data-aos="fade-left"
+        <Grid item size={{ xs: 12, md: 6 }}
+          data-aos="fade-left"
           data-aos-offset="200"
           data-aos-delay="60"
           data-aos-duration="1000">

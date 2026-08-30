@@ -4,8 +4,9 @@ import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
   const { t } = useTranslation();
-  const StaticCategories = ['Daily Deals', 'Electronics', 'Best Sellers', 'New Arrivals'];
-  const ContactList = ['About Us', 'Privacy Policy', 'Terms of Service', 'Contact Us'];
+  const StaticCategories = [ t('Daily Deals'), t('Electronics'), t('Best Sellers'), t('New Arrivals') ];
+  const ContactList = [t('About Us'), t('Privacy Policy'), t('Terms of Service'), t('Contact Us')];
+
 
   return (
     <>

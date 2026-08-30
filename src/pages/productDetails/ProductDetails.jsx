@@ -70,7 +70,7 @@ export default function ProductDetails() {
 
                 <Box sx={{ display: 'flex', gap: 2 }}>
                   <Button disabled={AddToCartPending} onClick={() => { addToCart({ productId: data.response.id, count: 1 }) }} fullWidth
-                    variant="outlined" size="large" startIcon={<ShoppingCartOutlinedIcon />} sx={{ borderColor: "#94a3b84d", py: 2 }} >{t('Add to Cart')} </Button>
+                    variant="outlined" size="large" startIcon={<ShoppingCartOutlinedIcon />} sx={{ borderColor: "#94a3b84d", py: 2 ,gap:.5}} >{t('Add To Cart')} </Button>
 
                   <Button fullWidth variant="contained" size="large" onClick={() => { addToCart({ productId: data.response.id, count: 1 }),navigate('/checkout') }}
                     sx={{ py: 2, color: '#2563eb' }}> {t('Buy Now')} </Button>

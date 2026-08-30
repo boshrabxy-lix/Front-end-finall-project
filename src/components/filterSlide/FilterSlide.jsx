@@ -144,7 +144,7 @@ const handleApply = () => {
               <Divider textAlign="left" borderWidth='1.75' borderColor='secendory'><Typography gutterBottom sx={{
                 fontWeight: 600,
                 color: '#3b82f6', fontSize: '20px',
-              }}>All Categories</Typography></Divider>
+              }}>{t('All Categories')}</Typography></Divider>
               <Divider sx={{ borderStyle: 'solid', borderWidth: 1.5, borderColor: 'secendory' }} />
             </Box>
 

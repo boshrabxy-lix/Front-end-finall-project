@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 import Swal from 'sweetalert2';
+import ChangeEmail from './ChangeEmail';
 import ChangePass from './ChangePass';
 import { useTranslation } from 'react-i18next';
 
@@ -23,7 +24,7 @@ export default function SettingPage() {
           {t('Account Settings')}
         </Typography>
         <Typography variant="body1" color="secondary" textAlign="right" mb={4}>
-          {t('Update your Email and password.')}
+          {t('Update your personal information and password.')}
         </Typography>
       </Box>
 
@@ -32,7 +33,7 @@ export default function SettingPage() {
       </Grid>
 
       <Grid item size={{ md: 12 }} sx={{ alignItems: 'start', mt: 4 }}>
-      
+       <ChangeEmail onNotify={notify} />
       </Grid>
     </Box>
   );

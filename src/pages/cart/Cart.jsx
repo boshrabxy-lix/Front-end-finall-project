@@ -68,7 +68,7 @@ export default function Cart() {
     <Box className="cart" component={'section'} sx={{ py: 5 }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Typography component={'h1'} variant='h2'>{t('My Cart')}</Typography>
-        <Button color='error' disabled={ClearPending} onClick={() => handelclearCart(clearCart)}>Clear</Button>
+        <Button color='error' disabled={ClearPending} onClick={() => handelclearCart(clearCart)}>{t('Clear Cart')}</Button>
       </Box>
 
 
@@ -120,7 +120,7 @@ export default function Cart() {
 
           <TableFooter>
             <TableCell colSpan={5} sx={{ fontWeight: 800 }}>
-              Total : {data.cartTotal}$
+             {t('Total')} : {data.cartTotal}$
             </TableCell>
           </TableFooter>
         </Table>
