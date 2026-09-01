@@ -55,36 +55,36 @@ export default function ProductsPage() {
     return (
         <>
             <Box className="productsSection" sx={{ py: 5 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Typography component={'h2'} variant='h2' sx={{ mb: 3 }}> {t('Products')}</Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb:3, flexWrap: 'wrap',}}>
+                
+                        <Typography component={'h2'} variant='h2' sx={{gap:4 }}> {t('Products')}</Typography>
 
-                    <Box
-                        sx={{ display: 'flex', gap: 3, alignItems: 'center', bgcolor: 'white', borderRadius: "20px", px: 4, py: 0.5, maxWidth: 340, ml: 3, }} >
-                        <SearchIcon sx={{ color: "#595e65d0", fontSize: 20, bgcolor: 'white' }} />
-                        <InputBase
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            placeholder={t('Search for products...')}
-                            sx={{
-                                color: "#000000d0",
-                                fontSize: "0.9rem",
-                                alignItems: "center",
-                                bgcolor: 'white'
-                            }}
-                        />
-                    </Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center', bgcolor: 'white', borderRadius: "20px", px: 4, py: 0.5, maxWidth: 340, ml: 3, }} >
+                            <SearchIcon sx={{ color: "#595e65d0", fontSize: 20, bgcolor: 'white' }} />
+                            <InputBase
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                placeholder={t('Search for products...')}
+                                sx={{
+                                    color: "#000000d0",
+                                    fontSize: "0.9rem",
+                                    alignItems: "center",
+                                    bgcolor: 'white'
+                                }}
+                            />
+                        </Box>
                 </Box>
 
 
                 <Grid container spacing={3}>
-                    <Grid item size={{ sm: 3 }}>
+                    <Grid item size={{ xs: 12, sm: 4, lg: 3 }}>
                         <FilterSlide
                             currentCategory={currentCategory}
                             onCategoryChange={setCurrentCategory}
                             onApply={setApplied} />
                     </Grid>
 
-                    <Grid item size={{ sm: 9 }}>
+                    <Grid item size={{ xs: 12, sm: 8, lg: 9}}>
                         <Grid container spacing={2}>
                             {visibleProducts.length === 0 ? (
                                 <Typography variant='h6' className="no-results" color="error">
@@ -93,7 +93,7 @@ export default function ProductsPage() {
                                 </Typography>
                             ) : (
                                 visibleProducts.map((product) => (
-                                    <Grid item size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
+                                    <Grid item size={{ xs: 6, sm: 6, md: 3}} key={product.id}>
                                         <Product product={product} />
                                     </Grid>
                                 ))
