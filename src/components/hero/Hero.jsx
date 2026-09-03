@@ -57,7 +57,7 @@ export default function Hero() {
           data-aos-offset="200"
           data-aos-delay="60"
           data-aos-duration="1000">
-          <CardMedia component={'img'} image={'./src/assets/heroImage.webp'} sx={{ objectFit: 'contain', width: { sm: '100%' }, height: 'auto' }}></CardMedia>
+          <CardMedia component={'img'} image={'https://lh3.googleusercontent.com/aida-public/AB6AXuDBI-KteOkiGCOCHSUbLp3Y_YHJDftWCKMhfRoFP0pH8qZDBtDrV10sPNvK39HnYkrqtMyGrBKRr04gOtwvUZDsIjXcrqCUy2gVf9v-m8vnXntc7givCTxIY29ZNzeHsQsrw-QsNOudvBrSTlkYLzB0n6r43r2G17iBjdoQWz4WyUrtkn7idHCWzwyWmqqYm0xNEkDM0aX8xXIMPAwpZ7CkGXQsIN7-Q_fne4eyyT1YRUN988MZQjOhEWtzOA7oFwBcACovOT01OvM'} sx={{ objectFit: 'contain', width: { sm: '100%' }, height: 'auto' }}></CardMedia>
         </Grid>
 
       </Grid>

@@ -139,8 +139,23 @@ i18n
                     "Global Brands": "Global Brands",
                     "Premium Support": "Premium Support",
                     "Secure Payments": "Secure Payments",
-
-
+                    "Free Shipping": "Free Shipping",
+                    "On all orders over $100": "On all orders over $100",
+                    "24/7 Support": "24/7 Support",
+                    "Always here to help you": "Always here to help you",
+                    "100% safe transactions": "100% safe transactions",
+                    "Easy Returns": "Easy Returns",
+                    "30-day return policy": "30-day return policy",
+                    "": "",
+                    "": "",
+                    "": "",
+                    "": "",
+                    "": "",
+                    "": "",
+                    "": "",
+                    "": "",
+                    "": "",
+                    "": "",
                     "Enter the Verify Code 4-Digit sent to your Email": "Enter the Verify Code 4-Digit sent to your Email",
                     "Discover a curated selection of global trends blended with modern Arabic sophistication. Seamless, high-end, and designed for you."
                         : "Discover a curated selection of global trends blended with modern Arabic sophistication.Seamless, high-end, and designed for you.",
@@ -298,6 +313,14 @@ i18n
                     "Total": "المجموع",
                     "Clear Cart": " افراغ السلة",
                     "All Categories": " جميع الفئات",
+                    "Free Shipping": "تسويق مجاني",
+                    "On all orders over $100": "على جميع الطلبات التي تزيد عن 100 دولار",
+                    "24/7 Support": "دعم على مدار 24 ساعة",
+                    "Always here to help you": " دائماَ هنا لمساعدتك",
+                    "100% safe transactions": "معاملات آمنة 100%",
+                    "Easy Returns": "إرجاع سهل",
+                    "30-day return policy": "سياسة إرجاع خلال 30 يوم",
+
 
                     "Enter the Verify Code 4-Digit sent to your Email": "أدخل رمز التحقق من 4 أرقام المرسل إلى بريدك الإلكتروني",
 
