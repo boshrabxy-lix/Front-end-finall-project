@@ -1,3 +1,4 @@
+
 import { Box } from '@mui/material';
 import Categories from "../../components/categories/Categories";
 import ProductsSection from "../../components/products/ProductsSection";
@@ -13,7 +14,7 @@ export default function Home() {
     <>
       <Box component="div">
         <Hero />
-     
+        <FeaturesSection />
         <Categories />
       
         <ProductsSection />
