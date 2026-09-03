@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Links, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AppBar, IconButton, Toolbar, Badge, InputBase, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -116,30 +116,6 @@ export default function Navbar() {
               ml: 2,
             }}
           >
-            <Box
-              sx={{
-                display: { xs: "none", md: 'flex' },
-                gap: 3,
-                alignItems: 'center',
-                bgcolor: 'white',
-                borderRadius: "20px",
-                px: 4,
-                py: 0.5,
-                maxWidth: 340,
-                ml: 3,
-              }}
-            >
-              <SearchIcon sx={{ color: "#595e65d0", fontSize: 20, bgcolor: 'white' }} />
-              <InputBase
-                placeholder={t('Search for products...')}
-                sx={{
-                  color: "#000000d0",
-                  fontSize: "0.9rem",
-                  alignItems: "center",
-                  bgcolor: 'white'
-                }}
-              />
-            </Box>
 
             {token && (
               <>
@@ -161,7 +137,6 @@ export default function Navbar() {
             <IconButton onClick={toggleTheme} size="small" sx={{ color: "#e2e8f0", display: { sm: "flex" }, }}  >
               {mode === 'dark' ? (<DarkModeOutlinedIcon fontSize="small" />) : (< LightModeIcon fontSize="small" />)}
             </IconButton>
-
 
             <ProfileMenu />
           </Box>

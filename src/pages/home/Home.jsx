@@ -7,6 +7,7 @@ import ModernCircle from "../../components/modernCircle/ModernCircle";
 import StatsSection from "../../components/statsSection/StatsSection";
 import FeaturesSection from "../../components/featuresSection/FeaturesSection";
 import ContactFollowSection from "../../components/contactFollowSection/ContactFollowSection";
+import FAQSection from '../../components/fAQSection/FAQSection';
 
 export default function Home() {
 
@@ -19,6 +20,7 @@ export default function Home() {
       
         <ProductsSection />
         <StatsSection />
+        <FAQSection />
         <ModernCircle />
         <ContactFollowSection />
       </Box>

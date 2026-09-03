@@ -21,11 +21,6 @@ const getTheme = (mode) => {
     text: {
       secondary: '#94a3b8',
     },
-
-    background: {
-      paper: '#fff',
-      default: '#fff',
-    },
   });
 }
 export default getTheme;

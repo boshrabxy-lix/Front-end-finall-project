@@ -31,7 +31,7 @@ export default function FeaturesSection() {
       subtitle: t('30-day return policy'),
     },
   ];
-  
+
   return (
     <Box sx={{ py: { xs: 4, md: 6 }, px: { xs: 2, md: 4 }, }} >
       <Grid container spacing={2} >
