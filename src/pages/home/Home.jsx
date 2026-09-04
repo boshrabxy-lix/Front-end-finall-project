@@ -8,6 +8,7 @@ import StatsSection from "../../components/statsSection/StatsSection";
 import FeaturesSection from "../../components/featuresSection/FeaturesSection";
 import ContactFollowSection from "../../components/contactFollowSection/ContactFollowSection";
 import FAQSection from '../../components/fAQSection/FAQSection';
+import BestSellersSection from '../../components/bestSellersSection/BestSellersSection';
 
 export default function Home() {
 
@@ -17,9 +18,9 @@ export default function Home() {
         <Hero />
         <FeaturesSection />
         <Categories />
-      
-        <ProductsSection />
+        <BestSellersSection />
         <StatsSection />
+        <ProductsSection />
         <FAQSection />
         <ModernCircle />
         <ContactFollowSection />
